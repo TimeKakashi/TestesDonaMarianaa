@@ -8,4 +8,13 @@
     <ImplicitUsings>enable</ImplicitUsings>
   </PropertyGroup>
 
+  <ItemGroup>
+    <Folder Include="Compartilhado\" />
+    <Folder Include="ModuloTeste\" />
+    <Folder Include="ModuloDisciplina\" />
+    <Folder Include="ModuloMateria\" />
+    <Folder Include="ModuloQuestoes\" />
+    <Folder Include="ModuloGabarito\" />
+  </ItemGroup>
+
 </Project>

@@ -5,6 +5,20 @@ VisualStudioVersion = 17.5.33424.131
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TestesDonaMariana.WinForm", "TestesDonaMariana.WinForm\TestesDonaMariana.WinForm.csproj", "{BF64620D-FFEC-4CB5-A007-2BAB4164D181}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Apresetacao", "Apresetacao", "{4C80EA26-393F-4344-A36F-B56B6BC97A7A}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Infra", "Infra", "{20E94963-06F7-4F24-BACC-88EB7C75DDF4}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Dominio", "Dominio", "{EEFC88E9-1A11-46A3-B364-A1D2A0899226}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TestesDonaMariana.Dominio", "TestesDonaMariana.Dominio\TestesDonaMariana.Dominio.csproj", "{F4C72A2A-6CCC-4F51-84B6-11874A718B70}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TestesDonaMariana.Infra.Dados.Sql", "TestesDonaMariana.Infra\TestesDonaMariana.Infra.Dados.Sql.csproj", "{63640CE1-216D-4E95-8DD5-24394EE2334D}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "BancoDados", "BancoDados", "{46596DA2-06EC-4AFD-872D-184877AB08A6}"
+EndProject
+Project("{00D1A9C2-B5F0-4AF3-8072-F6C62B433612}") = "TestesDonaMariana.Infra.Sql.ProjetoDataBase", "TestesDonaMariana.Infra.Sql.ProjetoDataBase\TestesDonaMariana.Infra.Sql.ProjetoDataBase.sqlproj", "{91A81731-DC12-4156-ADA8-5859E6719938}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,9 +29,29 @@ Global
 		{BF64620D-FFEC-4CB5-A007-2BAB4164D181}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{BF64620D-FFEC-4CB5-A007-2BAB4164D181}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{BF64620D-FFEC-4CB5-A007-2BAB4164D181}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F4C72A2A-6CCC-4F51-84B6-11874A718B70}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F4C72A2A-6CCC-4F51-84B6-11874A718B70}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F4C72A2A-6CCC-4F51-84B6-11874A718B70}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F4C72A2A-6CCC-4F51-84B6-11874A718B70}.Release|Any CPU.Build.0 = Release|Any CPU
+		{63640CE1-216D-4E95-8DD5-24394EE2334D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{63640CE1-216D-4E95-8DD5-24394EE2334D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{63640CE1-216D-4E95-8DD5-24394EE2334D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{63640CE1-216D-4E95-8DD5-24394EE2334D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{91A81731-DC12-4156-ADA8-5859E6719938}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{91A81731-DC12-4156-ADA8-5859E6719938}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{91A81731-DC12-4156-ADA8-5859E6719938}.Debug|Any CPU.Deploy.0 = Debug|Any CPU
+		{91A81731-DC12-4156-ADA8-5859E6719938}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{91A81731-DC12-4156-ADA8-5859E6719938}.Release|Any CPU.Build.0 = Release|Any CPU
+		{91A81731-DC12-4156-ADA8-5859E6719938}.Release|Any CPU.Deploy.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{BF64620D-FFEC-4CB5-A007-2BAB4164D181} = {4C80EA26-393F-4344-A36F-B56B6BC97A7A}
+		{F4C72A2A-6CCC-4F51-84B6-11874A718B70} = {EEFC88E9-1A11-46A3-B364-A1D2A0899226}
+		{63640CE1-216D-4E95-8DD5-24394EE2334D} = {20E94963-06F7-4F24-BACC-88EB7C75DDF4}
+		{91A81731-DC12-4156-ADA8-5859E6719938} = {46596DA2-06EC-4AFD-872D-184877AB08A6}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {1036D879-29EB-4FE1-8BA4-F0849096099C}
