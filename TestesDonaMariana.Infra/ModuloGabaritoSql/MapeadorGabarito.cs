@@ -1,12 +1,19 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using Microsoft.Data.SqlClient;
+using TestesDonaMariana.Dominio.ModuloGabarito;
+using TestesDonaMariana.Infra.Dados.Sql.Compatilhado;
 
 namespace TestesDonaMariana.Infra.Dados.Sql.ModuloGabaritoSql
 {
-    internal class MapeadorGabarito
+    public class MapeadorGabarito : MapeadorBase<Gabarito>
     {
+        public override void ConfigurarParametros(SqlCommand comando, Gabarito registro)
+        {
+            throw new NotImplementedException();
+        }
+
+        public override Gabarito ConverterRegistro(SqlDataReader leitorRegistros)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

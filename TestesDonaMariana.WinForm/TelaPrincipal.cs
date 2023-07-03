@@ -1,28 +1,28 @@
 using TestesDonaMariana.WinForm.Compartilhado;
 using TestesDonaMariana.WinForm.ModuloDisciplina;
 using TestesDonaMariana.Dominio.ModuloDisciplina;
-using TestesDonaMariana.Infra.Dados.Sql.Disciplina;
 using TestesDonaMariana.WinForm.ModuloMateria;
 using TestesDonaMariana.WinForm.ModuloQuestao;
 using TestesDonaMariana.WinForm.ModuloTeste;
 using TestesDonaMariana.Dominio.ModuloGabarito;
-using TestesDonaMariana.Infra.Dados.Sql.Gabarito;
 using TestesDonaMariana.Dominio.ModuloMateria;
-using TestesDonaMariana.Infra.Dados.Sql.Materia;
 using TestesDonaMariana.Dominio.ModuloQuestoes;
-using TestesDonaMariana.Infra.Dados.Sql.Questao;
 using TestesDonaMariana.Dominio.ModuloTeste;
-using TestesDonaMariana.Infra.Dados.Sql.Teste;
+using TestesDonaMariana.Infra.Dados.Sql.ModuloQuestaoSql;
+using TestesDonaMariana.Infra.Dados.Sql.ModuloMateriaSql;
+using TestesDonaMariana.Infra.Dados.Sql.ModuloGabaritoSql;
+using TestesDonaMariana.Infra.Dados.Sql.ModuloDisciplinaSql;
+using TestesDonaMariana.Infra.Dados.Sql.ModuloTesteSql;
 
 namespace TestesDonaMariana.WinForm
 {
     public partial class TelaPrincipal : Form
     {
         private IRepositorioDisciplina repositorioDisciplina = new RepositorioDisciplinaSql();
-        private IRepositorioGabarito repositorioGabarito = new RepositorioGabarito();
-        private IRepositorioMateria repositorioMateria = new RepositorioMateria();
-        private IRepositorioQuestoes repositorioQuestao = new RepositorioQuestao();
-        private IRepositorioTeste repositorioTeste = new RepositorioTeste();
+        private IRepositorioGabarito repositorioGabarito = new RepositorioGabaritoSql();
+        private IRepositorioMateria repositorioMateria = new RepositorioMateriaSql();
+        private IRepositorioQuestoes repositorioQuestao = new RepositorioQuestaoSql();
+        private IRepositorioTeste repositorioTeste = new RepositorioTesteSql();
 
         public ControladorBase controlador { get; set; }
         public TelaPrincipal()
