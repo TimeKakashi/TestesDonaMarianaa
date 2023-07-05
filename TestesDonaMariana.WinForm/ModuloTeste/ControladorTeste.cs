@@ -29,7 +29,7 @@ namespace TestesDonaMariana.WinForm.ModuloTeste
 
         public override bool FiltrarHabilitado => true;
 
-        public override bool GerarGabarito => true;
+        public override bool GerarGabaritoHabilitado => true;
 
         public override bool GerarPdfHabilitado => true;
 

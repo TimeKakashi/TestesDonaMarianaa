@@ -44,7 +44,7 @@ namespace TestesDonaMariana.WinForm
             btnEditar.Enabled = controlador.EditarHabilitado;
             btnExcluir.Enabled = controlador.ExcluirHabilitado;
             btnFiltrar.Enabled = controlador.FiltrarHabilitado;
-            btnGerarGabarito.Enabled = controlador.GerarGabarito;
+            btnGerarGabarito.Enabled = controlador.GerarGabaritoHabilitado;
             btnPdf.Enabled = controlador.GerarPdfHabilitado;
         }
 
@@ -77,7 +77,7 @@ namespace TestesDonaMariana.WinForm
 
         private void questaoToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            controlador = new ControladorQuestao(repositorioQuestao);
+            controlador = new ControladorQuestao(repositorioQuestao, repositorioMateria);
             ConfigurarTelaPrincipal(controlador);
         }
 
@@ -85,6 +85,88 @@ namespace TestesDonaMariana.WinForm
         {
             controlador = new ControladorTeste(repositorioTeste, repositorioGabarito);
             ConfigurarTelaPrincipal(controlador);
+        }
+
+        private void btnInserir_Click(object sender, EventArgs e)
+        {
+            if (controlador == null)
+            {
+                MessageBox.Show("Selecione uma area primeiro!",
+                  "Eh necessario selecionar uma area",
+                  MessageBoxButtons.OK, MessageBoxIcon.Error);
+
+                return;
+            }
+
+              
+
+            controlador.Inserir();
+        }
+
+        private void btnEditar_Click(object sender, EventArgs e)
+        {
+            if (controlador == null)
+            {
+                MessageBox.Show("Selecione uma area primeiro!",
+                  "Eh necessario selecionar uma area",
+                  MessageBoxButtons.OK, MessageBoxIcon.Error);
+
+                return;
+            }
+
+            controlador.Editar();
+        }
+
+        private void btnExcluir_Click(object sender, EventArgs e)
+        {
+            if (controlador == null)
+            {
+                MessageBox.Show("Selecione uma area primeiro!",
+                  "Eh necessario selecionar uma area",
+                  MessageBoxButtons.OK, MessageBoxIcon.Error);
+
+                return;
+            }
+
+            controlador.Excluir();
+        }
+
+        private void btnFiltrar_Click(object sender, EventArgs e)
+        {
+            if (controlador == null)
+            {
+                MessageBox.Show("Selecione uma area primeiro!",
+                  "Eh necessario selecionar uma area",
+                  MessageBoxButtons.OK, MessageBoxIcon.Error);
+
+                return;
+            }
+
+            controlador.Filtrar();
+        }
+
+        private void btnGerarGabarito_Click(object sender, EventArgs e)
+        {
+            if (controlador == null)
+            {
+                MessageBox.Show("Selecione uma area primeiro!",
+                  "Eh necessario selecionar uma area",
+                  MessageBoxButtons.OK, MessageBoxIcon.Error);
+
+                return;
+            }
+
+            controlador.GerarGabarito();
+        }
+
+        private void btnPdf_Click(object sender, EventArgs e)
+        {
+            if (controlador == null)
+                MessageBox.Show("Selecione uma area primeiro!",
+                    "Eh necessario selecionar uma area",
+                    MessageBoxButtons.OK, MessageBoxIcon.Error);
+
+            controlador.GerarPdf();
         }
     }
 }

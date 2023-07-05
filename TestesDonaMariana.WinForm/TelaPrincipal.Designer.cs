@@ -70,28 +70,28 @@
             // disciplinaToolStripMenuItem
             // 
             disciplinaToolStripMenuItem.Name = "disciplinaToolStripMenuItem";
-            disciplinaToolStripMenuItem.Size = new Size(180, 22);
+            disciplinaToolStripMenuItem.Size = new Size(125, 22);
             disciplinaToolStripMenuItem.Text = "Disciplina";
             disciplinaToolStripMenuItem.Click += disciplinaToolStripMenuItem_Click;
             // 
             // materiaToolStripMenuItem
             // 
             materiaToolStripMenuItem.Name = "materiaToolStripMenuItem";
-            materiaToolStripMenuItem.Size = new Size(180, 22);
+            materiaToolStripMenuItem.Size = new Size(125, 22);
             materiaToolStripMenuItem.Text = "Materia";
             materiaToolStripMenuItem.Click += materiaToolStripMenuItem_Click;
             // 
             // questaoToolStripMenuItem
             // 
             questaoToolStripMenuItem.Name = "questaoToolStripMenuItem";
-            questaoToolStripMenuItem.Size = new Size(180, 22);
+            questaoToolStripMenuItem.Size = new Size(125, 22);
             questaoToolStripMenuItem.Text = "Questao";
             questaoToolStripMenuItem.Click += questaoToolStripMenuItem_Click;
             // 
             // testeToolStripMenuItem
             // 
             testeToolStripMenuItem.Name = "testeToolStripMenuItem";
-            testeToolStripMenuItem.Size = new Size(180, 22);
+            testeToolStripMenuItem.Size = new Size(125, 22);
             testeToolStripMenuItem.Text = "Teste";
             testeToolStripMenuItem.Click += testeToolStripMenuItem_Click;
             // 
@@ -113,6 +113,7 @@
             btnInserir.Padding = new Padding(7);
             btnInserir.Size = new Size(34, 34);
             btnInserir.Text = "toolStripButton1";
+            btnInserir.Click += btnInserir_Click;
             // 
             // btnEditar
             // 
@@ -123,6 +124,7 @@
             btnEditar.Padding = new Padding(7);
             btnEditar.Size = new Size(34, 34);
             btnEditar.Text = "toolStripButton2";
+            btnEditar.Click += btnEditar_Click;
             // 
             // btnExcluir
             // 
@@ -133,6 +135,7 @@
             btnExcluir.Padding = new Padding(7);
             btnExcluir.Size = new Size(34, 34);
             btnExcluir.Text = "toolStripButton3";
+            btnExcluir.Click += btnExcluir_Click;
             // 
             // btnFiltrar
             // 
@@ -143,6 +146,7 @@
             btnFiltrar.Padding = new Padding(7);
             btnFiltrar.Size = new Size(34, 34);
             btnFiltrar.Text = "toolStripButton4";
+            btnFiltrar.Click += btnFiltrar_Click;
             // 
             // btnGerarGabarito
             // 
@@ -153,6 +157,7 @@
             btnGerarGabarito.Padding = new Padding(7);
             btnGerarGabarito.Size = new Size(34, 34);
             btnGerarGabarito.Text = "toolStripButton5";
+            btnGerarGabarito.Click += btnGerarGabarito_Click;
             // 
             // btnPdf
             // 
@@ -163,6 +168,7 @@
             btnPdf.Padding = new Padding(7);
             btnPdf.Size = new Size(34, 34);
             btnPdf.Text = "toolStripButton6";
+            btnPdf.Click += btnPdf_Click;
             // 
             // toolStripSeparator1
             // 

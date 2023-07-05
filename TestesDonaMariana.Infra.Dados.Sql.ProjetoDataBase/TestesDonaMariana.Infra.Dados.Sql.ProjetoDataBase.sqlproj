@@ -58,8 +58,6 @@
     <Folder Include="dbo\Tables\" />
   </ItemGroup>
   <ItemGroup>
-    <Build Include="dbo\Tables\TBAlternativas.sql" />
-    <Build Include="dbo\Tables\DBDisciplina.sql" />
     <Build Include="dbo\Tables\TB_Serie_1.sql" />
     <Build Include="dbo\Tables\TB_Questao_1.sql" />
     <Build Include="dbo\Tables\TB_Materia_1.sql" />
