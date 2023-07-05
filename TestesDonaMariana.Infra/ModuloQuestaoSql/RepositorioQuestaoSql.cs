@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using TestesDonaMariana.Dominio.ModuloQuestao;
 using TestesDonaMariana.Dominio.ModuloQuestoes;
 using TestesDonaMariana.Infra.Dados.Sql.Compatilhado;
 
@@ -47,19 +48,25 @@ namespace TestesDonaMariana.Infra.Dados.Sql.ModuloQuestaoSql
 					[Id_Materia] = @ID_MATERIA,
 					[Titulo] = @TITULO
 
-				WHERE [Id] = @ID
+				WHERE [Id] = @ID_QUESTAO";
 
-			UPDATE [TB_Alternativa]
+
+
+		private const string sqlEditarAlternativas =
+
+            @"UPDATE [TB_ALTERNATIVA]
 				SET 
-					[Alternativa]
-				WHERE
-					[Id_Questao] = @ID";
+					[ALTERNATIVA] = @ALTERNATIVA
 
-		protected override string sqlExcluir =>
+				WHERE
+					[Id_Questao] = @ID_QUESTAO and [TB_ALTERNATIVA].ID = @ID_ALTERNATIVA";
+
+
+        protected override string sqlExcluir =>
             @"DELETE FROM 
 					[TB_Questao]
 				WHERE 
-					[Id] = @ID";
+					[Id] = @ID_QUESTAO";
 		protected override string sqlSelecionarTodos =>
             @"SELECT 
 				Q.[Id]					ID_QUESTAO,
@@ -127,10 +134,16 @@ namespace TestesDonaMariana.Infra.Dados.Sql.ModuloQuestaoSql
 				";
 
 		public const string sqlCarregarAlternativas =
-            @"select 
-				a.[Alternativa]
-
-		from [TB_Alternativa] as a inner join [TB_Questao] as q on a.Id_Questao = q.Id where q.id = @ID";
+            @"SELECT 
+					A.[ALTERNATIVA],
+					A.[ID]
+				FROM
+					[TB_ALTERNATIVA] AS A 
+				INNER JOIN
+					[TB_QUESTAO] AS Q
+				ON
+					A.ID_QUESTAO = Q.[ID]
+					where q.id = @ID_QUESTAO";
 
 		public const string sqlExcluirAlternativas =
             @"delete from [TB_Alternativa] where Id_Questao = @id";
@@ -145,7 +158,7 @@ namespace TestesDonaMariana.Infra.Dados.Sql.ModuloQuestaoSql
             SqlCommand comandoExcluir = conexaoComBanco.CreateCommand();
             comandoExcluir.CommandText = sqlExcluir;
 
-            comandoExcluir.Parameters.AddWithValue("ID", registroSelecionado.id);
+            comandoExcluir.Parameters.AddWithValue("ID_QUESTAO", registroSelecionado.id);
 
             comandoExcluir.ExecuteNonQuery();
 
@@ -167,12 +180,12 @@ namespace TestesDonaMariana.Infra.Dados.Sql.ModuloQuestaoSql
             conexaoComBanco.Close();
         }
 
-        public void InserirAlternativa(List<string> alternativas, Questao questao)
+        public void InserirAlternativa(List<Alternativa> alternativas, Questao questao)
         {
             //obter a conexão com o banco e abrir ela
             
 
-            foreach (var item in alternativas)
+            foreach (Alternativa item in alternativas)
             {
                 SqlConnection conexaoComBanco = new SqlConnection(enderecoBanco);
                 conexaoComBanco.Open();
@@ -190,38 +203,52 @@ namespace TestesDonaMariana.Infra.Dados.Sql.ModuloQuestaoSql
             }
         }
 
-		public List<string> SelecionarAlternativas(Questao questao)
+		public void EditarAlternativas(Questao questao)
 		{
-            //obter a conexão com o banco e abrir ela
+            foreach (Alternativa item in questao.alternativas)
+            {
+                SqlConnection conexaoComBanco = new SqlConnection(enderecoBanco);
+                conexaoComBanco.Open();
+
+                //cria um comando e relaciona com a conexão aberta
+                SqlCommand comandoEditarAlternativas = conexaoComBanco.CreateCommand();
+                comandoEditarAlternativas.CommandText = sqlEditarAlternativas;
+
+                MapeadorQuestao mapeador = new MapeadorQuestao();
+
+                mapeador.ConfigurarParamentrosAlternativas(comandoEditarAlternativas, item, questao);
+                comandoEditarAlternativas.ExecuteNonQuery();
+
+                conexaoComBanco.Close();
+            }
+        }
+
+		public List<Alternativa> SelecionarAlternativas(Questao questao)
+		{
             SqlConnection conexaoComBanco = new SqlConnection(enderecoBanco);
             conexaoComBanco.Open();
 
-            //cria um comando e relaciona com a conexão aberta
-            SqlCommand comandoSelecionarItens = conexaoComBanco.CreateCommand();
-            comandoSelecionarItens.CommandText = sqlCarregarAlternativas;
+            SqlCommand comandoSelecionarAlternativas = conexaoComBanco.CreateCommand();
+            comandoSelecionarAlternativas.CommandText = sqlCarregarAlternativas;
 
-            comandoSelecionarItens.Parameters.AddWithValue("ID", questao.id);
+            comandoSelecionarAlternativas.Parameters.AddWithValue("ID_QUESTAO", questao.id);
 
             MapeadorQuestao mapeador = new MapeadorQuestao();
 
-            //executa o comando
-            SqlDataReader leitorItem = comandoSelecionarItens.ExecuteReader();
+            SqlDataReader leitorItem = comandoSelecionarAlternativas.ExecuteReader();
 
-			List<string> alternatvias = new List<string>();
+			List<Alternativa> alternatvias = new List<Alternativa>();
 
             while (leitorItem.Read())
             {
-				string item = mapeador.ConverterParaAlternativastr(leitorItem);
+				Alternativa alternativa = mapeador.ConverterParaAlternativastr(leitorItem);
 
-				alternatvias.Add(item);
+				alternatvias.Add(alternativa);
             }
 
-            //encerra a conexão
             conexaoComBanco.Close();
 
 			return alternatvias;
         }
     }
-
-    
 }

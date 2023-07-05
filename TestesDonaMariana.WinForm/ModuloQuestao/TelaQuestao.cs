@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using TestesDonaMariana.Dominio.ModuloDisciplina;
 using TestesDonaMariana.Dominio.ModuloMateria;
+using TestesDonaMariana.Dominio.ModuloQuestao;
 using TestesDonaMariana.Dominio.ModuloQuestoes;
 
 namespace TestesDonaMariana.WinForm.ModuloQuestao
@@ -30,13 +31,20 @@ namespace TestesDonaMariana.WinForm.ModuloQuestao
 
         public Questao ObterQuestao()
         {
-            List<string> Alternativas = new List<string>();
+            List<Alternativa> Alternativas = new List<Alternativa>();
 
             string titulo = txTitulo.Text;
-            Alternativas.Add(txAlternativaA.Text);
-            Alternativas.Add(txAlternativaB.Text);
-            Alternativas.Add(txAlternativaC.Text);
-            Alternativas.Add(txAlternativaD.Text);
+
+            Alternativa alternativaA = new Alternativa(txAlternativaA.Text);
+            Alternativa alternativaB = new Alternativa(txAlternativaB.Text);
+            Alternativa alternativaC = new Alternativa(txAlternativaC.Text);
+            Alternativa alternativaD = new Alternativa(txAlternativaD.Text);
+
+            Alternativas.Add(alternativaA);
+            Alternativas.Add(alternativaB);
+            Alternativas.Add(alternativaC);
+            Alternativas.Add(alternativaD);
+
             EnumAlternativaCorreta alternativaCorrea = (EnumAlternativaCorreta)cbAlternativaCorreta.SelectedItem;
             Materia materia = (Materia)cbMateria.SelectedItem;
 
@@ -47,10 +55,10 @@ namespace TestesDonaMariana.WinForm.ModuloQuestao
         {
             cbMateria.SelectedItem = questao.materia;
             cbAlternativaCorreta.SelectedItem = questao.alternativaCorretaENUM;
-            txAlternativaA.Text = questao.alternativas[0];
-            txAlternativaB.Text = questao.alternativas[1];
-            txAlternativaC.Text = questao.alternativas[2];
-            txAlternativaD.Text = questao.alternativas[3];
+            txAlternativaA.Text = questao.alternativas[0].alternativa;
+            txAlternativaB.Text = questao.alternativas[1].alternativa;
+            txAlternativaC.Text = questao.alternativas[2].alternativa;
+            txAlternativaD.Text = questao.alternativas[3].alternativa;
             txTitulo.Text = questao.titulo;
         }
 

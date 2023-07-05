@@ -3,7 +3,10 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using TestesDonaMariana.Dominio.ModuloDisciplina;
 using TestesDonaMariana.Dominio.ModuloGabarito;
+using TestesDonaMariana.Dominio.ModuloMateria;
+using TestesDonaMariana.Dominio.ModuloQuestoes;
 using TestesDonaMariana.Dominio.ModuloTeste;
 using TestesDonaMariana.WinForm.Compartilhado;
 
@@ -14,11 +17,15 @@ namespace TestesDonaMariana.WinForm.ModuloTeste
         private ListagemTesteControl listagemTeste;
         private IRepositorioTeste repositorioTeste;
         private IRepositorioGabarito repositorioGabarito;
+        private IRepositorioDisciplina repositorioDisciplina;
+        private IRepositorioMateria repositorioMateria;
 
-        public ControladorTeste(IRepositorioTeste repositorioTeste, IRepositorioGabarito repositorioGabarito)
+        public ControladorTeste(IRepositorioTeste repositorioTeste, IRepositorioGabarito repositorioGabarito, IRepositorioDisciplina repositorioDisciplina, IRepositorioMateria repositorioMateria)
         {
             this.repositorioTeste = repositorioTeste;
             this.repositorioGabarito = repositorioGabarito;
+            this.repositorioMateria = repositorioMateria;
+            this.repositorioDisciplina = repositorioDisciplina;
         }
 
         public override string ToolTipInserir => "Cadastrar Teste";
@@ -33,9 +40,31 @@ namespace TestesDonaMariana.WinForm.ModuloTeste
 
         public override bool GerarPdfHabilitado => true;
 
+        public override void Inserir()
+        {
+            TelaTeste telaTeste = new TelaTeste(repositorioDisciplina, repositorioMateria);
+
+            DialogResult resultado = telaTeste.ShowDialog();
+
+            if(resultado == DialogResult.OK)
+            {
+                Teste teste = telaTeste.ObterTeste();
+
+                repositorioTeste.Inserir(teste);
+            }
+        }
+
+
         public override void Editar()
         {
-            throw new NotImplementedException();
+            Teste teste = ObterTesteSelecionado();
+        }
+
+        private Teste ObterTesteSelecionado()
+        {
+            int id = listagemTeste.ObterIdSelecionado();
+
+            return repositorioTeste.SelecionarPorId(id);
         }
 
         public override void Excluir()
@@ -43,11 +72,7 @@ namespace TestesDonaMariana.WinForm.ModuloTeste
             throw new NotImplementedException();
         }
 
-        public override void Inserir()
-        {
-            throw new NotImplementedException();
-        }
-
+       
         public override UserControl ObterListagem()
         {
             if(listagemTeste == null)

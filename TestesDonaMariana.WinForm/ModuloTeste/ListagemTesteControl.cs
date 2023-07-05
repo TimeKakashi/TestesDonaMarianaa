@@ -16,5 +16,10 @@ namespace TestesDonaMariana.WinForm.ModuloTeste
         {
             InitializeComponent();
         }
+
+        internal int ObterIdSelecionado()
+        {
+            throw new NotImplementedException();
+        }
     }
 }

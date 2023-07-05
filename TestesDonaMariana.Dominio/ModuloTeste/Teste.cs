@@ -4,14 +4,42 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using TestesDonaMariana.Dominio.Compartilhado;
+using TestesDonaMariana.Dominio.ModuloDisciplina;
+using TestesDonaMariana.Dominio.ModuloMateria;
+using TestesDonaMariana.Dominio.ModuloQuestoes;
 
 namespace TestesDonaMariana.Dominio.ModuloTeste
 {
     public class Teste : EntidadeBase<Teste>
     {
+
+        public Materia materia { get; set; }
+        public Disciplina disciplina { get; set; }
+        public int numeroQuestoes { get; set; }
+        public DateTime dataCriacao { get; set; }
+        public string serie { get; set; }
+        public List<Questao> questoes { get; set; } = new List<Questao>();
+
+        public Teste(Materia materia, Disciplina disciplina, int numeroQuestoes, string serie)
+        {
+            this.numeroQuestoes = numeroQuestoes;
+            this.materia = materia;
+            this.disciplina = disciplina;
+            this.serie = serie;
+            this.dataCriacao = DateTime.Now.Date;
+        }
+
+        public Teste()
+        {
+            
+        }
+
         public override void AtualizarInformacoes(Teste registroAtualizado)
         {
-            throw new NotImplementedException();
+            this.materia = registroAtualizado.materia;
+            this.disciplina = registroAtualizado.disciplina;
+            this.numeroQuestoes = registroAtualizado.numeroQuestoes;
+            this.serie = registroAtualizado.serie;
         }
 
         public override string[] Validar()

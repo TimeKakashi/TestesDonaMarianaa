@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using TestesDonaMariana.Dominio.ModuloMateria;
+using TestesDonaMariana.Dominio.ModuloQuestao;
 using TestesDonaMariana.Dominio.ModuloQuestoes;
 using TestesDonaMariana.WinForm.Compartilhado;
 
@@ -40,7 +41,7 @@ namespace TestesDonaMariana.WinForm.ModuloQuestao
 
                 repositorioQuestao.Inserir(questao);
                 repositorioQuestao.InserirAlternativa(questao.alternativas, questao);
-                List<string> lista = repositorioQuestao.SelecionarAlternativas(questao);
+                List<Alternativa> lista = repositorioQuestao.SelecionarAlternativas(questao);
             }
 
             CarregarQuestoes();
@@ -68,12 +69,29 @@ namespace TestesDonaMariana.WinForm.ModuloQuestao
             if(opcaoEscolhida == DialogResult.OK )
             {
                 Questao questaoAtualizada = telaQuestao.ObterQuestao();
-                repositorioQuestao.Editar(questaoAtualizada.id, questaoAtualizada );
+                questaoAtualizada.id = questao.id;
+
+                repositorioQuestao.Editar(questaoAtualizada.id, questaoAtualizada);
+                EditarAlternativas(questaoAtualizada);
             }
 
             CarregarQuestoes();
         }
-       
+
+        private void EditarAlternativas(Questao questaoAtualizada)
+        {
+            int contador = 0;
+            List<Alternativa> alternativasIdCorreto = repositorioQuestao.SelecionarAlternativas(questaoAtualizada);
+
+            foreach (Alternativa item in questaoAtualizada.alternativas)
+            {
+                item.id = alternativasIdCorreto[contador].id;
+                contador++;
+            }
+
+            repositorioQuestao.EditarAlternativas(questaoAtualizada);
+        }
+
         public override void Excluir()
         {
             Questao questao = ObterQuestaoSelecionada();

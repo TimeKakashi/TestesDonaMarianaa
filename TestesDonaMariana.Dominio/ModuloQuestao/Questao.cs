@@ -2,6 +2,7 @@
 
 using TestesDonaMariana.Dominio.Compartilhado;
 using TestesDonaMariana.Dominio.ModuloMateria;
+using TestesDonaMariana.Dominio.ModuloQuestao;
 using TestesDonaMariana.WinForm.ModuloQuestao;
 
 namespace TestesDonaMariana.Dominio.ModuloQuestoes
@@ -10,11 +11,11 @@ namespace TestesDonaMariana.Dominio.ModuloQuestoes
     {
         public EnumAlternativaCorreta alternativaCorretaENUM { get; set; }
         public string titulo { get; set; }
-        public List<string> alternativas { get; set; } = new List<string>();
+        public List<Alternativa> alternativas { get; set; } = new List<Alternativa>();
         public string alternativaCorreta { get; set; }
         public Materia materia { get; set; }
 
-        public Questao(string titulo, List<string> alternativas, EnumAlternativaCorreta alternativaCorrea, Materia materia)
+        public Questao(string titulo, List<Alternativa> alternativas, EnumAlternativaCorreta alternativaCorrea, Materia materia)
         {
             this.titulo = titulo;
             this.alternativas = alternativas;

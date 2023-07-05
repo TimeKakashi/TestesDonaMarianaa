@@ -1,4 +1,5 @@
 ﻿using TestesDonaMariana.Dominio.Compartilhado;
+using TestesDonaMariana.Dominio.ModuloQuestao;
 
 namespace TestesDonaMariana.Dominio.ModuloQuestoes
 {
@@ -10,7 +11,9 @@ namespace TestesDonaMariana.Dominio.ModuloQuestoes
         List<Questao> SelecionarTodos();
         Questao SelecionarPorId(int id);
 
-        public List<string> SelecionarAlternativas(Questao questao);
-        public void InserirAlternativa(List<string> alternativas, Questao questao);
+        public List<Alternativa> SelecionarAlternativas(Questao questao);
+        public void InserirAlternativa(List<Alternativa> alternativas, Questao questao);
+
+        public void EditarAlternativas(Questao questao);
     }
 }

@@ -83,7 +83,7 @@ namespace TestesDonaMariana.WinForm
 
         private void testeToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            controlador = new ControladorTeste(repositorioTeste, repositorioGabarito);
+            controlador = new ControladorTeste(repositorioTeste, repositorioGabarito, repositorioDisciplina, repositorioMateria);
             ConfigurarTelaPrincipal(controlador);
         }
 
