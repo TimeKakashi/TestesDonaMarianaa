@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using TestesDonaMariana.Dominio.Compartilhado;
+using TestesDonaMariana.Dominio.ModuloMateria;
 
 namespace TestesDonaMariana.Dominio.ModuloDisciplina
 {
@@ -11,6 +12,7 @@ namespace TestesDonaMariana.Dominio.ModuloDisciplina
     {
         public string nome{ get; set;}
 
+        public List<Materia> listaMateria = new List<Materia>();
         public Disciplina(string? nomeDisciplina, int idDisiplina)
         {
             this.nome = nomeDisciplina;

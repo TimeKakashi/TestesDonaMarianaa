@@ -19,13 +19,15 @@ namespace TestesDonaMariana.WinForm.ModuloTeste
         private IRepositorioGabarito repositorioGabarito;
         private IRepositorioDisciplina repositorioDisciplina;
         private IRepositorioMateria repositorioMateria;
+        private IRepositorioQuestoes repositorioQuestoes;
 
-        public ControladorTeste(IRepositorioTeste repositorioTeste, IRepositorioGabarito repositorioGabarito, IRepositorioDisciplina repositorioDisciplina, IRepositorioMateria repositorioMateria)
+        public ControladorTeste(IRepositorioTeste repositorioTeste, IRepositorioGabarito repositorioGabarito, IRepositorioDisciplina repositorioDisciplina, IRepositorioMateria repositorioMateria, IRepositorioQuestoes repositorioQuestoes)
         {
             this.repositorioTeste = repositorioTeste;
             this.repositorioGabarito = repositorioGabarito;
             this.repositorioMateria = repositorioMateria;
             this.repositorioDisciplina = repositorioDisciplina;
+            this.repositorioQuestoes = repositorioQuestoes;
         }
 
         public override string ToolTipInserir => "Cadastrar Teste";
@@ -42,7 +44,7 @@ namespace TestesDonaMariana.WinForm.ModuloTeste
 
         public override void Inserir()
         {
-            TelaTeste telaTeste = new TelaTeste(repositorioDisciplina, repositorioMateria);
+            TelaTeste telaTeste = new TelaTeste(repositorioDisciplina, repositorioMateria, repositorioQuestoes);
 
             DialogResult resultado = telaTeste.ShowDialog();
 

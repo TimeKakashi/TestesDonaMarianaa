@@ -63,5 +63,7 @@
     <Build Include="dbo\Tables\TB_Materia_1.sql" />
     <Build Include="dbo\Tables\TB_Disciplina_1.sql" />
     <Build Include="dbo\Tables\TB_Alternativa_1.sql" />
+    <Build Include="dbo\Tables\TBTeste.sql" />
+    <Build Include="dbo\Tables\TB_Questao_TB_Teste.sql" />
   </ItemGroup>
 </Project>

@@ -57,5 +57,10 @@ namespace TestesDonaMariana.Dominio.ModuloQuestoes
 
             return erros.ToArray();
         }
+
+        public override string ToString()
+        {
+            return titulo + "\n";
+        }
     }
 }

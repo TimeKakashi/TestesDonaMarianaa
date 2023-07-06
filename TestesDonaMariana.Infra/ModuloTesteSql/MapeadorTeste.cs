@@ -4,8 +4,12 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using TestesDonaMariana.Dominio.ModuloDisciplina;
+using TestesDonaMariana.Dominio.ModuloMateria;
 using TestesDonaMariana.Dominio.ModuloTeste;
 using TestesDonaMariana.Infra.Dados.Sql.Compatilhado;
+using TestesDonaMariana.Infra.Dados.Sql.ModuloDisciplinaSql;
+using TestesDonaMariana.Infra.Dados.Sql.ModuloMateriaSql;
 
 namespace TestesDonaMariana.Infra.Dados.Sql.ModuloTesteSql
 {
@@ -13,12 +17,23 @@ namespace TestesDonaMariana.Infra.Dados.Sql.ModuloTesteSql
     {
         public override void ConfigurarParametros(SqlCommand comando, Teste registro)
         {
-            throw new NotImplementedException();
+            comando.Parameters.AddWithValue("ID_DISCIPLINA", registro.disciplina.id);
+            comando.Parameters.AddWithValue("ID_MATERIA", registro.materia.id);
+            comando.Parameters.AddWithValue("DATA", registro.dataCriacao.Ticks);
+            comando.Parameters.AddWithValue("NUMERO_QUESTAO", registro.numeroQuestoes);
         }
 
         public override Teste ConverterRegistro(SqlDataReader leitorRegistros)
         {
-            throw new NotImplementedException();
+
+            Materia materia = new MapeadorMateria().ConverterRegistro(leitorRegistros);
+
+            Disciplina disciplina = new MapeadorDisciplina().ConverterRegistro(leitorRegistros);
+
+            DateTime data = Convert.ToDateTime(leitorRegistros["DATA_CRIACAO"]);
+            int numeroQuestoes = Convert.ToInt32(leitorRegistros["NUMERO_QUESTAO"]);
+
+            return new Teste(materia, disciplina, numeroQuestoes, serie);
         }
     }
 }

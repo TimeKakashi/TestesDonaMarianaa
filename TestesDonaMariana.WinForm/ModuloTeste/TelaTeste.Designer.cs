@@ -41,6 +41,8 @@
             label5 = new Label();
             button1 = new Button();
             button3 = new Button();
+            listBox1 = new ListBox();
+            button2 = new Button();
             cxRadio.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)numericNumeroQuestoes).BeginInit();
             SuspendLayout();
@@ -144,7 +146,7 @@
             // 
             label5.AutoSize = true;
             label5.Font = new Font("Segoe UI", 15F, FontStyle.Regular, GraphicsUnit.Point);
-            label5.Location = new Point(31, 247);
+            label5.Location = new Point(31, 248);
             label5.Name = "label5";
             label5.Size = new Size(93, 28);
             label5.TabIndex = 9;
@@ -171,11 +173,34 @@
             button3.Text = "Cancelar";
             button3.UseVisualStyleBackColor = true;
             // 
+            // listBox1
+            // 
+            listBox1.BackColor = SystemColors.InactiveCaption;
+            listBox1.FormattingEnabled = true;
+            listBox1.ItemHeight = 15;
+            listBox1.Location = new Point(31, 290);
+            listBox1.Name = "listBox1";
+            listBox1.Size = new Size(526, 319);
+            listBox1.TabIndex = 13;
+            // 
+            // button2
+            // 
+            button2.Font = new Font("Segoe UI", 13F, FontStyle.Regular, GraphicsUnit.Point);
+            button2.Location = new Point(427, 253);
+            button2.Name = "button2";
+            button2.Size = new Size(116, 31);
+            button2.TabIndex = 14;
+            button2.Text = "Gerar Teste";
+            button2.UseVisualStyleBackColor = true;
+            button2.Click += button2_Click;
+            // 
             // TelaTeste
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(599, 684);
+            Controls.Add(button2);
+            Controls.Add(listBox1);
             Controls.Add(button3);
             Controls.Add(button1);
             Controls.Add(label5);
@@ -211,5 +236,7 @@
         private Label label5;
         private Button button1;
         private Button button3;
+        private ListBox listBox1;
+        private Button button2;
     }
 }
