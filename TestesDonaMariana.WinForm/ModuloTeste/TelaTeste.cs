@@ -10,8 +10,9 @@ namespace TestesDonaMariana.WinForm.ModuloTeste
     {
         private IRepositorioDisciplina repositorioDisciplina { get; }
         private IRepositorioMateria repositorioMateria { get; }
-
         private IRepositorioQuestoes repositorioQuestoes { get; }
+
+        List<Questao> questoesFinais { get; set; } = new List<Questao>();
 
         public TelaTeste()
         {
@@ -32,8 +33,9 @@ namespace TestesDonaMariana.WinForm.ModuloTeste
             Disciplina disciplina = (Disciplina)cbDisciplina.SelectedItem;
             int numeroQuestoes = Convert.ToInt32((numericNumeroQuestoes.Value));
             string serie = cxRadio.Controls.OfType<RadioButton>().SingleOrDefault(RadioButton => RadioButton.Checked).Text;
+            List<Questao> questoes = questoesFinais;
 
-            return new Teste(materia, disciplina, numeroQuestoes, serie);
+            return new Teste(materia, disciplina, numeroQuestoes, serie, questoes);
         }
 
         public void ConfigurarTela(Teste teste)
@@ -80,6 +82,8 @@ namespace TestesDonaMariana.WinForm.ModuloTeste
 
                 questoesSorteadas.Add(todasQuestoes[numero]);
             }
+
+            questoesFinais = questoesSorteadas;
 
             return questoesSorteadas;
         }

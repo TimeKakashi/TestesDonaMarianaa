@@ -29,6 +29,16 @@ namespace TestesDonaMariana.Dominio.ModuloTeste
             this.dataCriacao = DateTime.Now.Date;
         }
 
+        public Teste(Materia materia, Disciplina disciplina, int numeroQuestoes, string serie, List<Questao> questoes)
+        {
+            this.numeroQuestoes = numeroQuestoes;
+            this.materia = materia;
+            this.disciplina = disciplina;
+            this.serie = serie;
+            this.dataCriacao = DateTime.Now.Date;
+            this.questoes = questoes;
+        }
+
         public Teste()
         {
             

@@ -53,23 +53,23 @@ namespace TestesDonaMariana.Infra.Dados.Sql.ModuloTesteSql
         protected override string sqlSelecionarTodos => @"SELECT 
 	
 															T.[Data]				DATA_CRIACAO,
-															T.[Id_disciplina]		ID_DISCIPLINA_TESTE,
-															T.[Id_Materia]			ID_MATERIA_TESTE,
-															T.[NumeroQuestoes]		NUMERO_QUESTOES,
+															T.[Id_disciplina]		ID_DISCIPLINA,
+															T.[Id_Materia]			ID_MATERIA,
+															T.[NumeroQuestoes]		NUMERO_QUESTAO,
 
 															D.Nome					NOME_DISCIPLINA,
-															D.[Id]					ID_DISCIPLINA,
-	
 
 															M.Nome					NOME_MATERIA,
-															M.Id_Serie				ID_SERIE_MATERIA,
+															M.Id_Serie				ID_SERIE,
 
 															Q.AlternativaCorreta	ALTERNATIVA_CORRETA_QUESTAO,
 															Q.Id					ID_QUESTAO,
 															Q.Titulo				TITULO_QUESTAO,
 	
 															A.[Alternativa]			ALTERNATIVA_QUESTAO,
-															A.[Id]					ID_ALTERNATIVA
+															A.[Id]					ID_ALTERNATIVA,
+
+															S.serie					SERIE
 
 														FROM
 															[TBTeste] as T
@@ -89,6 +89,10 @@ namespace TestesDonaMariana.Infra.Dados.Sql.ModuloTesteSql
 															[TB_Alternativa] as A
 														ON
 															Q.Id = A.Id_Questao
+														inner join	
+															[TB_Serie] as S
+														ON
+															S.Id = M.Id_Serie
 
 														";
 

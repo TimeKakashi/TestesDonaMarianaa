@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -28,6 +29,8 @@ namespace TestesDonaMariana.WinForm.ModuloTeste
             this.repositorioMateria = repositorioMateria;
             this.repositorioDisciplina = repositorioDisciplina;
             this.repositorioQuestoes = repositorioQuestoes;
+
+            CarregarTestes();
         }
 
         public override string ToolTipInserir => "Cadastrar Teste";
@@ -54,12 +57,23 @@ namespace TestesDonaMariana.WinForm.ModuloTeste
 
                 repositorioTeste.Inserir(teste, teste.questoes);
             }
+            CarregarTestes();
         }
-
 
         public override void Editar()
         {
             Teste teste = ObterTesteSelecionado();
+        }
+        public override void Excluir()
+        {
+            throw new NotImplementedException();
+        }
+
+        private void CarregarTestes()
+        {
+            List<Teste> testes = repositorioTeste.SelecionarTodos();
+
+            listagemTeste.AtualizarRegistros(testes);
         }
 
         private Teste ObterTesteSelecionado()
@@ -69,10 +83,6 @@ namespace TestesDonaMariana.WinForm.ModuloTeste
             return repositorioTeste.SelecionarPorId(id);
         }
 
-        public override void Excluir()
-        {
-            throw new NotImplementedException();
-        }
 
        
         public override UserControl ObterListagem()

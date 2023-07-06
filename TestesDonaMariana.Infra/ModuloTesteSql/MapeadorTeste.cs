@@ -30,7 +30,7 @@ namespace TestesDonaMariana.Infra.Dados.Sql.ModuloTesteSql
 
             Disciplina disciplina = new MapeadorDisciplina().ConverterRegistro(leitorRegistros);
 
-            DateTime data = Convert.ToDateTime(leitorRegistros["DATA_CRIACAO"]);
+            DateTime data = DateTime.FromFileTimeUtc(Convert.ToInt64(leitorRegistros["DATA_CRIACAO"]));
             int numeroQuestoes = Convert.ToInt32(leitorRegistros["NUMERO_QUESTAO"]);
             string serie = "Priemira serie";
 
