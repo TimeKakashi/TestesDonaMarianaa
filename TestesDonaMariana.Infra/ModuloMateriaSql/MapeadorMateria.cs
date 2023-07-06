@@ -13,12 +13,24 @@ namespace TestesDonaMariana.Infra.Dados.Sql.ModuloMateriaSql
     {
         public override void ConfigurarParametros(SqlCommand comando, Materia registro)
         {
-            throw new NotImplementedException();
+            comando.Parameters.AddWithValue("ID", registro.id);
+
+            comando.Parameters.AddWithValue("NOME", registro.nome);
+
+            comando.Parameters.AddWithValue("ID_SERIE", registro.serie);
         }
 
         public override Materia ConverterRegistro(SqlDataReader leitorRegistros)
         {
-            throw new NotImplementedException();
+
+            int id = Convert.ToInt32(leitorRegistros["ID"]);
+
+            string nome = Convert.ToString(leitorRegistros["NOME"]);
+
+            string serie = Convert.ToString(leitorRegistros["ID_SERIE"]);
+            Materia materia = new Materia(id, nome, serie);
+
+            return materia;
         }
     }
 }

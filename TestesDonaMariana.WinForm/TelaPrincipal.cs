@@ -23,12 +23,27 @@ namespace TestesDonaMariana.WinForm
         private IRepositorioMateria repositorioMateria = new RepositorioMateriaSql();
         private IRepositorioQuestoes repositorioQuestao = new RepositorioQuestaoSql();
         private IRepositorioTeste repositorioTeste = new RepositorioTesteSql();
-
+        private RepositorioMateriaSql repositorioMateriaSql = new RepositorioMateriaSql();
+        private static TelaPrincipal telaPrincipal;
         public ControladorBase controlador { get; set; }
         public TelaPrincipal()
         {
             InitializeComponent();
 
+        }
+        public static TelaPrincipal Instancia
+        {
+            get
+            {
+                if (telaPrincipal == null)
+                    telaPrincipal = new TelaPrincipal();
+                return telaPrincipal;
+            }
+        }
+
+        public void AtualizarRodape(string mensagem)
+        {
+            StatusLabel.Text = mensagem;
         }
 
         public void ConfigurarTelaPrincipal(ControladorBase controlador)
@@ -71,7 +86,7 @@ namespace TestesDonaMariana.WinForm
 
         private void materiaToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            controlador = new ControladorMateria(repositorioMateria);
+            controlador = new ControladorMateria(repositorioMateria, repositorioMateriaSql);
             ConfigurarTelaPrincipal(controlador);
         }
 
@@ -86,5 +101,17 @@ namespace TestesDonaMariana.WinForm
             controlador = new ControladorTeste(repositorioTeste, repositorioGabarito);
             ConfigurarTelaPrincipal(controlador);
         }
+
+        private void btnInserir_Click(object sender, EventArgs e)
+        {
+            if (controlador == null)
+            {
+                MessageBox.Show("Selecione uma area primeiro", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
+            controlador.Inserir();
+        }
+
     }
 }

@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using TestesDonaMariana.Dominio.ModuloMateria;
+using TestesDonaMariana.Infra.Dados.Sql.ModuloMateriaSql;
 using TestesDonaMariana.WinForm.Compartilhado;
 using TestesDonaMariana.WinForm.ModuloGabarito;
 
@@ -14,10 +15,12 @@ namespace TestesDonaMariana.WinForm.ModuloMateria
 
         private ListagemMateriaControl listagemMateria;
         private IRepositorioMateria repositorioMateria;
+        private RepositorioMateriaSql repositorioMateriaSql;
 
-        public ControladorMateria(IRepositorioMateria repositorioMateria)
+        public ControladorMateria(IRepositorioMateria repositorioMateria, RepositorioMateriaSql repositorioMateriaSql)
         {
             this.repositorioMateria = repositorioMateria;
+            this.repositorioMateriaSql = repositorioMateriaSql;
         }
 
         public override string ToolTipInserir => "Cadastrar Materia";
@@ -39,7 +42,23 @@ namespace TestesDonaMariana.WinForm.ModuloMateria
 
         public override void Inserir()
         {
-            throw new NotImplementedException();
+            TelaMateria telaMateria = new TelaMateria();
+            if (telaMateria.ShowDialog() == DialogResult.OK)
+            {
+                List<Materia> listaMateria = repositorioMateriaSql.SelecionarTodos();
+
+                Materia materia = telaMateria.Materia;
+
+                if (listaMateria.Any(x => x.nome.ToLower() == materia.nome.ToLower()))
+                {
+                    TelaPrincipal.Instancia.AtualizarRodape("Nao é possivel cadastrar uma matéria com o mesmo nome de outra matéria!");
+                    return;
+                }
+
+                repositorioMateriaSql.Inserir(materia);
+
+                
+            }
         }
 
         public override UserControl ObterListagem()
