@@ -56,7 +56,7 @@
             menuStrip1.Items.AddRange(new ToolStripItem[] { cadastrarToolStripMenuItem });
             menuStrip1.Location = new Point(0, 0);
             menuStrip1.Name = "menuStrip1";
-            menuStrip1.Size = new Size(800, 24);
+            menuStrip1.Size = new Size(716, 24);
             menuStrip1.TabIndex = 0;
             menuStrip1.Text = "menuStrip1";
             // 
@@ -70,28 +70,28 @@
             // disciplinaToolStripMenuItem
             // 
             disciplinaToolStripMenuItem.Name = "disciplinaToolStripMenuItem";
-            disciplinaToolStripMenuItem.Size = new Size(180, 22);
+            disciplinaToolStripMenuItem.Size = new Size(125, 22);
             disciplinaToolStripMenuItem.Text = "Disciplina";
             disciplinaToolStripMenuItem.Click += disciplinaToolStripMenuItem_Click;
             // 
             // materiaToolStripMenuItem
             // 
             materiaToolStripMenuItem.Name = "materiaToolStripMenuItem";
-            materiaToolStripMenuItem.Size = new Size(180, 22);
+            materiaToolStripMenuItem.Size = new Size(125, 22);
             materiaToolStripMenuItem.Text = "Materia";
             materiaToolStripMenuItem.Click += materiaToolStripMenuItem_Click;
             // 
             // questaoToolStripMenuItem
             // 
             questaoToolStripMenuItem.Name = "questaoToolStripMenuItem";
-            questaoToolStripMenuItem.Size = new Size(180, 22);
+            questaoToolStripMenuItem.Size = new Size(125, 22);
             questaoToolStripMenuItem.Text = "Questao";
             questaoToolStripMenuItem.Click += questaoToolStripMenuItem_Click;
             // 
             // testeToolStripMenuItem
             // 
             testeToolStripMenuItem.Name = "testeToolStripMenuItem";
-            testeToolStripMenuItem.Size = new Size(180, 22);
+            testeToolStripMenuItem.Size = new Size(125, 22);
             testeToolStripMenuItem.Text = "Teste";
             testeToolStripMenuItem.Click += testeToolStripMenuItem_Click;
             // 
@@ -100,7 +100,7 @@
             toolStrip1.Items.AddRange(new ToolStripItem[] { btnInserir, btnEditar, btnExcluir, btnFiltrar, btnGerarGabarito, btnPdf, toolStripSeparator1, toolStripLabel1 });
             toolStrip1.Location = new Point(0, 24);
             toolStrip1.Name = "toolStrip1";
-            toolStrip1.Size = new Size(800, 37);
+            toolStrip1.Size = new Size(716, 37);
             toolStrip1.TabIndex = 1;
             toolStrip1.Text = "toolStrip1";
             // 
@@ -113,6 +113,7 @@
             btnInserir.Padding = new Padding(7);
             btnInserir.Size = new Size(34, 34);
             btnInserir.Text = "toolStripButton1";
+            btnInserir.Click += btnInserir_Click;
             // 
             // btnEditar
             // 
@@ -179,9 +180,9 @@
             // statusStrip1
             // 
             statusStrip1.Items.AddRange(new ToolStripItem[] { StatusLabel });
-            statusStrip1.Location = new Point(0, 428);
+            statusStrip1.Location = new Point(0, 346);
             statusStrip1.Name = "statusStrip1";
-            statusStrip1.Size = new Size(800, 22);
+            statusStrip1.Size = new Size(716, 22);
             statusStrip1.TabIndex = 2;
             statusStrip1.Text = "statusStrip1";
             // 
@@ -196,21 +197,24 @@
             panelRegistros.Dock = DockStyle.Fill;
             panelRegistros.Location = new Point(0, 61);
             panelRegistros.Name = "panelRegistros";
-            panelRegistros.Size = new Size(800, 367);
+            panelRegistros.Size = new Size(716, 285);
             panelRegistros.TabIndex = 3;
             // 
             // TelaPrincipal
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(800, 450);
+            ClientSize = new Size(716, 368);
             Controls.Add(panelRegistros);
             Controls.Add(statusStrip1);
             Controls.Add(toolStrip1);
             Controls.Add(menuStrip1);
             MainMenuStrip = menuStrip1;
+            MaximizeBox = false;
+            MdiChildrenMinimizedAnchorBottom = false;
+            MinimizeBox = false;
             Name = "TelaPrincipal";
-            Text = "Form1";
+            Text = "Testes da Dona Mariana";
             menuStrip1.ResumeLayout(false);
             menuStrip1.PerformLayout();
             toolStrip1.ResumeLayout(false);

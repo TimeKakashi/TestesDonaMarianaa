@@ -4,8 +4,10 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using TestesDonaMariana.Dominio.ModuloDisciplina;
 using TestesDonaMariana.Dominio.ModuloMateria;
 using TestesDonaMariana.Infra.Dados.Sql.Compatilhado;
+using TestesDonaMariana.Infra.Dados.Sql.ModuloDisciplinaSql;
 
 namespace TestesDonaMariana.Infra.Dados.Sql.ModuloMateriaSql
 {
@@ -13,12 +15,26 @@ namespace TestesDonaMariana.Infra.Dados.Sql.ModuloMateriaSql
     {
         public override void ConfigurarParametros(SqlCommand comando, Materia registro)
         {
-            throw new NotImplementedException();
+            comando.Parameters.AddWithValue("ID", registro.id);
+
+            comando.Parameters.AddWithValue("NOME", registro.nome);
+
+            comando.Parameters.AddWithValue("ID_SERIE", registro.serie);
         }
 
         public override Materia ConverterRegistro(SqlDataReader leitorRegistros)
         {
-            throw new NotImplementedException();
+
+            int id = Convert.ToInt32(leitorRegistros["ID"]);
+
+            string nome = Convert.ToString(leitorRegistros["NOME"]);
+
+            string serie = Convert.ToString(leitorRegistros["ID_SERIE"]);
+
+            Disciplina disciplina = new MapeadorDisciplina().ConverterRegistro(leitorRegistros);
+            Materia materia = new Materia(id, nome, serie, disciplina);
+
+            return materia;
         }
     }
 }

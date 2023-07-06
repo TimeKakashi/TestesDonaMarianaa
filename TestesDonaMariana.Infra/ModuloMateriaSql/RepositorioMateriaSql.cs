@@ -10,14 +10,15 @@ namespace TestesDonaMariana.Infra.Dados.Sql.ModuloMateriaSql
 {
     public class RepositorioMateriaSql : RepositorioEmSqlBase<Materia, MapeadorMateria>, IRepositorioMateria
     {
-        protected override string sqlInserir => throw new NotImplementedException();
+        protected override string sqlInserir => "INSERT INTO TB_MATERIA (ID_DISCIPLINA, NOME, ID_SERIE) VALUES (@ID_DISCIPLINA, @NOME, @ID_SERIE)";
 
-        protected override string sqlEditar => throw new NotImplementedException();
+        protected override string sqlEditar => "UPDATE TB_MATERIA SET ID_DISCIPLINA = @ID_DISCIPLINA, NOME = @NOME, ID_SERIE = @ID_SERIE WHERE ID = @ID";
 
-        protected override string sqlExcluir => throw new NotImplementedException();
+        protected override string sqlExcluir => "DELETE FROM TB_MATERIA WHERE ID = @ID";
 
-        protected override string sqlSelecionarTodos => throw new NotImplementedException();
+        protected override string sqlSelecionarTodos => "SELECT * FROM TB_MATERIA";
 
-        protected override string sqlSelecionarPorId => throw new NotImplementedException();
+        protected override string sqlSelecionarPorId => "SELECT * FROM TB_MATERIA WHERE ID = @ID";
     }
+
 }
