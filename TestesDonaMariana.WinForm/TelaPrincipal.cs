@@ -13,6 +13,7 @@ using TestesDonaMariana.Infra.Dados.Sql.ModuloMateriaSql;
 using TestesDonaMariana.Infra.Dados.Sql.ModuloGabaritoSql;
 using TestesDonaMariana.Infra.Dados.Sql.ModuloDisciplinaSql;
 using TestesDonaMariana.Infra.Dados.Sql.ModuloTesteSql;
+using System.Windows.Forms;
 
 namespace TestesDonaMariana.WinForm
 {
@@ -49,6 +50,7 @@ namespace TestesDonaMariana.WinForm
 
         public void ConfigurarTelaPrincipal(ControladorBase controlador)
         {
+            toolStripLabel1.Text = controlador.ObterTipoCadastro();
             ConfigurarToolTips(controlador);
             ConfigurarListagem(controlador);
             ConfigurarEstados(controlador);

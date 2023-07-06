@@ -83,9 +83,7 @@ namespace TestesDonaMariana.WinForm.ModuloTeste
             return listagemTeste;
         }
 
-        public override string ObterTipoCadastro()
-        {
-            throw new NotImplementedException();
-        }
+        public override string ObterTipoCadastro() => "Cadastro de Testes";
+        
     }
 }
