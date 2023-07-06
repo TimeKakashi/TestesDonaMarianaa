@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -10,13 +11,18 @@ namespace TestesDonaMariana.Dominio.ModuloDisciplina
 {
     public class Disciplina : EntidadeBase<Disciplina>
     {
-        public string nome{ get; set;}
+        public string listaDeMateria;
+        public  string nome;
 
-        public List<Materia> listaMateria = new List<Materia>();
-        public Disciplina(string? nomeDisciplina, int idDisiplina)
+        public Disciplina(string nome, int id)
         {
-            this.nome = nomeDisciplina;
-            this.id = idDisiplina;
+            this.nome = nome;
+            this.id = id;
+        }
+        public Disciplina(string nome)
+        {
+            this.nome = nome;
+            
         }
 
         public override void AtualizarInformacoes(Disciplina registroAtualizado)

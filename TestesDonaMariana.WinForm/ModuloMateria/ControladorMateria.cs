@@ -3,7 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using TestesDonaMariana.Dominio.ModuloDisciplina;
 using TestesDonaMariana.Dominio.ModuloMateria;
+using TestesDonaMariana.Infra.Dados.Sql.ModuloMateriaSql;
 using TestesDonaMariana.WinForm.Compartilhado;
 using TestesDonaMariana.WinForm.ModuloGabarito;
 
@@ -11,13 +13,14 @@ namespace TestesDonaMariana.WinForm.ModuloMateria
 {
     public class ControladorMateria : ControladorBase
     {
-
         private ListagemMateriaControl listagemMateria;
         private IRepositorioMateria repositorioMateria;
+        private IRepositorioDisciplina repositorioDisciplina;
 
-        public ControladorMateria(IRepositorioMateria repositorioMateria)
+        public ControladorMateria(IRepositorioMateria repositorioMateria, IRepositorioDisciplina repositorioDisciplina)
         {
             this.repositorioMateria = repositorioMateria;
+            this.repositorioDisciplina = repositorioDisciplina;
         }
 
         public override string ToolTipInserir => "Cadastrar Materia";
@@ -39,7 +42,21 @@ namespace TestesDonaMariana.WinForm.ModuloMateria
 
         public override void Inserir()
         {
-            throw new NotImplementedException();
+            TelaMateria telaMateria = new TelaMateria(repositorioDisciplina);
+            if (telaMateria.ShowDialog() == DialogResult.OK)
+            {
+                List<Materia> listaMateria = repositorioMateria.SelecionarTodos();
+
+                Materia materia = telaMateria.ObterMateria();
+
+                if (listaMateria.Any(x => x.nome.ToLower() == materia.nome.ToLower()))
+                {
+                    TelaPrincipal.Instancia.AtualizarRodape("Nao é possivel cadastrar uma matéria com o mesmo nome de outra matéria!");
+                    return;
+                }
+
+                repositorioMateria.Inserir(materia);
+            }
         }
 
         public override UserControl ObterListagem()

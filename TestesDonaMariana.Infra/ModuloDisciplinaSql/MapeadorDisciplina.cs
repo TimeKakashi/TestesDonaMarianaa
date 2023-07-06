@@ -13,12 +13,21 @@ namespace TestesDonaMariana.Infra.Dados.Sql.ModuloDisciplinaSql
     {
         public override void ConfigurarParametros(SqlCommand comando, Disciplina registro)
         {
-            throw new NotImplementedException();
+            comando.Parameters.AddWithValue("ID", registro.id);
+
+            comando.Parameters.AddWithValue("NOME", registro);
         }
 
         public override Disciplina ConverterRegistro(SqlDataReader leitorRegistros)
         {
-            throw new NotImplementedException();
+            int id = Convert.ToInt32(leitorRegistros["ID"]);
+
+            string nome = Convert.ToString(leitorRegistros["NOME"]);
+
+            Disciplina disciplina = new Disciplina(nome, id);
+           
+
+            return disciplina;
         }
     }
 }

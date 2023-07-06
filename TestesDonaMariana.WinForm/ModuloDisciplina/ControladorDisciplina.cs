@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using TestesDonaMariana.Dominio.ModuloDisciplina;
+using TestesDonaMariana.Infra.Dados.Sql.ModuloDisciplinaSql;
 using TestesDonaMariana.WinForm.Compartilhado;
 
 namespace TestesDonaMariana.WinForm.ModuloDisciplina
@@ -26,19 +27,18 @@ namespace TestesDonaMariana.WinForm.ModuloDisciplina
 
         public override bool FiltrarHabilitado => true;
 
-        public override void Editar()
+        private Disciplina ObterDisciplinaSelecionado()
         {
-            throw new NotImplementedException();
+            int id = listagemDisciplina.ObterIdSelecionado();
+
+            return repositorioDisciplina.SelecionarPorId(id);
         }
 
-        public override void Excluir()
+        private void CarregarDisciplina()
         {
-            throw new NotImplementedException();
-        }
+            List<Disciplina> disciplinas = repositorioDisciplina.SelecionarTodos();
 
-        public override void Inserir()
-        {
-            throw new NotImplementedException();
+            listagemDisciplina.AtualizarRegistros(disciplinas);
         }
 
         public override UserControl ObterListagem()
@@ -46,12 +46,69 @@ namespace TestesDonaMariana.WinForm.ModuloDisciplina
             if (listagemDisciplina == null)
                 listagemDisciplina = new ListagemDisciplinaControl();
 
+            CarregarDisciplina();
             return listagemDisciplina;
         }
 
         public override string ObterTipoCadastro()
         {
-            throw new NotImplementedException();
+            return "Cadastro de Disciplina";
+        }
+
+        public override void Inserir()
+        {
+            TelaDisciplina telaDisciplina = new TelaDisciplina();
+            DialogResult opcaoEscolhida = telaDisciplina.ShowDialog();
+
+            if (opcaoEscolhida == DialogResult.OK) 
+            {
+                Disciplina novaDisciplina = telaDisciplina.ObterDisciplina();
+                repositorioDisciplina.Inserir(novaDisciplina);
+                CarregarDisciplina();
+
+            }
+        }
+
+        public override void Editar()
+        {
+            Disciplina disciplinaSelecionada = ObterDisciplinaSelecionado();
+
+            if (disciplinaSelecionada == null)
+            {
+                MessageBox.Show("Nenhuma Disciplina Selecionada!", "Editar Disciplina", MessageBoxButtons.OK);
+                return;
+            }
+            TelaDisciplina telaDisciplina = new TelaDisciplina(repositorioDisciplina);
+            telaDisciplina.ConfigurarTela(disciplinaSelecionada);
+
+            DialogResult opcaoEscolhida = telaDisciplina.ShowDialog();
+
+            if (opcaoEscolhida == DialogResult.OK) 
+            {
+                Disciplina disciplina = telaDisciplina.ObterDisciplina();
+
+                repositorioDisciplina.Editar(disciplina.id, disciplina);
+
+                CarregarDisciplina();
+            }
+        }
+
+        public override void Excluir()
+        {
+            Disciplina disciplinaSelecionada = ObterDisciplinaSelecionado();
+
+            if (disciplinaSelecionada != null) 
+            {
+                MessageBox.Show("Nenhuma Disciplina Selecionada","Excluir Disciplina",MessageBoxButtons.OK);
+                return;
+            }
+            DialogResult opcaoEscolhida = MessageBox.Show($"Deseja Excluir a Disciplina{disciplinaSelecionada}?","Exclusão de Disciplina",MessageBoxButtons.OKCancel,MessageBoxIcon.Question);
+
+            if (opcaoEscolhida != DialogResult.OK) 
+            {
+                repositorioDisciplina.Excluir(disciplinaSelecionada);
+                CarregarDisciplina();
+            }
         }
     }
 }
