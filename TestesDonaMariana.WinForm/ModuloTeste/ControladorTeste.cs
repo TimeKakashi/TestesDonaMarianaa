@@ -52,7 +52,7 @@ namespace TestesDonaMariana.WinForm.ModuloTeste
             {
                 Teste teste = telaTeste.ObterTeste();
 
-                repositorioTeste.Inserir(teste);
+                repositorioTeste.Inserir(teste, teste.questoes);
             }
         }
 

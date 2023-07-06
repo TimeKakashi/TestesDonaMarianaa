@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net;
 using System.Text;
 using System.Threading.Tasks;
 using TestesDonaMariana.Dominio.Compartilhado;
@@ -14,6 +15,8 @@ namespace TestesDonaMariana.Dominio.ModuloMateria
         public string nome { get; set; }
         public Disciplina disciplina { get; set; }
         public string serie { get; set; }
+
+        public List<Questao> questoes { get; set; } = new List<Questao>();
 
   
         public Materia(string nome, Disciplina Disciplina, string serie) 
@@ -52,11 +55,6 @@ namespace TestesDonaMariana.Dominio.ModuloMateria
                 erros.Add("O campo 'Nome' deve conter no mínimo 3 caracteres");
 
             return erros.ToArray();
-        }
-
-        public override string ToString()
-        {
-            return this.nome;
         }
     }
 }

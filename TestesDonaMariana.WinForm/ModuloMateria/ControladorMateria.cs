@@ -51,7 +51,7 @@ namespace TestesDonaMariana.WinForm.ModuloMateria
 
                 if (listaMateria.Any(x => x.nome.ToLower() == materia.nome.ToLower()))
                 {
-                    TelaPrincipal.Instancia.AtualizarRodape("Nao é possivel cadastrar uma matéria com o mesmo nome de outra matéria!");
+                    //TelaPrincipal.Instancia.AtualizarRodape("Nao é possivel cadastrar uma matéria com o mesmo nome de outra matéria!");
                     return;
                 }
 

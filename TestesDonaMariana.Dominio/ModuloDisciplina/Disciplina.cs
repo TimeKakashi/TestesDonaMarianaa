@@ -11,8 +11,9 @@ namespace TestesDonaMariana.Dominio.ModuloDisciplina
 {
     public class Disciplina : EntidadeBase<Disciplina>
     {
-        public string listaDeMateria;
+        
         public  string nome;
+        public List<Materia> listaMateria { get; set; } = new List<Materia>();
 
         public Disciplina(string nome, int id)
         {

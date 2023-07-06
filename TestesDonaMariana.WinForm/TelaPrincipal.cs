@@ -26,7 +26,6 @@ namespace TestesDonaMariana.WinForm
         private RepositorioMateriaSql repositorioMateriaSql = new RepositorioMateriaSql();
         private static TelaPrincipal telaPrincipal;
         public ControladorBase controlador { get; set; }
-        public static object Instancia { get; internal set; }
 
         public TelaPrincipal()
         {

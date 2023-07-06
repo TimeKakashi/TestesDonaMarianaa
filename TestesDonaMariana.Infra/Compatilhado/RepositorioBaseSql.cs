@@ -1,5 +1,6 @@
 ﻿using Microsoft.Data.SqlClient;
 using TestesDonaMariana.Dominio.Compartilhado;
+using TestesDonaMariana.Dominio.ModuloDisciplina;
 
 namespace TestesDonaMariana.Infra.Dados.Sql.Compatilhado
 {
@@ -102,7 +103,7 @@ namespace TestesDonaMariana.Infra.Dados.Sql.Compatilhado
             TMapeador mapeador = new TMapeador();
 
             if (leitorItems.Read())
-                registro = mapeador.ConverterRegistro(leitorItems, Disciplina);
+                registro = mapeador.ConverterRegistro(leitorItems);
 
             //encerra a conexão
             conexaoComBanco.Close();
@@ -129,7 +130,7 @@ namespace TestesDonaMariana.Infra.Dados.Sql.Compatilhado
 
             while (leitorItens.Read())
             {
-                TEntidade registro = mapeador.ConverterRegistro(leitorItens, Disciplina);
+                TEntidade registro = mapeador.ConverterRegistro(leitorItens);
 
                 registros.Add(registro);
             }
