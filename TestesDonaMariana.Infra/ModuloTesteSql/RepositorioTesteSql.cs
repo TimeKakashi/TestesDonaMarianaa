@@ -56,18 +56,12 @@ namespace TestesDonaMariana.Infra.Dados.Sql.ModuloTesteSql
 															T.[Id_disciplina]		ID_DISCIPLINA,
 															T.[Id_Materia]			ID_MATERIA,
 															T.[NumeroQuestoes]		NUMERO_QUESTAO,
+															T.[Id]					ID_TESTE,
 
 															D.Nome					NOME_DISCIPLINA,
 
 															M.Nome					NOME_MATERIA,
 															M.Id_Serie				ID_SERIE,
-
-															Q.AlternativaCorreta	ALTERNATIVA_CORRETA_QUESTAO,
-															Q.Id					ID_QUESTAO,
-															Q.Titulo				TITULO_QUESTAO,
-	
-															A.[Alternativa]			ALTERNATIVA_QUESTAO,
-															A.[Id]					ID_ALTERNATIVA,
 
 															S.serie					SERIE
 
@@ -81,14 +75,6 @@ namespace TestesDonaMariana.Infra.Dados.Sql.ModuloTesteSql
 															[TB_Materia] as M
 														ON
 															M.Id = T.Id_Materia
-														inner join
-															TB_Questao as Q
-														ON
-															q.[Id_Materia] = M.[Id]
-														inner join
-															[TB_Alternativa] as A
-														ON
-															Q.Id = A.Id_Questao
 														inner join	
 															[TB_Serie] as S
 														ON
@@ -96,24 +82,20 @@ namespace TestesDonaMariana.Infra.Dados.Sql.ModuloTesteSql
 
 														";
 
-		protected override string sqlSelecionarPorId => @"T.[Data]				DATA_CRIACAO,
-															T.[Id_disciplina]		ID_DISCIPLINA_TESTE,
-															T.[Id_Materia]			ID_MATERIA_TESTE,
-															T.[NumeroQuestoes]		NUMERO_QUESTOES,
+		protected override string sqlSelecionarPorId => @"SELECT 
+	
+															T.[Data]				DATA_CRIACAO,
+															T.[Id_disciplina]		ID_DISCIPLINA,
+															T.[Id_Materia]			ID_MATERIA,
+															T.[NumeroQuestoes]		NUMERO_QUESTAO,
+															T.[Id]					ID_TESTE,
 
 															D.Nome					NOME_DISCIPLINA,
-															D.[Id]					ID_DISCIPLINA,
-	
 
 															M.Nome					NOME_MATERIA,
-															M.Id_Serie				ID_SERIE_MATERIA,
+															M.Id_Serie				ID_SERIE,
 
-															Q.AlternativaCorreta	ALTERNATIVA_CORRETA_QUESTAO,
-															Q.Id					ID_QUESTAO,
-															Q.Titulo				TITULO_QUESTAO,
-	
-															A.[Alternativa]			ALTERNATIVA_QUESTAO,
-															A.[Id]					ID_ALTERNATIVA
+															S.serie					SERIE
 
 														FROM
 															[TBTeste] as T
@@ -125,23 +107,19 @@ namespace TestesDonaMariana.Infra.Dados.Sql.ModuloTesteSql
 															[TB_Materia] as M
 														ON
 															M.Id = T.Id_Materia
-														inner join
-															TB_Questao as Q
+														inner join	
+															[TB_Serie] as S
 														ON
-															q.[Id_Materia] = M.[Id]
-														inner join
-															[TB_Alternativa] as A
-														ON
-															Q.Id = A.Id_Questao
-														WHERE 
-															T.[ID] = @IDA"
-														;
+															S.Id = M.Id_Serie
+														WHERE
+															T.[ID] = @ID"
+                                                        ;
 
         public void Inserir(Teste novoRegistro, List<Questao> questoes)
         {
 			base.Inserir(novoRegistro);
 
-			foreach(Questao questao in questoes)
+			foreach(Questao questao in novoRegistro.questoes)
 			{
 				AdicionarQuestoes(novoRegistro, questao);
 			}

@@ -33,8 +33,10 @@ namespace TestesDonaMariana.Infra.Dados.Sql.ModuloTesteSql
             DateTime data = DateTime.FromFileTimeUtc(Convert.ToInt64(leitorRegistros["DATA_CRIACAO"]));
             int numeroQuestoes = Convert.ToInt32(leitorRegistros["NUMERO_QUESTAO"]);
             string serie = "Priemira serie";
+            int idTeste = Convert.ToInt32(leitorRegistros["ID_TESTE"]);
+            
 
-            return new Teste(materia, disciplina, numeroQuestoes, serie);
+            return new Teste(materia, disciplina, numeroQuestoes, serie, idTeste);
         }
     }
 }

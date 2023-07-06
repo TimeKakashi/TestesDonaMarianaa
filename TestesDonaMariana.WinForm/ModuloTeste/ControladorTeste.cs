@@ -73,6 +73,9 @@ namespace TestesDonaMariana.WinForm.ModuloTeste
         {
             List<Teste> testes = repositorioTeste.SelecionarTodos();
 
+            if (listagemTeste == null)
+                listagemTeste = new ListagemTesteControl();
+
             listagemTeste.AtualizarRegistros(testes);
         }
 
