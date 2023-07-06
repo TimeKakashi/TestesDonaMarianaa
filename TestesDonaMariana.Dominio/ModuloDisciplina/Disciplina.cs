@@ -9,6 +9,20 @@ namespace TestesDonaMariana.Dominio.ModuloDisciplina
 {
     public class Disciplina : EntidadeBase<Disciplina>
     {
+        public string listaDeMateria;
+        public  string nome;
+
+        public Disciplina(string nome, int id)
+        {
+            this.nome = nome;
+            this.id = id;
+        }
+        public Disciplina(string nome)
+        {
+            this.nome = nome;
+            
+        }
+
         public override void AtualizarInformacoes(Disciplina registroAtualizado)
         {
             throw new NotImplementedException();

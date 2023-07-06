@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using TestesDonaMariana.Dominio.ModuloDisciplina;
 
 namespace TestesDonaMariana.WinForm.ModuloDisciplina
 {
@@ -15,6 +16,16 @@ namespace TestesDonaMariana.WinForm.ModuloDisciplina
         public ListagemDisciplinaControl()
         {
             InitializeComponent();
+        }
+
+        internal void AtualizarRegistros(List<Disciplina> disciplinas)
+        {
+            throw new NotImplementedException();
+        }
+
+        internal int ObterIdSelecionado()
+        {
+            throw new NotImplementedException();
         }
     }
 }

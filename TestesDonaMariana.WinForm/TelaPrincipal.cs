@@ -25,6 +25,8 @@ namespace TestesDonaMariana.WinForm
         private IRepositorioTeste repositorioTeste = new RepositorioTesteSql();
 
         public ControladorBase controlador { get; set; }
+        public static object Instancia { get; internal set; }
+
         public TelaPrincipal()
         {
             InitializeComponent();

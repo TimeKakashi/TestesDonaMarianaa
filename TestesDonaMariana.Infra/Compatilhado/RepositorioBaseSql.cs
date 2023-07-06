@@ -102,7 +102,7 @@ namespace TestesDonaMariana.Infra.Dados.Sql.Compatilhado
             TMapeador mapeador = new TMapeador();
 
             if (leitorItems.Read())
-                registro = mapeador.ConverterRegistro(leitorItems);
+                registro = mapeador.ConverterRegistro(leitorItems, Disciplina);
 
             //encerra a conexão
             conexaoComBanco.Close();
@@ -129,7 +129,7 @@ namespace TestesDonaMariana.Infra.Dados.Sql.Compatilhado
 
             while (leitorItens.Read())
             {
-                TEntidade registro = mapeador.ConverterRegistro(leitorItens);
+                TEntidade registro = mapeador.ConverterRegistro(leitorItens, Disciplina);
 
                 registros.Add(registro);
             }
