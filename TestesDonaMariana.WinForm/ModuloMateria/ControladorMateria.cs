@@ -47,6 +47,8 @@ namespace TestesDonaMariana.WinForm.ModuloMateria
 
                 repositorioMateria.Editar(materia.id, materia);
             }
+
+            CarregarMaterias();
         }
 
         public override void Excluir()
@@ -93,6 +95,8 @@ namespace TestesDonaMariana.WinForm.ModuloMateria
                 }
 
                 repositorioMateria.Inserir(materia);
+
+                CarregarMaterias();
             }
         }
 
