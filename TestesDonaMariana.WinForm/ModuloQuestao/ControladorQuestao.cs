@@ -31,7 +31,7 @@ namespace TestesDonaMariana.WinForm.ModuloQuestao
 
         public override void Inserir()
         {
-            TelaQuestao telaQuestao = new TelaQuestao(/*repositorioMateria*/);
+            TelaQuestao telaQuestao = new TelaQuestao(repositorioMateria);
 
             DialogResult opcaoEscolhida = telaQuestao.ShowDialog();
 
@@ -61,7 +61,7 @@ namespace TestesDonaMariana.WinForm.ModuloQuestao
                 return;
             }
 
-            TelaQuestao telaQuestao = new TelaQuestao(/*repositorioMateria*/);
+            TelaQuestao telaQuestao = new TelaQuestao(repositorioMateria);
             telaQuestao.ConfigurarTela(questao);
 
             DialogResult opcaoEscolhida = telaQuestao.ShowDialog();

@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using TestesDonaMariana.Dominio;
 using TestesDonaMariana.Dominio.ModuloDisciplina;
 using TestesDonaMariana.Dominio.ModuloMateria;
 using TestesDonaMariana.Dominio.ModuloQuestao;
@@ -34,8 +35,11 @@ namespace TestesDonaMariana.Infra.Dados.Sql.ModuloQuestaoSql
             int idMateria = Convert.ToInt32(leitorRegistros["QUESTAO_ID_MATERIA"]);
             string nomeMateria = Convert.ToString(leitorRegistros["NOME_MATERIA"]);
             string nomeSerie = Convert.ToString(leitorRegistros["SERIE_NOME"]);
+            int idSerie = Convert.ToInt32(leitorRegistros["ID_SERIE"]);
 
-            Materia materia = new Materia(idMateria, nomeMateria, nomeSerie, disciplina);
+            Serie serie = new Serie(nomeSerie, idSerie);
+
+            Materia materia = new Materia(idMateria, nomeMateria, serie, disciplina);
 
             int idQuestao = Convert.ToInt32(leitorRegistros["ID_QUESTAO"]);
             string titulo = Convert.ToString(leitorRegistros["TITULO_QUESTAO"]);

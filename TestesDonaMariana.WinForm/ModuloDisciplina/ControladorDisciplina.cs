@@ -85,9 +85,10 @@ namespace TestesDonaMariana.WinForm.ModuloDisciplina
 
             if (opcaoEscolhida == DialogResult.OK) 
             {
-                Disciplina disciplina = telaDisciplina.ObterDisciplina();
+                Disciplina novaDisciplina = telaDisciplina.ObterDisciplina();
+                novaDisciplina.id = disciplinaSelecionada.id;
 
-                repositorioDisciplina.Editar(disciplina.id, disciplina);
+                repositorioDisciplina.Editar(novaDisciplina.id, novaDisciplina);
 
                 CarregarDisciplina();
             }
@@ -97,14 +98,14 @@ namespace TestesDonaMariana.WinForm.ModuloDisciplina
         {
             Disciplina disciplinaSelecionada = ObterDisciplinaSelecionado();
 
-            if (disciplinaSelecionada != null) 
+            if (disciplinaSelecionada == null) 
             {
                 MessageBox.Show("Nenhuma Disciplina Selecionada","Excluir Disciplina",MessageBoxButtons.OK);
                 return;
             }
             DialogResult opcaoEscolhida = MessageBox.Show($"Deseja Excluir a Disciplina{disciplinaSelecionada}?","Exclusão de Disciplina",MessageBoxButtons.OKCancel,MessageBoxIcon.Question);
 
-            if (opcaoEscolhida != DialogResult.OK) 
+            if (opcaoEscolhida == DialogResult.OK) 
             {
                 repositorioDisciplina.Excluir(disciplinaSelecionada);
                 CarregarDisciplina();

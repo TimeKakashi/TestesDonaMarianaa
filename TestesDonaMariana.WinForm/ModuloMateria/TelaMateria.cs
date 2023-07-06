@@ -7,8 +7,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using TestesDonaMariana.Dominio;
 using TestesDonaMariana.Dominio.ModuloDisciplina;
 using TestesDonaMariana.Dominio.ModuloMateria;
+using TestesDonaMariana.WinForm.ModuloQuestao;
 
 namespace TestesDonaMariana.WinForm.ModuloMateria
 {
@@ -21,18 +23,12 @@ namespace TestesDonaMariana.WinForm.ModuloMateria
         {
             InitializeComponent();
             this.repositorioDisciplina = repositorioDisciplina;
-            EncharComboBox(/*repositorioDisciplina*/);
+            EncharComboBox(repositorioDisciplina);
         }
 
-        public void EncharComboBox(/*IRepositorioDisciplina repositorioDisciplina*/)
+        public void EncharComboBox(IRepositorioDisciplina repositorioDisciplina)
         {
-            Disciplina disciplina = new Disciplina("Quimica", 5);
-
-            List<Disciplina> disciplinas = new List<Disciplina>();
-
-            disciplinas.Add(disciplina);
-
-            foreach (Disciplina dis in disciplinas)
+            foreach (Disciplina dis in repositorioDisciplina.SelecionarTodos())
             {
                 comboBox1.Items.Add(dis);
             }
@@ -42,8 +38,21 @@ namespace TestesDonaMariana.WinForm.ModuloMateria
         {
             string nome = textBox1.Text;
             Disciplina disciplina = (Disciplina)comboBox1.SelectedItem;
-            string serie = gbRadio.Controls.OfType<RadioButton>().SingleOrDefault(RadioButton => RadioButton.Checked).Text;
+            string serieNome = gbRadio.Controls.OfType<RadioButton>().SingleOrDefault(RadioButton => RadioButton.Checked).Text;
 
+            Serie serie = new Serie();
+
+            if (serieNome == "Primeira Série")
+            {
+                serie.id = 1;
+                serie.nome = "Primeira Série";
+            }
+            else
+            {
+                serie.id = 2;
+                serie.nome = "Segunda Série";
+            }
+              
 
             return new Materia(nome, disciplina, serie);
         }
@@ -51,7 +60,7 @@ namespace TestesDonaMariana.WinForm.ModuloMateria
         public void ArrumaTela(Materia materia)
         {
             textBox1.Text = materia.nome;
-            gbRadio.Controls.OfType<RadioButton>().SingleOrDefault(RadioButton => RadioButton.Checked).Text = materia.serie;
+            gbRadio.Controls.OfType<RadioButton>().SingleOrDefault(RadioButton => RadioButton.Checked).Text = materia.serie.nome;
         }
 
         private void radioButton2_CheckedChanged(object sender, EventArgs e)
@@ -59,6 +68,6 @@ namespace TestesDonaMariana.WinForm.ModuloMateria
 
         }
 
-        
+
     }
 }

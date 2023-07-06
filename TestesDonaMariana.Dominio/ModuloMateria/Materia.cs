@@ -14,18 +14,18 @@ namespace TestesDonaMariana.Dominio.ModuloMateria
     {
         public string nome { get; set; }
         public Disciplina disciplina { get; set; }
-        public string serie { get; set; }
+        public Serie serie { get; set; }
 
         public List<Questao> questoes { get; set; } = new List<Questao>();
 
   
-        public Materia(string nome, Disciplina Disciplina, string serie) 
+        public Materia(string nome, Disciplina Disciplina, Serie serie) 
         {
             this.nome = nome;
             this.disciplina = Disciplina;
             this.serie = serie;
         }
-        public Materia(int idMateria, string nome, string serie, Disciplina disciplina)
+        public Materia(int idMateria, string nome, Serie serie, Disciplina disciplina)
         {
             this.id = idMateria;
             this.nome = nome;

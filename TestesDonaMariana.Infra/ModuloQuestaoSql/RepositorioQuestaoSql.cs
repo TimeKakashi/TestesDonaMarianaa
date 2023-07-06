@@ -80,7 +80,8 @@ namespace TestesDonaMariana.Infra.Dados.Sql.ModuloQuestaoSql
 		
 				D.[Nome]				NOME_DISCIPLINA,
 
-				S.[serie]				SERIE_NOME
+				S.[serie]				SERIE_NOME,
+				S.[ID]					ID_SERIE
 				
 
 				FROM 
@@ -112,7 +113,8 @@ namespace TestesDonaMariana.Infra.Dados.Sql.ModuloQuestaoSql
 		
 				D.[Nome]				NOME_DISCIPLINA,
 
-				S.[serie]				SERIE_NOME
+				S.[serie]				SERIE_NOME,
+				S.[Id]					ID_SERIE
 				
 
 				FROM 

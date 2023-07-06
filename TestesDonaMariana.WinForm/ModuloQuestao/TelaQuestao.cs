@@ -17,15 +17,10 @@ namespace TestesDonaMariana.WinForm.ModuloQuestao
     public partial class TelaQuestao : Form
     {
         private IRepositorioMateria repositorioMateria;
-        private List<Materia> materias = new List<Materia>();
-        public TelaQuestao(/*IRepositorioMateria repositorioMateria*/)
+        public TelaQuestao(IRepositorioMateria repositorioMateria)
         {
             InitializeComponent();
-            //this.repositorioMateria = repositorioMateria;
-            Disciplina disciplina = new Disciplina("Geopolitica", 1);
-            Materia materia = new Materia(1, "geo", "primeira serie", disciplina);
-            this.materias.Add(materia);
-            materias.Add(materia);
+            this.repositorioMateria = repositorioMateria;
             EncherComboBox();
         }
 
@@ -69,7 +64,7 @@ namespace TestesDonaMariana.WinForm.ModuloQuestao
 
         private void EncherComboBox()
         {
-            foreach (Materia materia in materias)
+            foreach (Materia materia in repositorioMateria.SelecionarTodos())
             {
                 cbMateria.Items.Add(materia);
             }

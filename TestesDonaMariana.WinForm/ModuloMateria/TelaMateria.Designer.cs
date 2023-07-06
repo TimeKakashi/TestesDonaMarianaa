@@ -83,6 +83,7 @@
             // button2
             // 
             button2.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
+            button2.DialogResult = DialogResult.Cancel;
             button2.Location = new Point(422, 96);
             button2.Name = "button2";
             button2.Size = new Size(90, 31);

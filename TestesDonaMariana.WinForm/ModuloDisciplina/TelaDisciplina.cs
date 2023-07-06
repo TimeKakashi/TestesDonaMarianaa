@@ -12,7 +12,7 @@ using TestesDonaMariana.Dominio.ModuloDisciplina;
 
 namespace TestesDonaMariana.WinForm.ModuloDisciplina
 {
-    
+
     public partial class TelaDisciplina : Form
     {
         private IRepositorioDisciplina repositorioDisciplina;
@@ -29,9 +29,9 @@ namespace TestesDonaMariana.WinForm.ModuloDisciplina
 
         private Disciplina disciplina;
 
-        
 
-        public  void ConfigurarTela(Disciplina? disciplinaSelecionada)
+
+        public void ConfigurarTela(Disciplina? disciplinaSelecionada)
         {
             tbNome.Text = disciplinaSelecionada.id.ToString();
             tbListaDeMateria.Text = disciplinaSelecionada.nome;
@@ -39,9 +39,9 @@ namespace TestesDonaMariana.WinForm.ModuloDisciplina
 
         public Disciplina ObterDisciplina()
         {
-            string nome = tbNome.Text;
-            
-            return  new Disciplina(nome);
+            string nome = tbListaDeMateria.Text;
+
+            return new Disciplina(nome);
         }
 
     }

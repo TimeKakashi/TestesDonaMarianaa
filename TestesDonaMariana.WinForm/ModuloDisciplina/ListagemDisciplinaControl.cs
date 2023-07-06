@@ -1,4 +1,5 @@
-﻿using System;
+﻿using FestasInfantis.WinApp.Compartilhado;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -8,6 +9,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using TestesDonaMariana.Dominio.ModuloDisciplina;
+using TestesDonaMariana.Dominio.ModuloQuestoes;
 
 namespace TestesDonaMariana.WinForm.ModuloDisciplina
 {
@@ -16,16 +18,47 @@ namespace TestesDonaMariana.WinForm.ModuloDisciplina
         public ListagemDisciplinaControl()
         {
             InitializeComponent();
+            ConfigurarColunas();
+            ConfiguracaoGrid.ConfigurarGridSomenteLeitura(grid);
+            ConfiguracaoGrid.ConfigurarGridZebrado(grid);
         }
 
-        internal void AtualizarRegistros(List<Disciplina> disciplinas)
+        private void ConfigurarColunas()
         {
-            throw new NotImplementedException();
+            DataGridViewColumn[] colunas = new DataGridViewColumn[]
+            {
+                new DataGridViewTextBoxColumn()
+                {
+                    Name = "id",
+                    HeaderText = "Id"
+                },
+                new DataGridViewTextBoxColumn()
+                {
+                    Name = "nome",
+                    HeaderText = "Nome"
+                }
+            };
+
+            grid.Columns.AddRange(colunas);
+        }
+        public void AtualizarRegistros(List<Disciplina> listaDisciplina)
+        {
+            grid.Rows.Clear();
+
+            foreach (Disciplina item in listaDisciplina)
+                grid.Rows.Add(item.id,
+                            item.nome);
         }
 
-        internal int ObterIdSelecionado()
+        public int ObterIdSelecionado()
         {
-            throw new NotImplementedException();
+            if (grid.SelectedRows.Count == 0)
+                return -1;
+
+            int id = Convert.ToInt32(grid.SelectedRows[0].Cells["id"].Value);
+
+            return id;
         }
+
     }
 }

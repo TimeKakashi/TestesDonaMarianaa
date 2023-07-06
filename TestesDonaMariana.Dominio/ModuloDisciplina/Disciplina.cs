@@ -35,5 +35,10 @@ namespace TestesDonaMariana.Dominio.ModuloDisciplina
         {
             throw new NotImplementedException();
         }
+
+        public override string ToString()
+        {
+            return nome;
+        }
     }
 }

@@ -48,39 +48,17 @@ namespace TestesDonaMariana.WinForm.ModuloTeste
 
         public void EncherBox()
         {
-            List<Materia> materias = new List<Materia>();
-            List<Disciplina> disciplinas = new List<Disciplina>();
-            List<Questao> questoes = repositorioQuestoes.SelecionarTodos();
-
-            Disciplina disciplina = new Disciplina("Fisica", 2);
-            Materia materia = new Materia(1, "Arquimedes", "Primeira", disciplina);
-            materia.questoes = questoes;
-
-            materias.Add(materia);
-            disciplinas.Add(disciplina);
-
-            foreach (Materia item in materias)
+           
+            foreach (Materia item in repositorioMateria.SelecionarTodos())
             {
                 cbMateria.Items.Add(item);
             }
 
-            foreach (Disciplina item in disciplinas)
+            foreach (Disciplina item in repositorioDisciplina.SelecionarTodos())
             {
                 cbDisciplina.Items.Add(item);
             }
 
-
-
-
-            //foreach (Materia materia in repositorioMateria.SelecionarTodos())
-            //{
-            //    cbMateria.Items.Add(materia);
-            //}
-
-            //foreach (Disciplina disciplina in repositorioDisciplina.SelecionarTodos())
-            //{
-            //    cbDisciplina.Items.Add(disciplina);
-            //}
         }
 
         public List<Questao> GeradorQuestao(Materia materia)
@@ -170,8 +148,6 @@ namespace TestesDonaMariana.WinForm.ModuloTeste
                     MessageBox.Show($"O numero de questoes deve ser menor ou igual ao numero de questoes cadastradas: {numero}", "Nao possui questoes suficinetes", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     return;
                 }
-
-
             }
 
             else

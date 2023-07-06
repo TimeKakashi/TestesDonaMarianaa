@@ -114,8 +114,6 @@ namespace TestesDonaMariana.WinForm
                 return;
             }
 
-              
-
             controlador.Inserir();
         }
 

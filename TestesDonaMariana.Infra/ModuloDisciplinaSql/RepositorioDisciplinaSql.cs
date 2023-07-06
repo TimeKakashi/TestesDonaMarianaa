@@ -10,38 +10,38 @@ namespace TestesDonaMariana.Infra.Dados.Sql.ModuloDisciplinaSql
 {
     public class RepositorioDisciplinaSql : RepositorioEmSqlBase<Disciplina, MapeadorDisciplina>, IRepositorioDisciplina
     {
-        protected override string sqlInserir => @"INSERT INTO [TBDISCIPLINA] 
+        protected override string sqlInserir => @"INSERT INTO [TB_DISCIPLINA] 
 	                                            (
 		                                            [NOME]
 	                                            )
 	                                            VALUES 
 	                                            (
-		                                            @NOME
+		                                            @NOME_DISCIPLINA
 	                                            );                 
 
                                             SELECT SCOPE_IDENTITY();";
 
-        protected override string sqlEditar => @"UPDATE [TBDISCIPLINA] 
+        protected override string sqlEditar => @"UPDATE [TB_DISCIPLINA] 
                                                 SET
-                                                    [NOME] = @NOME
+                                                    [NOME] = @NOME_DISCIPLINA
                                                 WHERE
-                                                    [ID] = @ID";
+                                                    [ID] = @ID_DISCIPLINA";
 
-        protected override string sqlExcluir => @"DELETE FROM [TBDISCIPLINA]
+        protected override string sqlExcluir => @"DELETE FROM [TB_DISCIPLINA]
 	                                                WHERE 
 		                                                [ID] = @ID";
 
         protected override string sqlSelecionarTodos => @"SELECT 
-	                                                    [ID]        DISCIPLINA_ID 
-	                                                   ,[NOME]      DISCIPLINA_NOME
+	                                                    [ID]        ID_DISCIPLINA 
+	                                                   ,[NOME]      NOME_DISCIPLINA
                                                     FROM 
-	                                                    [TBDISCIPLINA]";
+	                                                    [TB_DISCIPLINA]";
 
         protected override string sqlSelecionarPorId => @"SELECT 
-	                                                    [ID]        DISCIPLINA_ID 
-	                                                   ,[NOME]      DISCIPLINA_NOME
+	                                                    [ID]        ID_DISCIPLINA
+	                                                   ,[NOME]      NOME_DISCIPLINA
                                                     FROM 
-	                                                    [TBDISCIPLINA] 
+	                                                    [TB_DISCIPLINA] 
                                                     WHERE 
                                                         [ID] = @ID";
         public Disciplina SelecionarPorId(int id)
