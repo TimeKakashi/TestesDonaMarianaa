@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using TestesDonaMariana.Dominio.ModuloDisciplina;
 using TestesDonaMariana.Dominio.ModuloMateria;
 using TestesDonaMariana.Infra.Dados.Sql.ModuloMateriaSql;
 using TestesDonaMariana.WinForm.Compartilhado;
@@ -12,15 +13,14 @@ namespace TestesDonaMariana.WinForm.ModuloMateria
 {
     public class ControladorMateria : ControladorBase
     {
-
         private ListagemMateriaControl listagemMateria;
         private IRepositorioMateria repositorioMateria;
-        private RepositorioMateriaSql repositorioMateriaSql;
+        private IRepositorioDisciplina repositorioDisciplina;
 
-        public ControladorMateria(IRepositorioMateria repositorioMateria, RepositorioMateriaSql repositorioMateriaSql)
+        public ControladorMateria(IRepositorioMateria repositorioMateria, IRepositorioDisciplina repositorioDisciplina)
         {
             this.repositorioMateria = repositorioMateria;
-            this.repositorioMateriaSql = repositorioMateriaSql;
+            this.repositorioDisciplina = repositorioDisciplina;
         }
 
         public override string ToolTipInserir => "Cadastrar Materia";
@@ -42,12 +42,12 @@ namespace TestesDonaMariana.WinForm.ModuloMateria
 
         public override void Inserir()
         {
-            TelaMateria telaMateria = new TelaMateria();
+            TelaMateria telaMateria = new TelaMateria(repositorioDisciplina);
             if (telaMateria.ShowDialog() == DialogResult.OK)
             {
-                List<Materia> listaMateria = repositorioMateriaSql.SelecionarTodos();
+                List<Materia> listaMateria = repositorioMateria.SelecionarTodos();
 
-                Materia materia = telaMateria.Materia;
+                Materia materia = telaMateria.ObterMateria();
 
                 if (listaMateria.Any(x => x.nome.ToLower() == materia.nome.ToLower()))
                 {
@@ -55,9 +55,7 @@ namespace TestesDonaMariana.WinForm.ModuloMateria
                     return;
                 }
 
-                repositorioMateriaSql.Inserir(materia);
-
-                
+                repositorioMateria.Inserir(materia);
             }
         }
 

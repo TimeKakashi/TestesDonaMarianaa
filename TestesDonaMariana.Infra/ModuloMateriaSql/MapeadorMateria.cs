@@ -4,8 +4,10 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using TestesDonaMariana.Dominio.ModuloDisciplina;
 using TestesDonaMariana.Dominio.ModuloMateria;
 using TestesDonaMariana.Infra.Dados.Sql.Compatilhado;
+using TestesDonaMariana.Infra.Dados.Sql.ModuloDisciplinaSql;
 
 namespace TestesDonaMariana.Infra.Dados.Sql.ModuloMateriaSql
 {
@@ -28,7 +30,9 @@ namespace TestesDonaMariana.Infra.Dados.Sql.ModuloMateriaSql
             string nome = Convert.ToString(leitorRegistros["NOME"]);
 
             string serie = Convert.ToString(leitorRegistros["ID_SERIE"]);
-            Materia materia = new Materia(id, nome, serie);
+
+            Disciplina disciplina = new MapeadorDisciplina().ConverterRegistro(leitorRegistros);
+            Materia materia = new Materia(id, nome, serie, disciplina);
 
             return materia;
         }

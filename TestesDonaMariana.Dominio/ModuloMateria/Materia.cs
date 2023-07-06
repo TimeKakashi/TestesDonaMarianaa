@@ -12,20 +12,22 @@ namespace TestesDonaMariana.Dominio.ModuloMateria
     public class Materia : EntidadeBase<Materia>
     {
         public string nome { get; set; }
-        public List<Disciplina> Disciplinas { get ; set;}
+        public Disciplina disciplina { get; set; }
         public string serie { get; set; }
 
-        public Materia()
-        { this.Disciplinas = new List<Disciplina>();}
-        public Materia(string nome) : this()
+  
+        public Materia(string nome, Disciplina Disciplina, string serie) 
         {
             this.nome = nome;
+            this.disciplina = Disciplina;
+            this.serie = serie;
         }
-        public Materia(int idMateria, string nome, string serie) : this()
+        public Materia(int idMateria, string nome, string serie, Disciplina disciplina)
         {
             this.id = idMateria;
             this.nome = nome;
             this.serie = serie;
+            this.disciplina = disciplina;
         }
         public override void AtualizarInformacoes(Materia registroAtualizado)
         {

@@ -36,8 +36,10 @@
             button2 = new Button();
             textBox1 = new TextBox();
             comboBox1 = new ComboBox();
-            radioButton1 = new RadioButton();
-            radioButton2 = new RadioButton();
+            primeiraSerie = new RadioButton();
+            SegundSerie = new RadioButton();
+            gbRadio = new GroupBox();
+            gbRadio.SuspendLayout();
             SuspendLayout();
             // 
             // lblNome
@@ -61,7 +63,7 @@
             // lblSerie
             // 
             lblSerie.AutoSize = true;
-            lblSerie.Location = new Point(33, 96);
+            lblSerie.Location = new Point(25, 94);
             lblSerie.Name = "lblSerie";
             lblSerie.Size = new Size(35, 15);
             lblSerie.TabIndex = 2;
@@ -70,6 +72,7 @@
             // button1
             // 
             button1.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
+            button1.DialogResult = DialogResult.OK;
             button1.Location = new Point(326, 96);
             button1.Name = "button1";
             button1.Size = new Size(90, 31);
@@ -102,35 +105,45 @@
             comboBox1.Size = new Size(155, 23);
             comboBox1.TabIndex = 6;
             // 
-            // radioButton1
+            // primeiraSerie
             // 
-            radioButton1.AutoSize = true;
-            radioButton1.Location = new Point(74, 96);
-            radioButton1.Name = "radioButton1";
-            radioButton1.Size = new Size(97, 19);
-            radioButton1.TabIndex = 7;
-            radioButton1.TabStop = true;
-            radioButton1.Text = "Primeira Série";
-            radioButton1.UseVisualStyleBackColor = true;
+            primeiraSerie.AutoSize = true;
+            primeiraSerie.Location = new Point(1, 22);
+            primeiraSerie.Name = "primeiraSerie";
+            primeiraSerie.Size = new Size(97, 19);
+            primeiraSerie.TabIndex = 7;
+            primeiraSerie.TabStop = true;
+            primeiraSerie.Text = "Primeira Série";
+            primeiraSerie.UseVisualStyleBackColor = true;
             // 
-            // radioButton2
+            // SegundSerie
             // 
-            radioButton2.AutoSize = true;
-            radioButton2.Location = new Point(174, 96);
-            radioButton2.Name = "radioButton2";
-            radioButton2.Size = new Size(99, 19);
-            radioButton2.TabIndex = 8;
-            radioButton2.TabStop = true;
-            radioButton2.Text = "Segunda Série";
-            radioButton2.UseVisualStyleBackColor = true;
+            SegundSerie.AutoSize = true;
+            SegundSerie.Location = new Point(101, 22);
+            SegundSerie.Name = "SegundSerie";
+            SegundSerie.Size = new Size(99, 19);
+            SegundSerie.TabIndex = 8;
+            SegundSerie.TabStop = true;
+            SegundSerie.Text = "Segunda Série";
+            SegundSerie.UseVisualStyleBackColor = true;
+            SegundSerie.CheckedChanged += radioButton2_CheckedChanged;
+            // 
+            // gbRadio
+            // 
+            gbRadio.Controls.Add(SegundSerie);
+            gbRadio.Controls.Add(primeiraSerie);
+            gbRadio.Location = new Point(74, 68);
+            gbRadio.Name = "gbRadio";
+            gbRadio.Size = new Size(200, 51);
+            gbRadio.TabIndex = 9;
+            gbRadio.TabStop = false;
             // 
             // TelaMateria
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(514, 131);
-            Controls.Add(radioButton2);
-            Controls.Add(radioButton1);
+            Controls.Add(gbRadio);
             Controls.Add(comboBox1);
             Controls.Add(textBox1);
             Controls.Add(button2);
@@ -141,6 +154,8 @@
             Icon = (Icon)resources.GetObject("$this.Icon");
             Name = "TelaMateria";
             Text = "Cadastro de Matéria";
+            gbRadio.ResumeLayout(false);
+            gbRadio.PerformLayout();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -156,5 +171,8 @@
         private ComboBox comboBox1;
         private RadioButton radioButton1;
         private RadioButton radioButton2;
+        private RadioButton primeiraSerie;
+        private RadioButton SegundSerie;
+        private GroupBox gbRadio;
     }
 }

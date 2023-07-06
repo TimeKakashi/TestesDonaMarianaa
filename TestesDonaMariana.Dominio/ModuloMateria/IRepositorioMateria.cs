@@ -8,5 +8,10 @@ namespace TestesDonaMariana.Dominio.ModuloMateria
 {
     public interface IRepositorioMateria
     {
+        void Inserir(Materia novaMateria);
+        void Editar(int id, Materia materiaSelecionada);
+        void Excluir(Materia materiaSelecionada);
+        List<Materia> SelecionarTodos();
+        Materia SelecionarPorId(int id);
     }
 }

@@ -86,7 +86,7 @@ namespace TestesDonaMariana.WinForm
 
         private void materiaToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            controlador = new ControladorMateria(repositorioMateria, repositorioMateriaSql);
+            controlador = new ControladorMateria(repositorioMateria, repositorioDisciplina);
             ConfigurarTelaPrincipal(controlador);
         }
 
