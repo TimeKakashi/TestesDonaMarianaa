@@ -1,4 +1,5 @@
-﻿using System;
+﻿using FestasInfantis.WinApp.Compartilhado;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -16,6 +17,10 @@ namespace TestesDonaMariana.WinForm.ModuloMateria
         public ListagemMateriaControl()
         {
             InitializeComponent();
+            ConfigurarColunas();
+            ConfiguracaoGrid.ConfigurarGridZebrado(grid);
+            ConfiguracaoGrid.ConfigurarGridSomenteLeitura(grid);
+            
         }
         private void ConfigurarColunas()
         {
@@ -54,8 +59,8 @@ namespace TestesDonaMariana.WinForm.ModuloMateria
             {
                 grid.Rows.Add(materia.id,
                               materia.nome,
-                              materia.disciplina,
-                              materia.serie
+                              materia.disciplina.nome,
+                              materia.serie.nome
                               );
             }
         }

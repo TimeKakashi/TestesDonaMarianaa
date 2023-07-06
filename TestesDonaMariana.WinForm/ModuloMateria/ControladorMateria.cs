@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using TestesDonaMariana.Dominio.ModuloDisciplina;
 using TestesDonaMariana.Dominio.ModuloMateria;
+using TestesDonaMariana.Dominio.ModuloQuestoes;
 using TestesDonaMariana.Infra.Dados.Sql.ModuloMateriaSql;
 using TestesDonaMariana.WinForm.Compartilhado;
 using TestesDonaMariana.WinForm.ModuloGabarito;
@@ -21,7 +22,7 @@ namespace TestesDonaMariana.WinForm.ModuloMateria
         {
             this.repositorioMateria = repositorioMateria;
             this.repositorioDisciplina = repositorioDisciplina;
-        }
+            CarregarMaterias();        }
 
         public override string ToolTipInserir => "Cadastrar Materia";
 
@@ -32,20 +33,36 @@ namespace TestesDonaMariana.WinForm.ModuloMateria
         public override bool FiltrarHabilitado => true;
         public override void Editar()
         {
+            Materia materia = ObterMateriaSelecionada();
+
+            if (materia == null)
+            {
+                MessageBox.Show($"Selecione uma materia primeiro!",
+                    "Edição de Materias",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Exclamation);
+
+                return;
+            }
+
             TelaMateria telaMateria = new TelaMateria(repositorioDisciplina);
+
+            telaMateria.ArrumaTela(materia);
+
             if (telaMateria.ShowDialog() == DialogResult.OK)
             {
                 List<Materia> listaMateria = repositorioMateria.SelecionarTodos();
 
-                Materia materia = telaMateria.ObterMateria();
+                Materia materiaNova = telaMateria.ObterMateria();
+                materiaNova.id = materia.id;
 
-                if (listaMateria.Any(x => x.nome.ToLower() == materia.nome.ToLower() && x.id != materia.id))
+                if (listaMateria.Any(x => x.nome.ToLower() == materiaNova.nome.ToLower() && x.id != materiaNova.id))
                 {
                     
                     return;
                 }
 
-                repositorioMateria.Editar(materia.id, materia);
+                repositorioMateria.Editar(materiaNova.id, materiaNova);
             }
 
             CarregarMaterias();
@@ -128,6 +145,8 @@ namespace TestesDonaMariana.WinForm.ModuloMateria
 
             return materia;
         }
+
+       
 
 
 

@@ -60,7 +60,6 @@ namespace TestesDonaMariana.WinForm.ModuloMateria
         public void ArrumaTela(Materia materia)
         {
             textBox1.Text = materia.nome;
-            gbRadio.Controls.OfType<RadioButton>().SingleOrDefault(RadioButton => RadioButton.Checked).Text = materia.serie.nome;
         }
 
         private void radioButton2_CheckedChanged(object sender, EventArgs e)

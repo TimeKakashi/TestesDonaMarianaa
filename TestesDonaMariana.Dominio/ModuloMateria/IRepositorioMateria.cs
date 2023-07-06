@@ -14,5 +14,6 @@ namespace TestesDonaMariana.Dominio.ModuloMateria
         void Excluir(Materia materiaSelecionada);
         List<Materia> SelecionarTodos();
         Materia SelecionarPorId(int id);
+        List<Questao> SelecionarQuestoesMateria(Materia materia);
     }
 }

@@ -63,8 +63,7 @@ namespace TestesDonaMariana.WinForm.ModuloTeste
 
         public List<Questao> GeradorQuestao(Materia materia)
         {
-            List<Questao> todasQuestoes = materia.questoes;
-
+            List<Questao> todasQuestoes = repositorioMateria.SelecionarQuestoesMateria(materia);
 
             List<Questao> questoesSorteadas = new List<Questao>();
             Random rand = new Random();
@@ -152,7 +151,7 @@ namespace TestesDonaMariana.WinForm.ModuloTeste
 
             else
             {
-                int numero = teste.materia.questoes.Count;
+                int numero = repositorioMateria.SelecionarQuestoesMateria(teste.materia).Count;
 
                 if (numericNumeroQuestoes.Value > numero)
                 {
@@ -162,6 +161,7 @@ namespace TestesDonaMariana.WinForm.ModuloTeste
 
 
                 teste.questoes.Clear();
+                teste.materia.questoes = repositorioMateria.SelecionarQuestoesMateria(teste.materia);
                 teste.questoes = GeradorQuestao(teste.materia);
             }
 
