@@ -35,9 +35,16 @@ namespace TestesDonaMariana.WinForm.ModuloTeste
 
         public override string ToolTipInserir => "Cadastrar Teste";
 
-        public override string ToolTipEditar => "Cadastrar Teste";
+        public override string ToolTipEditar => "Este botão está desabilitado nessa Tela";
 
         public override string ToolTipExcluir => "Excluir Teste";
+        public override string ToolTipFiltrar => "Filtrar Testes";
+
+        public override string ToolTipPdf => "Gerar PDF";
+
+        public override string ToolTipGabarito => "Gerar Gabarito";
+
+        public override string ToolTipDuplicar => "Duplicar Teste";
 
         public override bool FiltrarHabilitado => true;
 
@@ -46,6 +53,9 @@ namespace TestesDonaMariana.WinForm.ModuloTeste
         public override bool GerarPdfHabilitado => true;
 
         public override bool EditarHabilitado => false;
+        public override bool DuplicarHabilitado => true;
+
+        
 
         public override void Inserir()
         {

@@ -16,11 +16,19 @@ namespace TestesDonaMariana.WinForm.ModuloGabarito
         public override string ToolTipEditar => "Editar Gabarito";
 
         public override string ToolTipExcluir => "Excluir Gabarito";
+        public override string ToolTipFiltrar => throw new NotImplementedException();
+
+        public override string ToolTipPdf => throw new NotImplementedException();
+
+        public override string ToolTipGabarito => throw new NotImplementedException();
+
+        public override string ToolTipDuplicar => throw new NotImplementedException();
 
         public override bool EditarHabilitado => false;
 
         public override bool FiltrarHabilitado => true;
 
+        public override bool DuplicarHabilitado => false;
 
         public override void Editar()
         {

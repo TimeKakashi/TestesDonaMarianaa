@@ -113,7 +113,7 @@
             btnInserir.Name = "btnInserir";
             btnInserir.Padding = new Padding(7);
             btnInserir.Size = new Size(34, 34);
-            btnInserir.Text = "toolStripButton1";
+            btnInserir.Text = "Cadastro";
             btnInserir.Click += btnInserir_Click;
             // 
             // btnEditar
@@ -124,7 +124,7 @@
             btnEditar.Name = "btnEditar";
             btnEditar.Padding = new Padding(7);
             btnEditar.Size = new Size(34, 34);
-            btnEditar.Text = "toolStripButton2";
+            btnEditar.Text = "Editar";
             btnEditar.Click += btnEditar_Click;
             // 
             // btnExcluir
@@ -135,7 +135,7 @@
             btnExcluir.Name = "btnExcluir";
             btnExcluir.Padding = new Padding(7);
             btnExcluir.Size = new Size(34, 34);
-            btnExcluir.Text = "toolStripButton3";
+            btnExcluir.Text = "Excluir";
             btnExcluir.Click += btnExcluir_Click;
             // 
             // btnFiltrar
@@ -146,7 +146,7 @@
             btnFiltrar.Name = "btnFiltrar";
             btnFiltrar.Padding = new Padding(7);
             btnFiltrar.Size = new Size(34, 34);
-            btnFiltrar.Text = "toolStripButton4";
+            btnFiltrar.Text = "Filtrar";
             btnFiltrar.Click += btnFiltrar_Click;
             // 
             // btnGerarGabarito
@@ -157,7 +157,7 @@
             btnGerarGabarito.Name = "btnGerarGabarito";
             btnGerarGabarito.Padding = new Padding(7);
             btnGerarGabarito.Size = new Size(34, 34);
-            btnGerarGabarito.Text = "toolStripButton5";
+            btnGerarGabarito.Text = "Gerar Gabarito";
             btnGerarGabarito.Click += btnGerarGabarito_Click;
             // 
             // btnDuplicar
@@ -167,7 +167,7 @@
             btnDuplicar.ImageTransparentColor = Color.Magenta;
             btnDuplicar.Name = "btnDuplicar";
             btnDuplicar.Size = new Size(23, 34);
-            btnDuplicar.Text = "toolStripButton1";
+            btnDuplicar.Text = "Duplicar";
             btnDuplicar.Click += btnDuplicar_Click;
             // 
             // btnPdf
@@ -178,7 +178,7 @@
             btnPdf.Name = "btnPdf";
             btnPdf.Padding = new Padding(7);
             btnPdf.Size = new Size(34, 34);
-            btnPdf.Text = "toolStripButton6";
+            btnPdf.Text = "Gerar PDF";
             btnPdf.Click += btnPdf_Click;
             // 
             // toolStripSeparator1

@@ -24,7 +24,14 @@ namespace TestesDonaMariana.WinForm.ModuloDisciplina
         public override string ToolTipEditar => "Editar Disciplina";
 
         public override string ToolTipExcluir => "Excluir Disciplina";
+        public override string ToolTipDuplicar => "Este botão está desabilitado nessa Tela";
 
+
+        public override string ToolTipFiltrar => "Filtrar Disciplinas";
+
+        public override string ToolTipPdf => "Este botão está desabilitado nessa Tela";
+
+        public override string ToolTipGabarito => "Este botão está desabilitado nessa Tela";
         public override bool FiltrarHabilitado => true;
 
         private Disciplina ObterDisciplinaSelecionado()

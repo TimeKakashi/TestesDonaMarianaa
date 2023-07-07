@@ -29,6 +29,14 @@ namespace TestesDonaMariana.WinForm.ModuloQuestao
 
         public override string ToolTipExcluir => "Excluir Questao";
 
+        public override string ToolTipFiltrar => "Este botão está desabilitado nessa Tela";
+
+        public override string ToolTipPdf => "Este botão está desabilitado nessa Tela";
+
+        public override string ToolTipGabarito => "Este botão está desabilitado nessa Tela";
+
+        public override string ToolTipDuplicar => "Este botão está desabilitado nessa Tela";
+
         public override void Inserir()
         {
             TelaQuestao telaQuestao = new TelaQuestao(repositorioMateria);

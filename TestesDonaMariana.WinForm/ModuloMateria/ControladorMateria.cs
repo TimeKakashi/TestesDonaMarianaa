@@ -29,8 +29,18 @@ namespace TestesDonaMariana.WinForm.ModuloMateria
         public override string ToolTipEditar => "Editar Materia";
 
         public override string ToolTipExcluir => "Excluir Materia";
+        public override string ToolTipFiltrar => "Filtrar Matérias";
+
+        public override string ToolTipPdf => "Este botão está desabilitado nessa Tela";
+
+        public override string ToolTipGabarito => "Este botão está desabilitado nessa Tela";
+
+        public override string ToolTipDuplicar => "Este botão está desabilitado nessa Tela";
 
         public override bool FiltrarHabilitado => true;
+
+       
+
         public override void Editar()
         {
             Materia materia = ObterMateriaSelecionada();

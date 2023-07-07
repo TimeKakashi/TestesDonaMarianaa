@@ -64,6 +64,7 @@ namespace TestesDonaMariana.WinForm
             btnFiltrar.Enabled = controlador.FiltrarHabilitado;
             btnGerarGabarito.Enabled = controlador.GerarGabaritoHabilitado;
             btnPdf.Enabled = controlador.GerarPdfHabilitado;
+            btnDuplicar.Enabled = controlador.DuplicarHabilitado;
         }
 
         private void ConfigurarToolTips(ControladorBase controlador)
@@ -71,6 +72,10 @@ namespace TestesDonaMariana.WinForm
             btnInserir.ToolTipText = controlador.ToolTipInserir;
             btnEditar.ToolTipText = controlador.ToolTipEditar;
             btnExcluir.ToolTipText = controlador.ToolTipExcluir;
+            btnFiltrar.ToolTipText = controlador.ToolTipFiltrar;
+            btnGerarGabarito.ToolTipText = controlador.ToolTipGabarito;
+            btnPdf.ToolTipText = controlador.ToolTipPdf;
+            btnDuplicar.ToolTipText = controlador.ToolTipDuplicar;
         }
 
         private void ConfigurarListagem(ControladorBase controlador)
