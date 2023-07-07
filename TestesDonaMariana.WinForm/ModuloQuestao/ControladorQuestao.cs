@@ -23,11 +23,11 @@ namespace TestesDonaMariana.WinForm.ModuloQuestao
             CarregarQuestoes();
         }
 
-        public override string ToolTipInserir => "Cadastrar Questao";
+        public override string ToolTipInserir => "Cadastrar Questão";
 
-        public override string ToolTipEditar => "Editar Questao";
+        public override string ToolTipEditar => "Editar Questão";
 
-        public override string ToolTipExcluir => "Excluir Questao";
+        public override string ToolTipExcluir => "Excluir Questão";
 
         public override string ToolTipFiltrar => "Este botão está desabilitado nessa Tela";
 
@@ -148,15 +148,15 @@ namespace TestesDonaMariana.WinForm.ModuloQuestao
 
             if (questao == null)
             {
-                MessageBox.Show($"Selecione uma questao primeiro!",
-                    "Exclusão de Questoes",
+                MessageBox.Show($"Selecione uma questão primeiro!",
+                    "Exclusão de Questões",
                     MessageBoxButtons.OK,
                     MessageBoxIcon.Exclamation);
 
                 return;
             }
 
-            DialogResult opcaoEscolhida = MessageBox.Show($"Deseja excluir a questao {questao.titulo}?", "Exclusão de Questoes",
+            DialogResult opcaoEscolhida = MessageBox.Show($"Deseja excluir a questão {questao.titulo}?", "Exclusão de Questões",
                 MessageBoxButtons.OKCancel, MessageBoxIcon.Question);
 
 
@@ -186,7 +186,7 @@ namespace TestesDonaMariana.WinForm.ModuloQuestao
             return listagemQuestao;
         }
 
-        public override string ObterTipoCadastro() => "Cadastro de Questao";
+        public override string ObterTipoCadastro() => "Cadastro de Questões";
         
 
         private Questao ObterQuestaoSelecionada()

@@ -202,8 +202,13 @@
             Controls.Add(label4);
             Controls.Add(label2);
             Controls.Add(label1);
+            FormBorderStyle = FormBorderStyle.FixedSingle;
+            MaximizeBox = false;
+            MdiChildrenMinimizedAnchorBottom = false;
+            MinimizeBox = false;
             Name = "TelaQuestao";
-            Text = "Cadastro de Questao";
+            StartPosition = FormStartPosition.CenterScreen;
+            Text = "Cadastro de Questão";
             ResumeLayout(false);
             PerformLayout();
         }

@@ -52,7 +52,7 @@ namespace TestesDonaMariana.WinForm.ModuloMateria
                 serie.id = 2;
                 serie.nome = "Segunda Série";
             }
-              
+
 
             return new Materia(nome, disciplina, serie);
         }

@@ -74,7 +74,7 @@ namespace TestesDonaMariana.WinForm.ModuloTeste
 
         public override void Editar()
         {
-            //Nao eh usado
+            //Não é usado
         }
         public override void Excluir()
         {

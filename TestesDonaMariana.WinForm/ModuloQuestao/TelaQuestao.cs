@@ -71,7 +71,7 @@ namespace TestesDonaMariana.WinForm.ModuloQuestao
 
             var valoresEnum = Enum.GetValues(typeof(EnumAlternativaCorreta));
 
-            foreach(EnumAlternativaCorreta item in valoresEnum)
+            foreach (EnumAlternativaCorreta item in valoresEnum)
             {
                 cbAlternativaCorreta.Items.Add(item);
             }

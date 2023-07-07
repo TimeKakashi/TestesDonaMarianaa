@@ -50,7 +50,7 @@ namespace TestesDonaMariana.WinForm.ModuloTeste
 
         public void EncherBox()
         {
-           
+
             foreach (Materia item in repositorioMateria.SelecionarTodos())
             {
                 cbMateria.Items.Add(item);
