@@ -18,7 +18,12 @@ namespace TestesDonaMariana.Infra.Dados.Sql.ModuloTesteSql
         public override void ConfigurarParametros(SqlCommand comando, Teste registro)
         {
             comando.Parameters.AddWithValue("ID_DISCIPLINA", registro.disciplina.id);
+
+            if(registro.materia == null)
+                comando.Parameters.AddWithValue("ID_MATERIA", null);
+            else
             comando.Parameters.AddWithValue("ID_MATERIA", registro.materia.id);
+
             comando.Parameters.AddWithValue("DATA", registro.dataCriacao.Ticks);
             comando.Parameters.AddWithValue("NUMERO_QUESTAO", registro.numeroQuestoes);
         }

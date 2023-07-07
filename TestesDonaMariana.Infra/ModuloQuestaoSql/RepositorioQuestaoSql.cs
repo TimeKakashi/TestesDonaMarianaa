@@ -5,8 +5,10 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using TestesDonaMariana.Dominio.ModuloDisciplina;
 using TestesDonaMariana.Dominio.ModuloQuestao;
 using TestesDonaMariana.Dominio.ModuloQuestoes;
+using TestesDonaMariana.Dominio.ModuloTeste;
 using TestesDonaMariana.Infra.Dados.Sql.Compatilhado;
 
 namespace TestesDonaMariana.Infra.Dados.Sql.ModuloQuestaoSql
@@ -46,7 +48,8 @@ namespace TestesDonaMariana.Infra.Dados.Sql.ModuloQuestaoSql
             @"UPDATE [TB_Questao]
 				SET 
 					[Id_Materia] = @ID_MATERIA,
-					[Titulo] = @TITULO
+					[Titulo] = @TITULO,
+					[AlternativaCorreta] = @ALTERNATIVA_CORRETA
 
 				WHERE [Id] = @ID_QUESTAO";
 
@@ -150,6 +153,39 @@ namespace TestesDonaMariana.Infra.Dados.Sql.ModuloQuestaoSql
 		public const string sqlExcluirAlternativas =
             @"delete from [TB_Alternativa] where Id_Questao = @id";
 
+        public const string sqlSelecionarQuestoesDisciplina = @"select
+
+																Q.[Id]					ID_QUESTAO,
+																Q.[Titulo]				TITULO_QUESTAO,
+																Q.[AlternativaCorreta]	ALTERNATIVA_CORRETA,
+																Q.[Id_Materia]			QUESTAO_ID_MATERIA,
+
+																M.[Nome]				NOME_MATERIA,
+																M.[Id_Disciplina]		MATERIA_ID_DISCIPLINA,
+																M.[Id_Serie]			ID_SERIE,
+		
+																D.[Nome]				NOME_DISCIPLINA,
+																D.Id					Id_Disciplina ,
+
+																S.serie					SERIE_NOME
+				
+				
+																from 
+																	TB_Questao as Q
+																inner join TB_Materia as M
+																on
+																	Q.Id_Materia = M.Id
+																inner join TB_Disciplina as D
+																on
+																	M.Id_Disciplina = D.Id 
+																inner join TB_Serie as S
+																on
+																	S.Id = M.Id_Serie
+																where
+																		D.Id = 2003";
+
+
+
         public override void Excluir(Questao registroSelecionado)
         {
 			ExcluirAlternativas(registroSelecionado);
@@ -251,6 +287,32 @@ namespace TestesDonaMariana.Infra.Dados.Sql.ModuloQuestaoSql
             conexaoComBanco.Close();
 
 			return alternatvias;
+        }
+
+        public List<Questao> SelecionarQuestoesDisciplina(Disciplina disciplina)
+        {
+            SqlConnection conexaoComBanco = new SqlConnection(enderecoBanco);
+            conexaoComBanco.Open();
+
+            SqlCommand comandoSelecionarMateriasDisciplina = conexaoComBanco.CreateCommand();
+            comandoSelecionarMateriasDisciplina.CommandText = sqlSelecionarQuestoesDisciplina;
+
+            comandoSelecionarMateriasDisciplina.Parameters.AddWithValue("ID_DISCIPLINA", disciplina.id);
+
+            SqlDataReader leitorItem = comandoSelecionarMateriasDisciplina.ExecuteReader();
+
+            List<Questao> questoes = new List<Questao>();
+
+            while (leitorItem.Read())
+            {
+                Questao alternativa = new MapeadorQuestao().ConverterRegistro(leitorItem);
+
+                questoes.Add(alternativa);
+            }
+
+            conexaoComBanco.Close();
+
+            return questoes;
         }
     }
 }

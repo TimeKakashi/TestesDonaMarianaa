@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using TestesDonaMariana.Dominio.ModuloDisciplina;
 using TestesDonaMariana.Dominio.ModuloQuestoes;
 
 namespace TestesDonaMariana.Dominio.ModuloMateria
@@ -15,5 +16,6 @@ namespace TestesDonaMariana.Dominio.ModuloMateria
         List<Materia> SelecionarTodos();
         Materia SelecionarPorId(int id);
         List<Questao> SelecionarQuestoesMateria(Materia materia);
+        List<Materia> SelecionarMateriasDaDisciplina(Disciplina? disciplina);
     }
 }

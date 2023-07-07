@@ -4,10 +4,12 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using TestesDonaMariana.Dominio.ModuloMateria;
 using TestesDonaMariana.Dominio.ModuloQuestao;
 using TestesDonaMariana.Dominio.ModuloQuestoes;
 using TestesDonaMariana.Dominio.ModuloTeste;
 using TestesDonaMariana.Infra.Dados.Sql.Compatilhado;
+using TestesDonaMariana.Infra.Dados.Sql.ModuloMateriaSql;
 using TestesDonaMariana.Infra.Dados.Sql.ModuloQuestaoSql;
 using static System.Net.Mime.MediaTypeNames;
 
@@ -118,46 +120,46 @@ namespace TestesDonaMariana.Infra.Dados.Sql.ModuloTesteSql
 															T.[ID] = @ID"
                                                         ;
 
-		private const string sqlSelecionarQuestoesTeste = @"SELECT 
-															Q.[Id]					ID_QUESTAO,
-															Q.[Titulo]				TITULO_QUESTAO,
-															Q.[AlternativaCorreta]	ALTERNATIVA_CORRETA,
-															Q.[Id_Materia]			QUESTAO_ID_MATERIA,
+		private const string sqlSelecionarQuestoesPorMateria = @"SELECT 
+																	Q.[Id]					ID_QUESTAO,
+																	Q.[Titulo]				TITULO_QUESTAO,
+																	Q.[AlternativaCorreta]	ALTERNATIVA_CORRETA,
+																	Q.[Id_Materia]			QUESTAO_ID_MATERIA,
 
-															M.[Nome]				NOME_MATERIA,
-															M.[Id_Disciplina]		MATERIA_ID_DISCIPLINA,
-															M.[Id_Serie]			MATERIA_ID_SERIE,
+																	M.[Nome]				NOME_MATERIA,
+																	M.[Id_Disciplina]		MATERIA_ID_DISCIPLINA,
+																	M.[Id_Serie]			MATERIA_ID_SERIE,
 		
-															D.[Nome]				NOME_DISCIPLINA,
+																	D.[Nome]				NOME_DISCIPLINA,
 
-															S.[serie]				SERIE_NOME,
-															S.[ID]					ID_SERIE
+																	S.[serie]				SERIE_NOME,
+																	S.[ID]					ID_SERIE
 				
 
-															FROM 
-																[TB_Questao] as Q
-															Inner Join 
-																[TB_Materia] as M 
-															ON 
-																Q.Id_Materia = M.Id
-															Inner Join
-																[TB_Disciplina] as D
-															ON
-																M.Id_Disciplina = D.Id
-															Inner Join
-																[TB_Serie] as S
-															ON
-																M.Id_Serie = S.Id
-															Inner Join 
-																TB_Questao_TB_Teste as QT
-															ON 
-																QT.Id_Questao = Q.Id
-															Inner Join 
-																TBTeste as T
-															ON 
-																T.Id = 6
-															WHERE
-																QT.Id_Teste = @ID_TESTE";
+																	FROM 
+																		[TB_Questao] as Q
+																	Inner Join 
+																		[TB_Materia] as M 
+																	ON 
+																		Q.Id_Materia = M.Id
+																	Inner Join
+																		[TB_Disciplina] as D
+																	ON
+																		M.Id_Disciplina = D.Id
+																	Inner Join
+																		[TB_Serie] as S
+																	ON
+																		M.Id_Serie = S.Id
+																	Inner Join 
+																		TB_Questao_TB_Teste as QT
+																	ON 
+																		QT.Id_Questao = Q.Id
+																	Inner Join 
+																		TBTeste as T
+																	ON 
+																		T.Id = @ID_TESTE";
+
+		
 
         public void Inserir(Teste novoRegistro, List<Questao> questoes)
         {
@@ -217,7 +219,7 @@ namespace TestesDonaMariana.Infra.Dados.Sql.ModuloTesteSql
             conexaoComBanco.Open();
 
             SqlCommand comandoSelecionarQuestoesTeste = conexaoComBanco.CreateCommand();
-            comandoSelecionarQuestoesTeste.CommandText = sqlSelecionarQuestoesTeste;
+            comandoSelecionarQuestoesTeste.CommandText = sqlSelecionarQuestoesPorMateria;
 
             comandoSelecionarQuestoesTeste.Parameters.AddWithValue("ID_TESTE", teste1.id);
 
@@ -236,6 +238,8 @@ namespace TestesDonaMariana.Infra.Dados.Sql.ModuloTesteSql
 
             return questoes;
         }
-    }
-    
+
+		
+	}
+
 }

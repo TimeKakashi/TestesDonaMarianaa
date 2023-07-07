@@ -50,11 +50,8 @@ namespace TestesDonaMariana.WinForm.ModuloTeste
 
         public void EncherBox()
         {
-           
-            foreach (Materia item in repositorioMateria.SelecionarTodos())
-            {
-                cbMateria.Items.Add(item);
-            }
+
+
 
             foreach (Disciplina item in repositorioDisciplina.SelecionarTodos())
             {
@@ -92,21 +89,14 @@ namespace TestesDonaMariana.WinForm.ModuloTeste
         {
             List<Questao> todasQuestoes = new List<Questao>();
 
-            foreach (Materia materia in disciplina.listaMateria)
-            {
-                foreach (Questao questao in materia.questoes)
-                {
-                    todasQuestoes.Add(questao);
-                }
-            }
-
+            todasQuestoes = repositorioQuestoes.SelecionarQuestoesDisciplina(disciplina);
 
             List<Questao> questoesSorteadas = new List<Questao>();
             Random rand = new Random();
 
             for (int i = 0; i < numericNumeroQuestoes.Value; i++)
             {
-                int numero = rand.Next(1, todasQuestoes.Count);
+                int numero = rand.Next(0, todasQuestoes.Count);
 
                 if (questoesSorteadas.Contains(todasQuestoes[numero]))
                 {
@@ -116,6 +106,7 @@ namespace TestesDonaMariana.WinForm.ModuloTeste
 
                 questoesSorteadas.Add(todasQuestoes[numero]);
             }
+            questoesFinais = questoesSorteadas;
 
             return questoesSorteadas;
         }
@@ -130,12 +121,25 @@ namespace TestesDonaMariana.WinForm.ModuloTeste
             }
         }
 
-        private void button1_Click(object sender, EventArgs e)
-        {
 
+        private void PegarMateriasDisciplina(Disciplina? disciplina)
+        {
+            cbMateria.Enabled = true;
+
+            foreach (Materia item in repositorioMateria.SelecionarMateriasDaDisciplina(disciplina))
+            {
+                cbMateria.Items.Add(item);
+            }
         }
 
-        private void button2_Click(object sender, EventArgs e)
+        private void cbDisciplina_SelectedValueChanged(object sender, EventArgs e)
+        {
+            Disciplina disciplina = cbDisciplina.SelectedItem as Disciplina;
+
+            PegarMateriasDisciplina(disciplina);
+        }
+
+        private void button2_Click_1(object sender, EventArgs e)
         {
             Teste teste = ObterTeste();
 
@@ -144,7 +148,14 @@ namespace TestesDonaMariana.WinForm.ModuloTeste
                 teste.questoes.Clear();
                 teste.questoes = GeradorQuestao(teste.disciplina);
 
-                int numero = teste.materia.questoes.Count;
+                int numero = 0;
+
+                if (teste.materia != null)
+                    numero = teste.materia.questoes.Count;
+
+                else
+                    numero = repositorioQuestoes.SelecionarQuestoesDisciplina(teste.disciplina).Count;
+
 
                 if (numericNumeroQuestoes.Value > numero)
                 {

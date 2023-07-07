@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using TestesDonaMariana.Dominio.ModuloDisciplina;
 using TestesDonaMariana.Dominio.ModuloMateria;
 using TestesDonaMariana.Dominio.ModuloQuestao;
 using TestesDonaMariana.Dominio.ModuloQuestoes;
@@ -121,6 +122,30 @@ namespace TestesDonaMariana.Infra.Dados.Sql.ModuloMateriaSql
 
 																	Where M.id = @ID_MATERIA";
 
+		private const string sqlSelecionarMateriasDisciplina = @"SELECT 
+
+																	M.ID				ID_MATERIA,
+																	M.NOME				NOME_MATERIA,
+																	M.ID_SERIE			ID_SERIE,
+
+																	S.SERIE				SERIE,
+
+																	D.ID				ID_DISCIPLINA,
+																	D.NOME				NOME_DISCIPLINA
+
+																FROM
+																	TB_MATERIA AS M
+																INNER JOIN
+																	TB_DISCIPLINA AS D
+																ON 
+																	M.ID_DISCIPLINA = D.ID
+																INNER JOIN 
+																	TB_SERIE AS S
+																ON 
+																	S.ID = M.ID_SERIE
+																WHERE
+																	D.ID = @ID_DISCIPLINA";
+
         public List<Questao> SelecionarQuestoesMateria(Materia materia)
         {
             SqlConnection conexaoComBanco = new SqlConnection(enderecoBanco);
@@ -147,6 +172,32 @@ namespace TestesDonaMariana.Infra.Dados.Sql.ModuloMateriaSql
             conexaoComBanco.Close();
 
             return questoes;
+        }
+
+        public List<Materia> SelecionarMateriasDaDisciplina(Disciplina? disciplina)
+        {
+            SqlConnection conexaoComBanco = new SqlConnection(enderecoBanco);
+            conexaoComBanco.Open();
+
+            SqlCommand comandoSelecionarMateriasDaDisciplina = conexaoComBanco.CreateCommand();
+            comandoSelecionarMateriasDaDisciplina.CommandText = sqlSelecionarMateriasDisciplina;
+
+            comandoSelecionarMateriasDaDisciplina.Parameters.AddWithValue("ID_DISCIPLINA", disciplina.id);
+
+            SqlDataReader leitorItem = comandoSelecionarMateriasDaDisciplina.ExecuteReader();
+
+            List<Materia> materias = new List<Materia>();
+
+            while (leitorItem.Read())
+            {
+                Materia questao = new MapeadorMateria().ConverterRegistro(leitorItem);
+
+                materias.Add(questao);
+            }
+
+            conexaoComBanco.Close();
+
+            return materias;
         }
     }
 

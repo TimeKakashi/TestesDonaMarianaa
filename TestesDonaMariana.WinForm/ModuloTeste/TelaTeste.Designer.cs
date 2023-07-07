@@ -94,9 +94,11 @@
             cbDisciplina.Name = "cbDisciplina";
             cbDisciplina.Size = new Size(149, 23);
             cbDisciplina.TabIndex = 4;
+            cbDisciplina.SelectedValueChanged += cbDisciplina_SelectedValueChanged;
             // 
             // cbMateria
             // 
+            cbMateria.Enabled = false;
             cbMateria.FormattingEnabled = true;
             cbMateria.Location = new Point(116, 155);
             cbMateria.Name = "cbMateria";
@@ -161,7 +163,6 @@
             button1.TabIndex = 10;
             button1.Text = "Cadastrar";
             button1.UseVisualStyleBackColor = true;
-            button1.Click += button1_Click;
             // 
             // button3
             // 
@@ -192,7 +193,7 @@
             button2.TabIndex = 14;
             button2.Text = "Gerar Teste";
             button2.UseVisualStyleBackColor = true;
-            button2.Click += button2_Click;
+            button2.Click += button2_Click_1;
             // 
             // TelaTeste
             // 
