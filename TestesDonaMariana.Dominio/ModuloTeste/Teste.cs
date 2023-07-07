@@ -10,7 +10,7 @@ using TestesDonaMariana.Dominio.ModuloQuestoes;
 
 namespace TestesDonaMariana.Dominio.ModuloTeste
 {
-    public class Teste : EntidadeBase<Teste>
+    public class Teste : EntidadeBase<Teste>, ICloneable
     {
 
         public Materia materia { get; set; }
@@ -67,5 +67,25 @@ namespace TestesDonaMariana.Dominio.ModuloTeste
         {
             throw new NotImplementedException();
         }
+        public object Clone()
+        {
+            Teste clone = new Teste
+            {
+                materia = this.materia,
+                disciplina = this.disciplina,
+                numeroQuestoes = this.numeroQuestoes,
+                dataCriacao = this.dataCriacao,
+                serie = this.serie,
+                questoes = new List<Questao>(this.questoes.Count)
+            };
+
+            foreach (Questao questao in this.questoes)
+            {
+                clone.questoes.Add(questao.Clone() as Questao);
+            }
+
+            return clone;
+        }
+
     }
 }

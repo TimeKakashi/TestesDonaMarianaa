@@ -184,5 +184,23 @@ namespace TestesDonaMariana.WinForm
 
             controlador.GerarPdf();
         }
+
+
+        private void btnDuplicar_Click(object sender, EventArgs e)
+        {
+            if (controlador == null)
+            {
+                MessageBox.Show("Selecione uma área primeiro!",
+                    "É necessário selecionar uma área",
+                    MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
+            if (controlador is ControladorTeste controladorTeste)
+            {
+                controladorTeste.DuplicarTeste();
+            }
+        }
+
     }
 }

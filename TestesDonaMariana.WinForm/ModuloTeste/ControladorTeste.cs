@@ -89,14 +89,54 @@ namespace TestesDonaMariana.WinForm.ModuloTeste
         }
 
 
-       
+
         public override UserControl ObterListagem()
         {
-            if(listagemTeste == null)
+            if (listagemTeste == null)
                 listagemTeste = new ListagemTesteControl();
 
             return listagemTeste;
         }
+        public void DuplicarTeste()
+        {
+            Teste testeSelecionado = ObterTesteSelecionado();
+
+            if (testeSelecionado != null)
+            {
+                Teste testeDuplicado = testeSelecionado.Clone() as Teste;
+
+                if (testeDuplicado != null)
+                {
+                    // Define um novo ID para o teste duplicado
+                    testeDuplicado.id = ObterNovoId();
+
+                    // Cria uma nova lista de questões duplicadas
+                    List<Questao> questoesDuplicadas = new List<Questao>();
+                    foreach (Questao questao in testeSelecionado.questoes)
+                    {
+                        Questao questaoDuplicada = questao.Clone() as Questao;
+                        questoesDuplicadas.Add(questaoDuplicada);
+                    }
+                    testeDuplicado.questoes = questoesDuplicadas;
+
+                    // Inserir o teste duplicado no repositório
+                    repositorioTeste.Inserir(testeDuplicado, questoesDuplicadas);
+
+                    // Recarregar a lista de testes
+                    CarregarTestes();
+                }
+            }
+        }
+
+
+        private int ObterNovoId()
+            {
+                // Lógica para obter um novo ID para o teste duplicado
+                // Pode ser obtido do repositório ou de outra fonte de dados
+                // Neste exemplo, estou apenas retornando um valor fixo
+                return repositorioTeste.SelecionarTodos().Count + 1;
+            }
+
 
         public override string ObterTipoCadastro() => "Cadastro de Testes";
         

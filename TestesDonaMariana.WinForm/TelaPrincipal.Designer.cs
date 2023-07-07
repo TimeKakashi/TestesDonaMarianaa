@@ -40,6 +40,7 @@
             btnExcluir = new ToolStripButton();
             btnFiltrar = new ToolStripButton();
             btnGerarGabarito = new ToolStripButton();
+            btnDuplicar = new ToolStripButton();
             btnPdf = new ToolStripButton();
             toolStripSeparator1 = new ToolStripSeparator();
             toolStripLabel1 = new ToolStripLabel();
@@ -97,7 +98,7 @@
             // 
             // toolStrip1
             // 
-            toolStrip1.Items.AddRange(new ToolStripItem[] { btnInserir, btnEditar, btnExcluir, btnFiltrar, btnGerarGabarito, btnPdf, toolStripSeparator1, toolStripLabel1 });
+            toolStrip1.Items.AddRange(new ToolStripItem[] { btnInserir, btnEditar, btnExcluir, btnFiltrar, btnGerarGabarito, btnDuplicar, btnPdf, toolStripSeparator1, toolStripLabel1 });
             toolStrip1.Location = new Point(0, 24);
             toolStrip1.Name = "toolStrip1";
             toolStrip1.Size = new Size(716, 37);
@@ -158,6 +159,16 @@
             btnGerarGabarito.Size = new Size(34, 34);
             btnGerarGabarito.Text = "toolStripButton5";
             btnGerarGabarito.Click += btnGerarGabarito_Click;
+            // 
+            // btnDuplicar
+            // 
+            btnDuplicar.DisplayStyle = ToolStripItemDisplayStyle.Image;
+            btnDuplicar.Image = Properties.Resources.edit_FILL0_wght400_GRAD0_opsz24__1_;
+            btnDuplicar.ImageTransparentColor = Color.Magenta;
+            btnDuplicar.Name = "btnDuplicar";
+            btnDuplicar.Size = new Size(23, 34);
+            btnDuplicar.Text = "toolStripButton1";
+            btnDuplicar.Click += btnDuplicar_Click;
             // 
             // btnPdf
             // 
@@ -250,5 +261,6 @@
         private StatusStrip statusStrip1;
         private ToolStripStatusLabel StatusLabel;
         private Panel panelRegistros;
+        private ToolStripButton btnDuplicar;
     }
 }
