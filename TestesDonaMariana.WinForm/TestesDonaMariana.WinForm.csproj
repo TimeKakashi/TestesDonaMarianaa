@@ -13,6 +13,11 @@
   </ItemGroup>
 
   <ItemGroup>
+    <PackageReference Include="PdfSharp" Version="1.50.5147" />
+    <PackageReference Include="System.Text.Encoding" Version="4.3.0" />
+  </ItemGroup>
+
+  <ItemGroup>
     <ProjectReference Include="..\TestesDonaMariana.Dominio\TestesDonaMariana.Dominio.csproj" />
     <ProjectReference Include="..\TestesDonaMariana.Infra\TestesDonaMariana.Infra.Dados.Sql.csproj" />
   </ItemGroup>

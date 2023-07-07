@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using TestesDonaMariana.Dominio.ModuloDisciplina;
+using TestesDonaMariana.Dominio.ModuloTeste;
 using TestesDonaMariana.Infra.Dados.Sql.ModuloDisciplinaSql;
 using TestesDonaMariana.WinForm.ModuloDisciplina;
 

@@ -27,7 +27,6 @@ namespace TestesDonaMariana.Dominio.ModuloTeste
             this.disciplina = disciplina;
             this.serie = serie;
             this.dataCriacao = DateTime.Now.Date;
-
         }
 
         public Teste(Materia materia, Disciplina disciplina, int numeroQuestoes, string serie, int id)
