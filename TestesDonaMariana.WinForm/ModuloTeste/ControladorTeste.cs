@@ -45,6 +45,8 @@ namespace TestesDonaMariana.WinForm.ModuloTeste
 
         public override bool GerarPdfHabilitado => true;
 
+        public override bool EditarHabilitado => false;
+
         public override void Inserir()
         {
             TelaTeste telaTeste = new TelaTeste(repositorioDisciplina, repositorioMateria, repositorioQuestoes);
@@ -62,7 +64,7 @@ namespace TestesDonaMariana.WinForm.ModuloTeste
 
         public override void Editar()
         {
-            Teste teste = ObterTesteSelecionado();
+            //Nao eh usado
         }
         public override void Excluir()
         {
