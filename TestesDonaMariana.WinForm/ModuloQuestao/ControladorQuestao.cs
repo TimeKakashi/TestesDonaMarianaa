@@ -41,19 +41,42 @@ namespace TestesDonaMariana.WinForm.ModuloQuestao
         {
             TelaQuestao telaQuestao = new TelaQuestao(repositorioMateria);
 
-            DialogResult opcaoEscolhida = telaQuestao.ShowDialog();
+            bool nomeRepetido = false;
 
-            if (opcaoEscolhida == DialogResult.OK)
+            do
             {
-                Questao questao = telaQuestao.ObterQuestao();
+                DialogResult opcaoEscolhida = telaQuestao.ShowDialog();
 
-                repositorioQuestao.Inserir(questao);
-                repositorioQuestao.InserirAlternativa(questao.alternativas, questao);
-                List<Alternativa> lista = repositorioQuestao.SelecionarAlternativas(questao);
+                if (opcaoEscolhida == DialogResult.OK)
+                {
+                    Questao questao = telaQuestao.ObterQuestao();
+
+                    List<Questao> listaQuestoes = repositorioQuestao.SelecionarTodos();
+                    if (listaQuestoes.Any(x => x.titulo.ToLower() == questao.titulo.ToLower()))
+                    {
+                        // Nome repetido, exibir mensagem de erro e continuar na tela de inserção
+                        TelaPrincipal.Instancia.AtualizarRodape("O nome da questão já existe. Por favor, insira um nome diferente.");
+                        nomeRepetido = true;
+                    }
+                    else
+                    {
+                        repositorioQuestao.Inserir(questao);
+                        repositorioQuestao.InserirAlternativa(questao.alternativas, questao);
+                        List<Alternativa> lista = repositorioQuestao.SelecionarAlternativas(questao);
+                        nomeRepetido = false;
+                    }
+                }
+                else if (opcaoEscolhida == DialogResult.Cancel)
+                {
+                    // O usuário cancelou a operação de inserção
+                    nomeRepetido = false;
+                }
             }
+            while (nomeRepetido);
 
             CarregarQuestoes();
         }
+
 
         public override void Editar()
         {
@@ -61,30 +84,49 @@ namespace TestesDonaMariana.WinForm.ModuloQuestao
 
             if (questao == null)
             {
-                MessageBox.Show($"Selecione uma questao primeiro!",
-                    "Edição de Questoes",
-                    MessageBoxButtons.OK,
-                    MessageBoxIcon.Exclamation);
-
+                MessageBox.Show("Selecione uma questão primeiro!", "Edição de Questões", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                 return;
             }
 
             TelaQuestao telaQuestao = new TelaQuestao(repositorioMateria);
             telaQuestao.ConfigurarTela(questao);
 
-            DialogResult opcaoEscolhida = telaQuestao.ShowDialog();
+            bool nomeRepetido = false;
 
-            if(opcaoEscolhida == DialogResult.OK )
+            do
             {
-                Questao questaoAtualizada = telaQuestao.ObterQuestao();
-                questaoAtualizada.id = questao.id;
+                DialogResult opcaoEscolhida = telaQuestao.ShowDialog();
 
-                repositorioQuestao.Editar(questaoAtualizada.id, questaoAtualizada);
-                EditarAlternativas(questaoAtualizada);
+                if (opcaoEscolhida == DialogResult.OK)
+                {
+                    Questao questaoAtualizada = telaQuestao.ObterQuestao();
+                    questaoAtualizada.id = questao.id;
+
+                    List<Questao> listaQuestoes = repositorioQuestao.SelecionarTodos();
+                    if (listaQuestoes.Any(x => x.titulo.ToLower() == questaoAtualizada.titulo.ToLower() && x.id != questaoAtualizada.id))
+                    {
+                        // Nome repetido, exibir mensagem de erro e continuar na tela de edição
+                        TelaPrincipal.Instancia.AtualizarRodape("O nome da questão já existe. Por favor, insira um nome diferente.");
+                        nomeRepetido = true;
+                    }
+                    else
+                    {
+                        repositorioQuestao.Editar(questaoAtualizada.id, questaoAtualizada);
+                        EditarAlternativas(questaoAtualizada);
+                        nomeRepetido = false;
+                    }
+                }
+                else if (opcaoEscolhida == DialogResult.Cancel)
+                {
+                    // O usuário cancelou a operação de edição
+                    nomeRepetido = false;
+                }
             }
+            while (nomeRepetido);
 
             CarregarQuestoes();
         }
+
 
         private void EditarAlternativas(Questao questaoAtualizada)
         {
