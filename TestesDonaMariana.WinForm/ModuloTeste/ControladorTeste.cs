@@ -69,6 +69,7 @@ namespace TestesDonaMariana.WinForm.ModuloTeste
 
                 repositorioTeste.Inserir(teste, teste.questoes);
             }
+
             CarregarTestes();
         }
 

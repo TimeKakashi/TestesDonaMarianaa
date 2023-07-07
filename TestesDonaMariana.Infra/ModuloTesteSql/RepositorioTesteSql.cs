@@ -76,11 +76,11 @@ namespace TestesDonaMariana.Infra.Dados.Sql.ModuloTesteSql
 															[TB_Disciplina] as D
 														ON
 															T.[Id_disciplina] = D.[Id]
-														inner join	
+														left join
 															[TB_Materia] as M
 														ON
 															M.Id = T.Id_Materia
-														inner join	
+														left join	
 															[TB_Serie] as S
 														ON
 															S.Id = M.Id_Serie

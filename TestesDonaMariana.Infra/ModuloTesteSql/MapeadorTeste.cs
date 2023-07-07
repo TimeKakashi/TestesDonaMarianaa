@@ -20,7 +20,7 @@ namespace TestesDonaMariana.Infra.Dados.Sql.ModuloTesteSql
             comando.Parameters.AddWithValue("ID_DISCIPLINA", registro.disciplina.id);
 
             if(registro.materia == null)
-                comando.Parameters.AddWithValue("ID_MATERIA", null);
+                comando.Parameters.AddWithValue("ID_MATERIA", DBNull.Value);
             else
             comando.Parameters.AddWithValue("ID_MATERIA", registro.materia.id);
 

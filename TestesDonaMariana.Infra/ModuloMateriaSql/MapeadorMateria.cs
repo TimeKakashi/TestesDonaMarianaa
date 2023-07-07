@@ -30,14 +30,23 @@ namespace TestesDonaMariana.Infra.Dados.Sql.ModuloMateriaSql
         {
 
             Disciplina disciplina = new MapeadorDisciplina().ConverterRegistro(leitorRegistros);
+            int id = 0;
 
-            int id = Convert.ToInt32(leitorRegistros["ID_MATERIA"]);
+            if(leitorRegistros["ID_MATERIA"] != DBNull.Value)
+            {
+                id = Convert.ToInt32(leitorRegistros["ID_MATERIA"]);
+            }
 
             string nome = Convert.ToString(leitorRegistros["NOME_MATERIA"]);
 
             string nomeSerie = Convert.ToString(leitorRegistros["SERIE"]);
 
-            int idSerie = Convert.ToInt32(leitorRegistros["ID_SERIE"]);
+            int idSerie = 3;
+
+            if (leitorRegistros["ID_MATERIA"] != DBNull.Value)
+            {
+                id = Convert.ToInt32(leitorRegistros["ID_MATERIA"]);
+            }
 
             Serie serie = new Serie(nomeSerie, idSerie);
 
