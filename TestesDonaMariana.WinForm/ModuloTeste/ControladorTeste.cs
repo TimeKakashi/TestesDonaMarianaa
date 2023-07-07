@@ -68,7 +68,20 @@ namespace TestesDonaMariana.WinForm.ModuloTeste
         }
         public override void Excluir()
         {
-            throw new NotImplementedException();
+            Teste testeSelecionado = ObterTesteSelecionado();
+
+            if (testeSelecionado == null)
+            {
+                MessageBox.Show("Nenhum Teste Selecionado", "Excluir Teste", MessageBoxButtons.OK);
+                return;
+            }
+            DialogResult opcaoEscolhida = MessageBox.Show($"Deseja Excluir o Teste?", "Exclusão de Disciplina", MessageBoxButtons.OKCancel, MessageBoxIcon.Question);
+
+            if (opcaoEscolhida == DialogResult.OK)
+            {
+                repositorioTeste.Excluir(testeSelecionado);
+                CarregarTestes();
+            }
         }
 
         private void CarregarTestes()
@@ -85,7 +98,13 @@ namespace TestesDonaMariana.WinForm.ModuloTeste
         {
             int id = listagemTeste.ObterIdSelecionado();
 
-            return repositorioTeste.SelecionarPorId(id);
+            Teste teste =  repositorioTeste.SelecionarPorId(id);
+
+            List<Questao> questoes = repositorioTeste.SelecionarQuestoes(teste);
+
+            teste.questoes = questoes;
+
+            return teste;
         }
 
 

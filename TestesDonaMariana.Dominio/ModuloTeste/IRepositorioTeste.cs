@@ -9,5 +9,6 @@ namespace TestesDonaMariana.Dominio.ModuloTeste
         void Excluir(Teste testeSelecionado);
         List<Teste> SelecionarTodos();
         Teste SelecionarPorId(int id);
+        List<Questao> SelecionarQuestoes(Teste teste1);
     }
 }

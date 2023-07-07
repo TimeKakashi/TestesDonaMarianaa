@@ -4,9 +4,12 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using TestesDonaMariana.Dominio.ModuloQuestao;
 using TestesDonaMariana.Dominio.ModuloQuestoes;
 using TestesDonaMariana.Dominio.ModuloTeste;
 using TestesDonaMariana.Infra.Dados.Sql.Compatilhado;
+using TestesDonaMariana.Infra.Dados.Sql.ModuloQuestaoSql;
+using static System.Net.Mime.MediaTypeNames;
 
 namespace TestesDonaMariana.Infra.Dados.Sql.ModuloTesteSql
 {
@@ -48,7 +51,7 @@ namespace TestesDonaMariana.Infra.Dados.Sql.ModuloTesteSql
 													[ID_TESTE] = @ID_TESTE";
         protected override string sqlEditar => throw new NotImplementedException();
 
-        protected override string sqlExcluir => throw new NotImplementedException();
+		protected override string sqlExcluir => @"DELETE FROM TBTeste WHERE TBTeste.Id = @ID";
 
         protected override string sqlSelecionarTodos => @"SELECT 
 	
@@ -115,6 +118,47 @@ namespace TestesDonaMariana.Infra.Dados.Sql.ModuloTesteSql
 															T.[ID] = @ID"
                                                         ;
 
+		private const string sqlSelecionarQuestoesTeste = @"SELECT 
+															Q.[Id]					ID_QUESTAO,
+															Q.[Titulo]				TITULO_QUESTAO,
+															Q.[AlternativaCorreta]	ALTERNATIVA_CORRETA,
+															Q.[Id_Materia]			QUESTAO_ID_MATERIA,
+
+															M.[Nome]				NOME_MATERIA,
+															M.[Id_Disciplina]		MATERIA_ID_DISCIPLINA,
+															M.[Id_Serie]			MATERIA_ID_SERIE,
+		
+															D.[Nome]				NOME_DISCIPLINA,
+
+															S.[serie]				SERIE_NOME,
+															S.[ID]					ID_SERIE
+				
+
+															FROM 
+																[TB_Questao] as Q
+															Inner Join 
+																[TB_Materia] as M 
+															ON 
+																Q.Id_Materia = M.Id
+															Inner Join
+																[TB_Disciplina] as D
+															ON
+																M.Id_Disciplina = D.Id
+															Inner Join
+																[TB_Serie] as S
+															ON
+																M.Id_Serie = S.Id
+															Inner Join 
+																TB_Questao_TB_Teste as QT
+															ON 
+																QT.Id_Questao = Q.Id
+															Inner Join 
+																TBTeste as T
+															ON 
+																T.Id = 6
+															WHERE
+																QT.Id_Teste = @ID_TESTE";
+
         public void Inserir(Teste novoRegistro, List<Questao> questoes)
         {
 			base.Inserir(novoRegistro);
@@ -140,5 +184,58 @@ namespace TestesDonaMariana.Infra.Dados.Sql.ModuloTesteSql
 
             conexaoBanco.Close();
         }
+
+        public override void Excluir(Teste registroSelecionado)
+        {
+			foreach (Questao item in registroSelecionado.questoes)
+			{
+				ExcluirQuestao(item, registroSelecionado);
+			}
+
+            base.Excluir(registroSelecionado);
+        }
+
+        private void ExcluirQuestao(Questao questao, Teste teste)
+        {
+            SqlConnection conexaoBanco = new SqlConnection(enderecoBanco);
+            conexaoBanco.Open();
+
+            SqlCommand adicionarItem = conexaoBanco.CreateCommand();
+            adicionarItem.CommandText = RemoverQuestao;
+
+            adicionarItem.Parameters.AddWithValue("ID_QUESTAO", questao.id);
+            adicionarItem.Parameters.AddWithValue("ID_TESTE", teste.id);
+
+            adicionarItem.ExecuteNonQuery();
+
+            conexaoBanco.Close();
+        }
+
+        public List<Questao> SelecionarQuestoes(Teste teste1)
+        {
+            SqlConnection conexaoComBanco = new SqlConnection(enderecoBanco);
+            conexaoComBanco.Open();
+
+            SqlCommand comandoSelecionarQuestoesTeste = conexaoComBanco.CreateCommand();
+            comandoSelecionarQuestoesTeste.CommandText = sqlSelecionarQuestoesTeste;
+
+            comandoSelecionarQuestoesTeste.Parameters.AddWithValue("ID_TESTE", teste1.id);
+
+            SqlDataReader leitorItem = comandoSelecionarQuestoesTeste.ExecuteReader();
+
+            List<Questao> questoes = new List<Questao>();
+
+            while (leitorItem.Read())
+            {
+                Questao alternativa = new MapeadorQuestao().ConverterRegistro(leitorItem);
+
+                questoes.Add(alternativa);
+            }
+
+            conexaoComBanco.Close();
+
+            return questoes;
+        }
     }
+    
 }
