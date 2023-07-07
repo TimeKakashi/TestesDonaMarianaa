@@ -7,7 +7,7 @@ using TestesDonaMariana.WinForm.ModuloQuestao;
 
 namespace TestesDonaMariana.Dominio.ModuloQuestoes
 {
-    public class Questao : EntidadeBase<Questao>
+    public class Questao : EntidadeBase<Questao>, ICloneable
     {
         public EnumAlternativaCorreta alternativaCorretaENUM { get; set; }
         public string titulo { get; set; }
@@ -62,5 +62,21 @@ namespace TestesDonaMariana.Dominio.ModuloQuestoes
         {
             return titulo + "\n";
         }
+        public object Clone()
+        {
+            Questao clone = new Questao(this.titulo, new List<Alternativa>(this.alternativas.Count), this.alternativaCorretaENUM, this.materia);
+
+            clone.alternativaCorreta = this.alternativaCorreta;
+
+            foreach (Alternativa alternativa in this.alternativas)
+            {
+                clone.alternativas.Add(alternativa.Clone() as Alternativa);
+            }
+
+            return clone;
+        }
+
+
+
     }
 }

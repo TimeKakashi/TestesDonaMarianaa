@@ -15,6 +15,10 @@ namespace TestesDonaMariana.WinForm.Compartilhado
         public abstract string ToolTipInserir { get; }
         public abstract string ToolTipEditar { get; }
         public abstract string ToolTipExcluir { get; }
+        public abstract string ToolTipFiltrar { get; }
+        public abstract string ToolTipPdf { get; }
+        public abstract string ToolTipGabarito { get; }
+        public abstract string ToolTipDuplicar { get; } 
 
         public virtual bool InserirHabilitado { get { return true; } }
         public virtual bool EditarHabilitado { get { return true; } }
@@ -22,6 +26,7 @@ namespace TestesDonaMariana.WinForm.Compartilhado
         public virtual bool FiltrarHabilitado { get { return false; } }
         public virtual bool GerarGabaritoHabilitado { get { return false; } }
         public virtual bool GerarPdfHabilitado { get { return false; } }
+        public virtual bool DuplicarHabilitado { get { return false; } }
 
         public abstract void Inserir();
         public abstract void Editar();

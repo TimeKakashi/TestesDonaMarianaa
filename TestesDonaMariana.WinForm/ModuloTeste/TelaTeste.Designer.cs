@@ -213,7 +213,12 @@
             Controls.Add(label4);
             Controls.Add(label2);
             Controls.Add(label1);
+            FormBorderStyle = FormBorderStyle.FixedSingle;
+            MaximizeBox = false;
+            MdiChildrenMinimizedAnchorBottom = false;
+            MinimizeBox = false;
             Name = "TelaTeste";
+            StartPosition = FormStartPosition.CenterScreen;
             Text = "Cadastro de Teste";
             cxRadio.ResumeLayout(false);
             cxRadio.PerformLayout();

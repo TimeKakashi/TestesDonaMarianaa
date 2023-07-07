@@ -64,6 +64,7 @@ namespace TestesDonaMariana.WinForm
             btnFiltrar.Enabled = controlador.FiltrarHabilitado;
             btnGerarGabarito.Enabled = controlador.GerarGabaritoHabilitado;
             btnPdf.Enabled = controlador.GerarPdfHabilitado;
+            btnDuplicar.Enabled = controlador.DuplicarHabilitado;
         }
 
         private void ConfigurarToolTips(ControladorBase controlador)
@@ -71,6 +72,10 @@ namespace TestesDonaMariana.WinForm
             btnInserir.ToolTipText = controlador.ToolTipInserir;
             btnEditar.ToolTipText = controlador.ToolTipEditar;
             btnExcluir.ToolTipText = controlador.ToolTipExcluir;
+            btnFiltrar.ToolTipText = controlador.ToolTipFiltrar;
+            btnGerarGabarito.ToolTipText = controlador.ToolTipGabarito;
+            btnPdf.ToolTipText = controlador.ToolTipPdf;
+            btnDuplicar.ToolTipText = controlador.ToolTipDuplicar;
         }
 
         private void ConfigurarListagem(ControladorBase controlador)
@@ -184,5 +189,23 @@ namespace TestesDonaMariana.WinForm
 
             controlador.GerarPdf();
         }
+
+
+        private void btnDuplicar_Click(object sender, EventArgs e)
+        {
+            if (controlador == null)
+            {
+                MessageBox.Show("Selecione uma área primeiro!",
+                    "É necessário selecionar uma área",
+                    MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
+            if (controlador is ControladorTeste controladorTeste)
+            {
+                controladorTeste.DuplicarTeste();
+            }
+        }
+
     }
 }

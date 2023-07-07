@@ -7,7 +7,7 @@ using TestesDonaMariana.Dominio.Compartilhado;
 
 namespace TestesDonaMariana.Dominio.ModuloQuestao
 {
-    public class Alternativa : EntidadeBase<Alternativa>
+    public class Alternativa : EntidadeBase<Alternativa>, ICloneable
     {
         public string alternativa { get; set; }
 
@@ -31,5 +31,10 @@ namespace TestesDonaMariana.Dominio.ModuloQuestao
         {
             throw new NotImplementedException();
         }
+        public object Clone()
+        {
+            return new Alternativa(alternativa, id);
+        }
+
     }
 }

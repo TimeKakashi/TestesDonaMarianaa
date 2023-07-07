@@ -29,44 +29,61 @@ namespace TestesDonaMariana.WinForm.ModuloMateria
         public override string ToolTipEditar => "Editar Materia";
 
         public override string ToolTipExcluir => "Excluir Materia";
+        public override string ToolTipFiltrar => "Filtrar Matérias";
+
+        public override string ToolTipPdf => "Este botão está desabilitado nessa Tela";
+
+        public override string ToolTipGabarito => "Este botão está desabilitado nessa Tela";
+
+        public override string ToolTipDuplicar => "Este botão está desabilitado nessa Tela";
 
         public override bool FiltrarHabilitado => true;
+
+
+
         public override void Editar()
         {
             Materia materia = ObterMateriaSelecionada();
 
             if (materia == null)
             {
-                MessageBox.Show($"Selecione uma materia primeiro!",
-                    "Edição de Materias",
-                    MessageBoxButtons.OK,
-                    MessageBoxIcon.Exclamation);
-
+                MessageBox.Show("Selecione uma matéria primeiro!", "Edição de Matérias", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                 return;
             }
 
             TelaMateria telaMateria = new TelaMateria(repositorioDisciplina);
-
             telaMateria.ArrumaTela(materia);
 
-            if (telaMateria.ShowDialog() == DialogResult.OK)
+            while (true)
             {
-                List<Materia> listaMateria = repositorioMateria.SelecionarTodos();
+                DialogResult result = telaMateria.ShowDialog();
 
-                Materia materiaNova = telaMateria.ObterMateria();
-                materiaNova.id = materia.id;
-
-                if (listaMateria.Any(x => x.nome.ToLower() == materiaNova.nome.ToLower() && x.id != materiaNova.id))
+                if (result == DialogResult.OK)
                 {
-                    
-                    return;
-                }
+                    List<Materia> listaMateria = repositorioMateria.SelecionarTodos();
+                    Materia materiaNova = telaMateria.ObterMateria();
+                    materiaNova.id = materia.id;
 
-                repositorioMateria.Editar(materiaNova.id, materiaNova);
+                    if (listaMateria.Any(x => x.nome.ToLower() == materiaNova.nome.ToLower() && x.id != materiaNova.id))
+                    {
+                        // Nome repetido, exibir mensagem de erro e retornar à tela de edição
+                        TelaPrincipal.Instancia.AtualizarRodape("O nome da matéria já existe. Por favor, insira um nome diferente.");
+                        continue; // Retorna ao início do loop para exibir a tela de edição novamente
+                    }
+
+                    repositorioMateria.Editar(materiaNova.id, materiaNova);
+                    break; // Sai do loop quando o nome é válido e a matéria é editada
+                }
+                else if (result == DialogResult.Cancel)
+                {
+                    // O usuário cancelou a operação de edição
+                    break;
+                }
             }
 
             CarregarMaterias();
         }
+
 
         public override void Excluir()
         {
@@ -99,23 +116,35 @@ namespace TestesDonaMariana.WinForm.ModuloMateria
         public override void Inserir()
         {
             TelaMateria telaMateria = new TelaMateria(repositorioDisciplina);
-            if (telaMateria.ShowDialog() == DialogResult.OK)
+            while (true)
             {
-                List<Materia> listaMateria = repositorioMateria.SelecionarTodos();
+                DialogResult result = telaMateria.ShowDialog();
 
-                Materia materia = telaMateria.ObterMateria();
-
-                if (listaMateria.Any(x => x.nome.ToLower() == materia.nome.ToLower()))
+                if (result == DialogResult.OK)
                 {
-                   
-                    return;
+                    List<Materia> listaMateria = repositorioMateria.SelecionarTodos();
+                    Materia materia = telaMateria.ObterMateria();
+
+                    if (listaMateria.Any(x => x.nome.ToLower() == materia.nome.ToLower()))
+                    {
+                        // Nome repetido, exibir mensagem de erro e solicitar um novo nome
+                        TelaPrincipal.Instancia.AtualizarRodape("O nome da matéria já existe. Por favor, insira um nome diferente.");
+                        continue; // Retorna ao início do loop para solicitar um novo nome
+                    }
+
+                    repositorioMateria.Inserir(materia);
+                    CarregarMaterias();
+                    break; // Sai do loop quando o nome é válido e a matéria é inserida
                 }
-
-                repositorioMateria.Inserir(materia);
-
-                CarregarMaterias();
+                else if (result == DialogResult.Cancel)
+                {
+                    // O usuário cancelou a operação de inserção
+                    break;
+                }
             }
         }
+
+
 
         private void CarregarMaterias()
         {

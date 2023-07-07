@@ -152,8 +152,13 @@
             Controls.Add(lblSerie);
             Controls.Add(lblDisciplina);
             Controls.Add(lblNome);
+            FormBorderStyle = FormBorderStyle.FixedSingle;
             Icon = (Icon)resources.GetObject("$this.Icon");
+            MaximizeBox = false;
+            MdiChildrenMinimizedAnchorBottom = false;
+            MinimizeBox = false;
             Name = "TelaMateria";
+            StartPosition = FormStartPosition.CenterScreen;
             Text = "Cadastro de Matéria";
             gbRadio.ResumeLayout(false);
             gbRadio.PerformLayout();

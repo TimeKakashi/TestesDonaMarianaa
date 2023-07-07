@@ -40,6 +40,7 @@
             btnExcluir = new ToolStripButton();
             btnFiltrar = new ToolStripButton();
             btnGerarGabarito = new ToolStripButton();
+            btnDuplicar = new ToolStripButton();
             btnPdf = new ToolStripButton();
             toolStripSeparator1 = new ToolStripSeparator();
             toolStripLabel1 = new ToolStripLabel();
@@ -97,7 +98,7 @@
             // 
             // toolStrip1
             // 
-            toolStrip1.Items.AddRange(new ToolStripItem[] { btnInserir, btnEditar, btnExcluir, btnFiltrar, btnGerarGabarito, btnPdf, toolStripSeparator1, toolStripLabel1 });
+            toolStrip1.Items.AddRange(new ToolStripItem[] { btnInserir, btnEditar, btnExcluir, btnFiltrar, btnGerarGabarito, btnDuplicar, btnPdf, toolStripSeparator1, toolStripLabel1 });
             toolStrip1.Location = new Point(0, 24);
             toolStrip1.Name = "toolStrip1";
             toolStrip1.Size = new Size(716, 37);
@@ -112,7 +113,7 @@
             btnInserir.Name = "btnInserir";
             btnInserir.Padding = new Padding(7);
             btnInserir.Size = new Size(34, 34);
-            btnInserir.Text = "toolStripButton1";
+            btnInserir.Text = "Cadastro";
             btnInserir.Click += btnInserir_Click;
             // 
             // btnEditar
@@ -123,7 +124,7 @@
             btnEditar.Name = "btnEditar";
             btnEditar.Padding = new Padding(7);
             btnEditar.Size = new Size(34, 34);
-            btnEditar.Text = "toolStripButton2";
+            btnEditar.Text = "Editar";
             btnEditar.Click += btnEditar_Click;
             // 
             // btnExcluir
@@ -134,7 +135,7 @@
             btnExcluir.Name = "btnExcluir";
             btnExcluir.Padding = new Padding(7);
             btnExcluir.Size = new Size(34, 34);
-            btnExcluir.Text = "toolStripButton3";
+            btnExcluir.Text = "Excluir";
             btnExcluir.Click += btnExcluir_Click;
             // 
             // btnFiltrar
@@ -145,7 +146,7 @@
             btnFiltrar.Name = "btnFiltrar";
             btnFiltrar.Padding = new Padding(7);
             btnFiltrar.Size = new Size(34, 34);
-            btnFiltrar.Text = "toolStripButton4";
+            btnFiltrar.Text = "Filtrar";
             btnFiltrar.Click += btnFiltrar_Click;
             // 
             // btnGerarGabarito
@@ -156,8 +157,18 @@
             btnGerarGabarito.Name = "btnGerarGabarito";
             btnGerarGabarito.Padding = new Padding(7);
             btnGerarGabarito.Size = new Size(34, 34);
-            btnGerarGabarito.Text = "toolStripButton5";
+            btnGerarGabarito.Text = "Gerar Gabarito";
             btnGerarGabarito.Click += btnGerarGabarito_Click;
+            // 
+            // btnDuplicar
+            // 
+            btnDuplicar.DisplayStyle = ToolStripItemDisplayStyle.Image;
+            btnDuplicar.Image = Properties.Resources.edit_FILL0_wght400_GRAD0_opsz24__1_;
+            btnDuplicar.ImageTransparentColor = Color.Magenta;
+            btnDuplicar.Name = "btnDuplicar";
+            btnDuplicar.Size = new Size(23, 34);
+            btnDuplicar.Text = "Duplicar";
+            btnDuplicar.Click += btnDuplicar_Click;
             // 
             // btnPdf
             // 
@@ -167,7 +178,7 @@
             btnPdf.Name = "btnPdf";
             btnPdf.Padding = new Padding(7);
             btnPdf.Size = new Size(34, 34);
-            btnPdf.Text = "toolStripButton6";
+            btnPdf.Text = "Gerar PDF";
             btnPdf.Click += btnPdf_Click;
             // 
             // toolStripSeparator1
@@ -209,15 +220,15 @@
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
+            AutoSize = true;
             ClientSize = new Size(716, 368);
             Controls.Add(panelRegistros);
             Controls.Add(statusStrip1);
             Controls.Add(toolStrip1);
             Controls.Add(menuStrip1);
+            FormBorderStyle = FormBorderStyle.FixedSingle;
             MainMenuStrip = menuStrip1;
-            MaximizeBox = false;
             MdiChildrenMinimizedAnchorBottom = false;
-            MinimizeBox = false;
             Name = "TelaPrincipal";
             Text = "Testes da Dona Mariana";
             menuStrip1.ResumeLayout(false);
@@ -250,5 +261,6 @@
         private StatusStrip statusStrip1;
         private ToolStripStatusLabel StatusLabel;
         private Panel panelRegistros;
+        private ToolStripButton btnDuplicar;
     }
 }

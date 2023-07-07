@@ -24,7 +24,14 @@ namespace TestesDonaMariana.WinForm.ModuloDisciplina
         public override string ToolTipEditar => "Editar Disciplina";
 
         public override string ToolTipExcluir => "Excluir Disciplina";
+        public override string ToolTipDuplicar => "Este botão está desabilitado nessa Tela";
 
+
+        public override string ToolTipFiltrar => "Filtrar Disciplinas";
+
+        public override string ToolTipPdf => "Este botão está desabilitado nessa Tela";
+
+        public override string ToolTipGabarito => "Este botão está desabilitado nessa Tela";
         public override bool FiltrarHabilitado => true;
 
         private Disciplina ObterDisciplinaSelecionado()
@@ -58,16 +65,39 @@ namespace TestesDonaMariana.WinForm.ModuloDisciplina
         public override void Inserir()
         {
             TelaDisciplina telaDisciplina = new TelaDisciplina();
-            DialogResult opcaoEscolhida = telaDisciplina.ShowDialog();
+            bool nomeRepetido = false;
 
-            if (opcaoEscolhida == DialogResult.OK) 
+            do
             {
-                Disciplina novaDisciplina = telaDisciplina.ObterDisciplina();
-                repositorioDisciplina.Inserir(novaDisciplina);
-                CarregarDisciplina();
+                DialogResult opcaoEscolhida = telaDisciplina.ShowDialog();
 
+                if (opcaoEscolhida == DialogResult.OK)
+                {
+                    Disciplina novaDisciplina = telaDisciplina.ObterDisciplina();
+
+                    List<Disciplina> listaDisciplinas = repositorioDisciplina.SelecionarTodos();
+                    if (listaDisciplinas.Any(x => x.nome.ToLower() == novaDisciplina.nome.ToLower()))
+                    {
+                        // Nome repetido, exibir mensagem de erro e continuar na tela de cadastro
+                        TelaPrincipal.Instancia.AtualizarRodape("O nome da disciplina já existe. Por favor, insira um nome diferente.");
+                        nomeRepetido = true;
+                    }
+                    else
+                    {
+                        repositorioDisciplina.Inserir(novaDisciplina);
+                        CarregarDisciplina();
+                        nomeRepetido = false;
+                    }
+                }
+                else if (opcaoEscolhida == DialogResult.Cancel)
+                {
+                    // O usuário cancelou a operação de inserção
+                    nomeRepetido = false;
+                }
             }
+            while (nomeRepetido);
         }
+
 
         public override void Editar()
         {
@@ -78,21 +108,44 @@ namespace TestesDonaMariana.WinForm.ModuloDisciplina
                 MessageBox.Show("Nenhuma Disciplina Selecionada!", "Editar Disciplina", MessageBoxButtons.OK);
                 return;
             }
+
             TelaDisciplina telaDisciplina = new TelaDisciplina(repositorioDisciplina);
             telaDisciplina.ConfigurarTela(disciplinaSelecionada);
 
-            DialogResult opcaoEscolhida = telaDisciplina.ShowDialog();
+            bool nomeRepetido = false;
 
-            if (opcaoEscolhida == DialogResult.OK) 
+            do
             {
-                Disciplina novaDisciplina = telaDisciplina.ObterDisciplina();
-                novaDisciplina.id = disciplinaSelecionada.id;
+                DialogResult opcaoEscolhida = telaDisciplina.ShowDialog();
 
-                repositorioDisciplina.Editar(novaDisciplina.id, novaDisciplina);
+                if (opcaoEscolhida == DialogResult.OK)
+                {
+                    Disciplina novaDisciplina = telaDisciplina.ObterDisciplina();
+                    novaDisciplina.id = disciplinaSelecionada.id;
 
-                CarregarDisciplina();
+                    List<Disciplina> listaDisciplinas = repositorioDisciplina.SelecionarTodos();
+                    if (listaDisciplinas.Any(x => x.nome.ToLower() == novaDisciplina.nome.ToLower() && x.id != novaDisciplina.id))
+                    {
+                        // Nome repetido, exibir mensagem de erro e continuar na tela de edição
+                        TelaPrincipal.Instancia.AtualizarRodape("O nome da disciplina já existe. Por favor, insira um nome diferente.");
+                        nomeRepetido = true;
+                    }
+                    else
+                    {
+                        repositorioDisciplina.Editar(novaDisciplina.id, novaDisciplina);
+                        CarregarDisciplina();
+                        nomeRepetido = false;
+                    }
+                }
+                else if (opcaoEscolhida == DialogResult.Cancel)
+                {
+                    // O usuário cancelou a operação de edição
+                    nomeRepetido = false;
+                }
             }
+            while (nomeRepetido);
         }
+
 
         public override void Excluir()
         {

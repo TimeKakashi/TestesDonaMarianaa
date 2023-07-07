@@ -35,9 +35,16 @@ namespace TestesDonaMariana.WinForm.ModuloTeste
 
         public override string ToolTipInserir => "Cadastrar Teste";
 
-        public override string ToolTipEditar => "Cadastrar Teste";
+        public override string ToolTipEditar => "Este botão está desabilitado nessa Tela";
 
         public override string ToolTipExcluir => "Excluir Teste";
+        public override string ToolTipFiltrar => "Filtrar Testes";
+
+        public override string ToolTipPdf => "Gerar PDF";
+
+        public override string ToolTipGabarito => "Gerar Gabarito";
+
+        public override string ToolTipDuplicar => "Duplicar Teste";
 
         public override bool FiltrarHabilitado => true;
 
@@ -46,6 +53,9 @@ namespace TestesDonaMariana.WinForm.ModuloTeste
         public override bool GerarPdfHabilitado => true;
 
         public override bool EditarHabilitado => false;
+        public override bool DuplicarHabilitado => true;
+
+        
 
         public override void Inserir()
         {
@@ -64,7 +74,7 @@ namespace TestesDonaMariana.WinForm.ModuloTeste
 
         public override void Editar()
         {
-            //Nao eh usado
+            //Não é usado
         }
         public override void Excluir()
         {
@@ -108,14 +118,54 @@ namespace TestesDonaMariana.WinForm.ModuloTeste
         }
 
 
-       
+
         public override UserControl ObterListagem()
         {
-            if(listagemTeste == null)
+            if (listagemTeste == null)
                 listagemTeste = new ListagemTesteControl();
 
             return listagemTeste;
         }
+        public void DuplicarTeste()
+        {
+            Teste testeSelecionado = ObterTesteSelecionado();
+
+            if (testeSelecionado != null)
+            {
+                Teste testeDuplicado = testeSelecionado.Clone() as Teste;
+
+                if (testeDuplicado != null)
+                {
+                    // Define um novo ID para o teste duplicado
+                    testeDuplicado.id = ObterNovoId();
+
+                    // Cria uma nova lista de questões duplicadas
+                    List<Questao> questoesDuplicadas = new List<Questao>();
+                    foreach (Questao questao in testeSelecionado.questoes)
+                    {
+                        Questao questaoDuplicada = questao.Clone() as Questao;
+                        questoesDuplicadas.Add(questaoDuplicada);
+                    }
+                    testeDuplicado.questoes = questoesDuplicadas;
+
+                    // Inserir o teste duplicado no repositório
+                    repositorioTeste.Inserir(testeDuplicado, questoesDuplicadas);
+
+                    // Recarregar a lista de testes
+                    CarregarTestes();
+                }
+            }
+        }
+
+
+        private int ObterNovoId()
+            {
+                // Lógica para obter um novo ID para o teste duplicado
+                // Pode ser obtido do repositório ou de outra fonte de dados
+                // Neste exemplo, estou apenas retornando um valor fixo
+                return repositorioTeste.SelecionarTodos().Count + 1;
+            }
+
 
         public override string ObterTipoCadastro() => "Cadastro de Testes";
         
