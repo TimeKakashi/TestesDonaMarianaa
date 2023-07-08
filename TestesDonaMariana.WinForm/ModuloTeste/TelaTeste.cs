@@ -145,23 +145,16 @@ namespace TestesDonaMariana.WinForm.ModuloTeste
 
             if (teste.materia == null)
             {
-                teste.questoes.Clear();
-                teste.questoes = GeradorQuestao(teste.disciplina);
+                int numeroQuestoesTotais = repositorioQuestoes.SelecionarQuestoesDisciplina(teste.disciplina).Count;
 
-                int numero = 0;
-
-                if (teste.materia != null)
-                    numero = teste.materia.questoes.Count;
-
-                else
-                    numero = repositorioQuestoes.SelecionarQuestoesDisciplina(teste.disciplina).Count;
-
-
-                if (numericNumeroQuestoes.Value > numero)
+                if (numericNumeroQuestoes.Value > numeroQuestoesTotais)
                 {
-                    MessageBox.Show($"O numero de questoes deve ser menor ou igual ao numero de questoes cadastradas: {numero}", "Nao possui questoes suficinetes", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    MessageBox.Show($"O numero de questoes deve ser menor ou igual ao numero de questoes cadastradas: {numeroQuestoesTotais}", "Nao possui questoes suficinetes", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     return;
                 }
+
+                teste.questoes.Clear();
+                teste.questoes = GeradorQuestao(teste.disciplina);
             }
 
             else
@@ -173,7 +166,6 @@ namespace TestesDonaMariana.WinForm.ModuloTeste
                     MessageBox.Show($"O numero de questoes deve ser menor ou igual ao numero de questoes cadastradas: {numero}", "Nao possui questoes suficinetes", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     return;
                 }
-
 
                 teste.questoes.Clear();
                 teste.materia.questoes = repositorioMateria.SelecionarQuestoesMateria(teste.materia);

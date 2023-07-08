@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Drawing;
 using System.Linq;
+using System.Reflection.Metadata.Ecma335;
 using System.Text;
 using System.Threading.Tasks;
 using TestesDonaMariana.Dominio.Compartilhado;
@@ -33,8 +34,16 @@ namespace TestesDonaMariana.Dominio.ModuloDisciplina
 
         public override string[] Validar()
         {
-            throw new NotImplementedException();
-        }
+            List<string> erros = new List<string>();
+
+            if (string.IsNullOrEmpty(nome))
+                erros.Add("Campo nome esta invalido!");
+            
+            else if(nome.Length < 5)
+                erros.Add("Campo nome esta invalido, deve possuir mais que quatro letras");
+
+            return erros.ToArray();
+        }   
 
         public override string ToString()
         {

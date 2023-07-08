@@ -42,27 +42,27 @@ namespace TestesDonaMariana.Infra.Dados.Sql.ModuloMateriaSql
 
         protected override string sqlSelecionarTodos => @"SELECT 
 
-															M.[Id_Disciplina]			ID_DISCIPLINA,
-															M.[Id]						ID_MATERIA,
-															M.[Id_Serie]				ID_SERIE,
-															M.[Nome]					NOME_MATERIA,
+															M.[ID_DISCIPLINA]			ID_DISCIPLINA,
+															M.[ID]						ID_MATERIA,
+															M.[ID_SERIE]				ID_SERIE,
+															M.[NOME]					NOME_MATERIA,
 
-															D.[Nome]					NOME_DISCIPLINA,
+															D.[NOME]					NOME_DISCIPLINA,
 
-															S.[serie]					SERIE,
+															S.[SERIE]					SERIE,
 															S.[ID]						ID_SERIE
 	
 
 														FROM 
-															TB_Materia as M
-														inner join
-															TB_Disciplina as D
+															TB_MATERIA AS M
+														INNER JOIN
+															TB_DISCIPLINA AS D
 														ON 
-															M.Id_Disciplina = D.Id
-														left join
-															TB_Serie as S
+															M.ID_DISCIPLINA = D.ID
+														LEFT JOIN
+															TB_SERIE AS S
 														ON
-															M.Id_Serie = S.Id";
+															M.ID_SERIE = S.ID";
 
         protected override string sqlSelecionarPorId => @"SELECT 
 

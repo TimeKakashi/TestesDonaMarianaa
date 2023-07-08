@@ -182,7 +182,7 @@ namespace TestesDonaMariana.Infra.Dados.Sql.ModuloQuestaoSql
 																on
 																	S.Id = M.Id_Serie
 																where
-																		D.Id = 2003";
+																		D.Id = @ID_DISCIPLINA";
 
 
 

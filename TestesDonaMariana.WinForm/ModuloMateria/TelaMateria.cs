@@ -44,12 +44,12 @@ namespace TestesDonaMariana.WinForm.ModuloMateria
 
             if (serieNome == "Primeira Série")
             {
-                serie.id = 1;
+                serie.id = 1006;
                 serie.nome = "Primeira Série";
             }
             else
             {
-                serie.id = 2;
+                serie.id = 1007;
                 serie.nome = "Segunda Série";
             }
 
