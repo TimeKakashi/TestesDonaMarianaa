@@ -60,6 +60,7 @@
             button1.TabIndex = 3;
             button1.Text = "Cadastrar ";
             button1.UseVisualStyleBackColor = false;
+            button1.Click += button1_Click;
             // 
             // button2
             // 

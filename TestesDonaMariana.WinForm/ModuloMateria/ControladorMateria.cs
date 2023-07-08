@@ -17,12 +17,15 @@ namespace TestesDonaMariana.WinForm.ModuloMateria
         private ListagemMateriaControl listagemMateria;
         private IRepositorioMateria repositorioMateria;
         private IRepositorioDisciplina repositorioDisciplina;
+        private IRepositorioQuestoes repositorioQuestao;
 
-        public ControladorMateria(IRepositorioMateria repositorioMateria, IRepositorioDisciplina repositorioDisciplina)
+        public ControladorMateria(IRepositorioMateria repositorioMateria, IRepositorioDisciplina repositorioDisciplina, IRepositorioQuestoes repositorioQuestao)
         {
             this.repositorioMateria = repositorioMateria;
             this.repositorioDisciplina = repositorioDisciplina;
-            CarregarMaterias();        }
+            this.repositorioQuestao = repositorioQuestao;
+            CarregarMaterias();
+        }
 
         public override string ToolTipInserir => "Cadastrar Materia";
 
@@ -88,10 +91,23 @@ namespace TestesDonaMariana.WinForm.ModuloMateria
         public override void Excluir()
         {
             Materia materia = ObterMateriaSelecionada();
+            bool PossuiQuestao = false;
 
             if (materia == null)
             {
                 MessageBox.Show("Selecione uma matéria primeiro!",
+                    "Exclusão de Matéria",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Exclamation);
+
+                return;
+            }
+
+            int quantidadeQuestao = repositorioMateria.SelecionarQuestoesMateria(materia).Count;
+
+            if (quantidadeQuestao > 0)
+            {
+                MessageBox.Show("Essa materia possui questoes atreladas!",
                     "Exclusão de Matéria",
                     MessageBoxButtons.OK,
                     MessageBoxIcon.Exclamation);
@@ -127,20 +143,17 @@ namespace TestesDonaMariana.WinForm.ModuloMateria
 
                     if (listaMateria.Any(x => x.nome.ToLower() == materia.nome.ToLower()))
                     {
-                        // Nome repetido, exibir mensagem de erro e solicitar um novo nome
                         TelaPrincipal.Instancia.AtualizarRodape("O nome da matéria já existe. Por favor, insira um nome diferente.");
-                        continue; // Retorna ao início do loop para solicitar um novo nome
+                        continue;
                     }
 
                     repositorioMateria.Inserir(materia);
                     CarregarMaterias();
-                    break; // Sai do loop quando o nome é válido e a matéria é inserida
+                    break; 
                 }
                 else if (result == DialogResult.Cancel)
-                {
-                    // O usuário cancelou a operação de inserção
                     break;
-                }
+                
             }
         }
 

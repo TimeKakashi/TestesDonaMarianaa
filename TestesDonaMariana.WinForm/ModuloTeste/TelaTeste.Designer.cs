@@ -43,6 +43,8 @@
             button3 = new Button();
             listBox1 = new ListBox();
             button2 = new Button();
+            label6 = new Label();
+            tbTitulo = new TextBox();
             cxRadio.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)numericNumeroQuestoes).BeginInit();
             SuspendLayout();
@@ -51,7 +53,7 @@
             // 
             label1.AutoSize = true;
             label1.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
-            label1.Location = new Point(47, 46);
+            label1.Location = new Point(47, 66);
             label1.Name = "label1";
             label1.Size = new Size(45, 21);
             label1.TabIndex = 0;
@@ -61,7 +63,7 @@
             // 
             label2.AutoSize = true;
             label2.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
-            label2.Location = new Point(47, 97);
+            label2.Location = new Point(47, 111);
             label2.Name = "label2";
             label2.Size = new Size(77, 21);
             label2.TabIndex = 1;
@@ -90,7 +92,7 @@
             // cbDisciplina
             // 
             cbDisciplina.FormattingEnabled = true;
-            cbDisciplina.Location = new Point(130, 99);
+            cbDisciplina.Location = new Point(136, 113);
             cbDisciplina.Name = "cbDisciplina";
             cbDisciplina.Size = new Size(149, 23);
             cbDisciplina.TabIndex = 4;
@@ -109,7 +111,7 @@
             // 
             cxRadio.Controls.Add(radioSegunda);
             cxRadio.Controls.Add(radioPrimeira);
-            cxRadio.Location = new Point(104, 35);
+            cxRadio.Location = new Point(98, 52);
             cxRadio.Name = "cxRadio";
             cxRadio.Size = new Size(216, 39);
             cxRadio.TabIndex = 6;
@@ -129,7 +131,7 @@
             // radioPrimeira
             // 
             radioPrimeira.AutoSize = true;
-            radioPrimeira.Location = new Point(6, 12);
+            radioPrimeira.Location = new Point(6, 14);
             radioPrimeira.Name = "radioPrimeira";
             radioPrimeira.Size = new Size(97, 19);
             radioPrimeira.TabIndex = 0;
@@ -163,6 +165,7 @@
             button1.TabIndex = 10;
             button1.Text = "Cadastrar";
             button1.UseVisualStyleBackColor = true;
+            button1.Click += button1_Click;
             // 
             // button3
             // 
@@ -187,19 +190,39 @@
             // button2
             // 
             button2.Font = new Font("Segoe UI", 13F, FontStyle.Regular, GraphicsUnit.Point);
-            button2.Location = new Point(427, 253);
+            button2.Location = new Point(391, 248);
             button2.Name = "button2";
-            button2.Size = new Size(116, 31);
+            button2.Size = new Size(175, 36);
             button2.TabIndex = 14;
-            button2.Text = "Gerar Teste";
+            button2.Text = "Gerar Questões";
             button2.UseVisualStyleBackColor = true;
             button2.Click += button2_Click_1;
+            // 
+            // label6
+            // 
+            label6.AutoSize = true;
+            label6.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
+            label6.Location = new Point(47, 23);
+            label6.Name = "label6";
+            label6.Size = new Size(49, 21);
+            label6.TabIndex = 15;
+            label6.Text = "Titulo";
+            label6.Click += label6_Click;
+            // 
+            // tbTitulo
+            // 
+            tbTitulo.Location = new Point(102, 23);
+            tbTitulo.Name = "tbTitulo";
+            tbTitulo.Size = new Size(244, 23);
+            tbTitulo.TabIndex = 16;
             // 
             // TelaTeste
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(599, 684);
+            Controls.Add(tbTitulo);
+            Controls.Add(label6);
             Controls.Add(button2);
             Controls.Add(listBox1);
             Controls.Add(button3);
@@ -244,5 +267,7 @@
         private Button button3;
         private ListBox listBox1;
         private Button button2;
+        private Label label6;
+        private TextBox tbTitulo;
     }
 }

@@ -11,6 +11,7 @@ namespace TestesDonaMariana.WinForm.ModuloQuestao
         AlternativaA = 0,
         AlternativaB = 1,
         AlternativaC = 2,
-        AlternativaD = 3
+        AlternativaD = 3,
+        Erro = 4
     }
 }

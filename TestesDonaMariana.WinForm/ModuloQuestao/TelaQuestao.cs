@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.Identity.Client.Kerberos;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -40,7 +41,15 @@ namespace TestesDonaMariana.WinForm.ModuloQuestao
             Alternativas.Add(alternativaC);
             Alternativas.Add(alternativaD);
 
-            EnumAlternativaCorreta alternativaCorrea = (EnumAlternativaCorreta)cbAlternativaCorreta.SelectedItem;
+            EnumAlternativaCorreta alternativaCorrea;
+
+            if (cbAlternativaCorreta.SelectedItem == null)
+            {
+                alternativaCorrea = (EnumAlternativaCorreta)4;
+            }
+            else
+                alternativaCorrea = (EnumAlternativaCorreta)cbAlternativaCorreta.SelectedItem;
+
             Materia materia = (Materia)cbMateria.SelectedItem;
 
             return new Questao(titulo, Alternativas, alternativaCorrea, materia);
@@ -59,7 +68,15 @@ namespace TestesDonaMariana.WinForm.ModuloQuestao
 
         private void btnGravar_Click(object sender, EventArgs e)
         {
+            Questao questao = ObterQuestao();
 
+            string[] erros = questao.Validar();
+
+            if(erros.Length > 0)
+            {
+                TelaPrincipal.Instancia.AtualizarRodape(erros[0]);
+                DialogResult = DialogResult.None;
+            }
         }
 
         private void EncherComboBox()

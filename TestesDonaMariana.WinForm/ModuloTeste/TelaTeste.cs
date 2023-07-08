@@ -1,4 +1,5 @@
 ﻿using System.Drawing.Drawing2D;
+using TestesDonaMariana.Dominio;
 using TestesDonaMariana.Dominio.ModuloDisciplina;
 using TestesDonaMariana.Dominio.ModuloMateria;
 using TestesDonaMariana.Dominio.ModuloQuestoes;
@@ -12,6 +13,8 @@ namespace TestesDonaMariana.WinForm.ModuloTeste
         private IRepositorioMateria repositorioMateria { get; }
         private IRepositorioQuestoes repositorioQuestoes { get; }
 
+        private IRepositorioTeste repositorioTeste { get; }
+
         List<Questao> questoesFinais { get; set; } = new List<Questao>();
 
         public TelaTeste()
@@ -19,27 +22,46 @@ namespace TestesDonaMariana.WinForm.ModuloTeste
             InitializeComponent();
         }
 
-        public TelaTeste(IRepositorioDisciplina repositorioDisciplina, IRepositorioMateria repositorioMateria, IRepositorioQuestoes repositorioQuestoes) : this()
+        public TelaTeste(IRepositorioDisciplina repositorioDisciplina, IRepositorioMateria repositorioMateria, IRepositorioQuestoes repositorioQuestoes, IRepositorioTeste repositorioTeste) : this()
         {
             this.repositorioDisciplina = repositorioDisciplina;
             this.repositorioMateria = repositorioMateria;
             this.repositorioQuestoes = repositorioQuestoes;
+            this.repositorioTeste = repositorioTeste;
             EncherBox();
         }
 
         public Teste ObterTeste()
         {
-            Materia materia = (Materia)cbMateria.SelectedItem;
+            Materia materia;
+
+            if (cbMateria.SelectedItem == "")
+            {
+                materia = null;
+            }
+            else
+                materia = (Materia)cbMateria.SelectedItem;
+
+            string serieNome = string.Empty;
+
+            if (cxRadio.Controls.OfType<RadioButton>().SingleOrDefault(RadioButton => RadioButton.Checked) == null)
+                serieNome = string.Empty;
+
+            else
+                serieNome = cxRadio.Controls.OfType<RadioButton>().SingleOrDefault(RadioButton => RadioButton.Checked).Text;
+
+
+            string titulo = tbTitulo.Text;
             Disciplina disciplina = (Disciplina)cbDisciplina.SelectedItem;
             int numeroQuestoes = Convert.ToInt32((numericNumeroQuestoes.Value));
-            string serie = cxRadio.Controls.OfType<RadioButton>().SingleOrDefault(RadioButton => RadioButton.Checked).Text;
             List<Questao> questoes = questoesFinais;
 
-            return new Teste(materia, disciplina, numeroQuestoes, serie, questoes);
+            return new Teste(materia, disciplina, numeroQuestoes, serieNome, questoes, titulo);
         }
 
         public void ConfigurarTela(Teste teste)
         {
+            tbTitulo.Text = teste.titulo;
             cbMateria.SelectedItem = teste.materia;
             cbDisciplina.SelectedItem = teste.disciplina;
             numericNumeroQuestoes.Value = teste.numeroQuestoes;
@@ -50,14 +72,8 @@ namespace TestesDonaMariana.WinForm.ModuloTeste
 
         public void EncherBox()
         {
-
-
-
             foreach (Disciplina item in repositorioDisciplina.SelecionarTodos())
-            {
                 cbDisciplina.Items.Add(item);
-            }
-
         }
 
         public List<Questao> GeradorQuestao(Materia materia)
@@ -116,20 +132,19 @@ namespace TestesDonaMariana.WinForm.ModuloTeste
             listBox1.Items.Clear();
 
             foreach (Questao questao in questoes)
-            {
                 listBox1.Items.Add(questao);
-            }
         }
 
 
         private void PegarMateriasDisciplina(Disciplina? disciplina)
         {
             cbMateria.Enabled = true;
+            cbMateria.Text = "";
+
+            cbMateria.Items.Clear();
 
             foreach (Materia item in repositorioMateria.SelecionarMateriasDaDisciplina(disciplina))
-            {
                 cbMateria.Items.Add(item);
-            }
         }
 
         private void cbDisciplina_SelectedValueChanged(object sender, EventArgs e)
@@ -139,7 +154,7 @@ namespace TestesDonaMariana.WinForm.ModuloTeste
             PegarMateriasDisciplina(disciplina);
         }
 
-        private void button2_Click_1(object sender, EventArgs e)
+        private void button2_Click_1(object sender, EventArgs e) //Gerar Questoes
         {
             Teste teste = ObterTeste();
 
@@ -173,6 +188,36 @@ namespace TestesDonaMariana.WinForm.ModuloTeste
             }
 
             EncherListBox(teste.questoes);
+        }
+
+        private void button1_Click(object sender, EventArgs e) //Cadastrar
+        {
+            Teste teste = ObterTeste();
+
+            List<Teste> testes = repositorioTeste.SelecionarTodos();
+            string[] erros = teste.Validar();
+
+            if (testes.Any(t => t.titulo == teste.titulo))
+            {
+                TelaPrincipal.Instancia.AtualizarRodape("Nao eh possivel cadastrar um teste com o mesmo titulo de outro!");
+                DialogResult = DialogResult.None;
+                return;
+            }
+
+            if (erros.Length > 0)
+            {
+                TelaPrincipal.Instancia.AtualizarRodape(erros[0]);
+                DialogResult = DialogResult.None;
+                return;
+            }
+
+
+
+        }
+
+        private void label6_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

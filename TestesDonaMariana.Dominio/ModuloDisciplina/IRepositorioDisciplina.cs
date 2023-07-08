@@ -15,6 +15,8 @@ namespace TestesDonaMariana.Dominio.ModuloDisciplina
         void Excluir(Disciplina disciplinaSelecionado);
         List<Disciplina> SelecionarTodos();
         Disciplina SelecionarPorId(int id);
+        List<Disciplina> VerificarTestesNaDisciplina(Disciplina disciplina);
+        List<Disciplina> VerificarMateriasNaDisciplina(Disciplina disciplina);
     }
 }
 

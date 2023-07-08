@@ -51,8 +51,14 @@ namespace TestesDonaMariana.Dominio.ModuloMateria
             if (string.IsNullOrEmpty(nome))
                 erros.Add("O campo 'Nome' é obrigatório");
 
-            if (nome.Length < 3)
-                erros.Add("O campo 'Nome' deve conter no mínimo 3 caracteres");
+            else if (nome.Length < 4)
+                erros.Add("O campo 'Nome' deve conter no mínimo 4 caracteres");
+
+            else if (disciplina == null)
+                erros.Add("O campo 'Disciplina' eh obrigatorio!");
+
+            else if (serie == null)
+                erros.Add("O campo 'Serie' eh obrigatorio!");
 
             return erros.ToArray();
         }

@@ -184,6 +184,46 @@ namespace TestesDonaMariana.Infra.Dados.Sql.ModuloQuestaoSql
 																where
 																		D.Id = @ID_DISCIPLINA";
 
+		private const string sqlSelecionarQuestoesTeste = @"SELECT 
+																	Q.[ID]					ID_QUESTAO,
+																	Q.[TITULO]				TITULO_QUESTAO,
+																	Q.[ALTERNATIVACORRETA]	ALTERNATIVA_CORRETA,
+																	Q.[ID_MATERIA]			QUESTAO_ID_MATERIA,
+
+																	M.[NOME]				NOME_MATERIA,
+																	M.[ID_DISCIPLINA]		MATERIA_ID_DISCIPLINA,
+																	M.[ID_SERIE]			ID_SERIE,
+		
+																	D.[NOME]				NOME_DISCIPLINA,
+																	D.ID					ID_DISCIPLINA ,
+
+																	S.SERIE					SERIE_NOME
+
+																FROM 
+																	TB_QUESTAO AS Q
+																INNER JOIN 
+																	TB_QUESTAO_TB_TESTE AS QT
+																ON
+																	QT.ID_QUESTAO = Q.ID
+																INNER JOIN 
+																	TBTESTE AS T
+																ON
+																	T.ID = QT.ID_TESTE
+																INNER JOIN	
+																	TB_DISCIPLINA AS D
+																ON
+																	D.ID = T.ID_DISCIPLINA
+																LEFT JOIN 
+																	TB_MATERIA AS M
+																ON
+																	M.ID = T.ID_MATERIA
+																LEFT JOIN 
+																	TB_SERIE AS S
+																ON 
+																	S.ID = M.ID_SERIE
+																WHERE
+																	T.ID = @ID";
+
 
 
         public override void Excluir(Questao registroSelecionado)
@@ -298,6 +338,32 @@ namespace TestesDonaMariana.Infra.Dados.Sql.ModuloQuestaoSql
             comandoSelecionarMateriasDisciplina.CommandText = sqlSelecionarQuestoesDisciplina;
 
             comandoSelecionarMateriasDisciplina.Parameters.AddWithValue("ID_DISCIPLINA", disciplina.id);
+
+            SqlDataReader leitorItem = comandoSelecionarMateriasDisciplina.ExecuteReader();
+
+            List<Questao> questoes = new List<Questao>();
+
+            while (leitorItem.Read())
+            {
+                Questao alternativa = new MapeadorQuestao().ConverterRegistro(leitorItem);
+
+                questoes.Add(alternativa);
+            }
+
+            conexaoComBanco.Close();
+
+            return questoes;
+        }
+
+		public List<Questao> SelecionarQuestoesTeste(Teste teste)
+		{
+            SqlConnection conexaoComBanco = new SqlConnection(enderecoBanco);
+            conexaoComBanco.Open();
+
+            SqlCommand comandoSelecionarMateriasDisciplina = conexaoComBanco.CreateCommand();
+            comandoSelecionarMateriasDisciplina.CommandText = sqlSelecionarQuestoesDisciplina;
+
+            comandoSelecionarMateriasDisciplina.Parameters.AddWithValue("ID", teste.id);
 
             SqlDataReader leitorItem = comandoSelecionarMateriasDisciplina.ExecuteReader();
 

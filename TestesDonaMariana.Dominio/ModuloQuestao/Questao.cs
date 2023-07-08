@@ -23,6 +23,15 @@ namespace TestesDonaMariana.Dominio.ModuloQuestoes
             this.materia = materia;
         }
 
+        public Questao(int id,string titulo, List<Alternativa> alternativas, EnumAlternativaCorreta alternativaCorrea, Materia materia)
+        {
+            this.titulo = titulo;
+            this.alternativas = alternativas;
+            this.alternativaCorretaENUM = alternativaCorrea;
+            this.materia = materia;
+            this.id = id;
+        }
+
         public Questao(int idQuestao,string titulo,Materia materia, EnumAlternativaCorreta alternativaCorreta)
         {
             this.titulo = titulo;
@@ -37,23 +46,27 @@ namespace TestesDonaMariana.Dominio.ModuloQuestoes
             this.alternativas = registroAtualizado.alternativas;
             this.alternativaCorreta = registroAtualizado.alternativaCorreta;
             this.materia = registroAtualizado.materia;
+
+            
         }
 
         public override string[] Validar()
         {
             List<string> erros = new List<string>();
 
-            if (titulo.Length < 5)
+            if (materia == null)
+                erros.Add("O campo 'materia' eh obrigatorio");
+
+            else if (titulo.Length < 5)
                 erros.Add("O Titulo deve ter mais que 5 letras");
 
-            else if (alternativas.Count < 2)
+            int numeroAlternativasVazias = alternativas.Count(a => a.alternativa == "");
+
+            if (numeroAlternativasVazias > 2)
                 erros.Add("O numero minimo de 'alternativas' eh 2");
 
-            else if (alternativaCorreta == null)
+            else if (alternativaCorretaENUM == null)
                 erros.Add("O campo 'alternativa correta' eh obrigatorio!");
-
-            else if (materia == null)
-                erros.Add("O campo 'materia' eh obrigatorio");
 
             return erros.ToArray();
         }
@@ -64,7 +77,7 @@ namespace TestesDonaMariana.Dominio.ModuloQuestoes
         }
         public object Clone()
         {
-            Questao clone = new Questao(this.titulo, new List<Alternativa>(this.alternativas.Count), this.alternativaCorretaENUM, this.materia);
+            Questao clone = new Questao(this.id ,this.titulo, new List<Alternativa>(this.alternativas.Count), this.alternativaCorretaENUM, this.materia);
 
             clone.alternativaCorreta = this.alternativaCorreta;
 

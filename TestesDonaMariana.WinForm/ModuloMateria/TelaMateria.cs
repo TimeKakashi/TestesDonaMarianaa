@@ -38,20 +38,29 @@ namespace TestesDonaMariana.WinForm.ModuloMateria
         {
             string nome = textBox1.Text;
             Disciplina disciplina = (Disciplina)comboBox1.SelectedItem;
-            string serieNome = gbRadio.Controls.OfType<RadioButton>().SingleOrDefault(RadioButton => RadioButton.Checked).Text;
-
             Serie serie = new Serie();
-
-            if (serieNome == "Primeira Série")
+            
+            if(gbRadio.Controls.OfType<RadioButton>().SingleOrDefault(RadioButton => RadioButton.Checked) == null)
             {
-                serie.id = 1006;
-                serie.nome = "Primeira Série";
+                serie = null;
             }
+
             else
             {
-                serie.id = 1007;
-                serie.nome = "Segunda Série";
+                string serieNome = gbRadio.Controls.OfType<RadioButton>().SingleOrDefault(RadioButton => RadioButton.Checked).Text;
+
+                if (serieNome == "Primeira Série")
+                {
+                    serie.id = 1006;
+                    serie.nome = "Primeira Série";
+                }
+                else
+                {
+                    serie.id = 1007;
+                    serie.nome = "Segunda Série";
+                }
             }
+           
 
 
             return new Materia(nome, disciplina, serie);
@@ -67,6 +76,17 @@ namespace TestesDonaMariana.WinForm.ModuloMateria
 
         }
 
+        private void button1_Click(object sender, EventArgs e)
+        {
+            Materia materia = ObterMateria();
 
+            string[] erros = materia.Validar();
+
+            if(erros.Length > 0)
+            {
+                TelaPrincipal.Instancia.AtualizarRodape(erros[0]);
+                DialogResult = DialogResult.None;
+            }
+        }
     }
 }

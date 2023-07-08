@@ -16,5 +16,6 @@ namespace TestesDonaMariana.Dominio.ModuloQuestoes
         public void InserirAlternativa(List<Alternativa> alternativas, Questao questao);
         public void EditarAlternativas(Questao questao);
         List<Questao> SelecionarQuestoesDisciplina(Disciplina disciplina);
+        List<Questao> SelecionarQuestoesTeste(Teste teste);
     }
 }

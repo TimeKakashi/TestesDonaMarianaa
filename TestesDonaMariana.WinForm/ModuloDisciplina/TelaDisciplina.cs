@@ -44,5 +44,17 @@ namespace TestesDonaMariana.WinForm.ModuloDisciplina
             return new Disciplina(nome);
         }
 
+        private void button1_Click(object sender, EventArgs e)
+        {
+            Disciplina disciplina = ObterDisciplina();
+
+            string[] erros = disciplina.Validar();
+
+            if(erros.Length > 0)
+            {
+                DialogResult = DialogResult.None;
+                TelaPrincipal.Instancia.AtualizarRodape(erros[0]);
+            }
+        }
     }
 }

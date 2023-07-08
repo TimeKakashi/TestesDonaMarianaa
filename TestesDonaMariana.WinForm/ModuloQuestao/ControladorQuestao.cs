@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using TestesDonaMariana.Dominio.ModuloMateria;
 using TestesDonaMariana.Dominio.ModuloQuestao;
 using TestesDonaMariana.Dominio.ModuloQuestoes;
+using TestesDonaMariana.Dominio.ModuloTeste;
 using TestesDonaMariana.WinForm.Compartilhado;
 
 namespace TestesDonaMariana.WinForm.ModuloQuestao
@@ -15,11 +16,13 @@ namespace TestesDonaMariana.WinForm.ModuloQuestao
         private ListagemQuestaoControl listagemQuestao;
         private IRepositorioQuestoes repositorioQuestao;
         private IRepositorioMateria repositorioMateria;
+        private IRepositorioTeste repositorioTeste;
 
-        public ControladorQuestao(IRepositorioQuestoes repositorioQuestao, IRepositorioMateria repositorioMateria)
+        public ControladorQuestao(IRepositorioQuestoes repositorioQuestao, IRepositorioMateria repositorioMateria, IRepositorioTeste repositorioTeste)
         {
             this.repositorioQuestao = repositorioQuestao;
             this.repositorioMateria = repositorioMateria;
+            this.repositorioTeste = repositorioTeste;
             CarregarQuestoes();
         }
 
@@ -153,6 +156,31 @@ namespace TestesDonaMariana.WinForm.ModuloQuestao
                     MessageBoxButtons.OK,
                     MessageBoxIcon.Exclamation);
 
+                return;
+            }
+
+            bool podeExcluir = true;
+
+            foreach(Teste teste in repositorioTeste.SelecionarTodos())
+            {
+                teste.questoes = repositorioTeste.SelecionarQuestoes(teste);
+
+                foreach(Questao q in teste.questoes)
+                {
+                    if (q.id == questao.id)
+                    {
+                        podeExcluir = false;
+                        break;
+                    }
+                }
+            }
+
+            if (!podeExcluir)
+            {
+                MessageBox.Show($"Essa questão esta atelada a um teste!",
+                   "Exclusão de Questões",
+                   MessageBoxButtons.OK,
+                   MessageBoxIcon.Exclamation);
                 return;
             }
 

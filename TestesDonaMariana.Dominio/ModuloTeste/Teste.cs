@@ -12,7 +12,7 @@ namespace TestesDonaMariana.Dominio.ModuloTeste
 {
     public class Teste : EntidadeBase<Teste>, ICloneable
     {
-
+        public string titulo { get; set; }
         public Materia materia { get; set; }
         public Disciplina disciplina { get; set; }
         public int numeroQuestoes { get; set; }
@@ -20,16 +20,17 @@ namespace TestesDonaMariana.Dominio.ModuloTeste
         public string serie { get; set; }
         public List<Questao> questoes { get; set; } = new List<Questao>();
 
-        public Teste(Materia materia, Disciplina disciplina, int numeroQuestoes, string serie)
+        public Teste(Materia materia, Disciplina disciplina, int numeroQuestoes, string serie, string titulo)
         {
             this.numeroQuestoes = numeroQuestoes;
             this.materia = materia;
             this.disciplina = disciplina;
             this.serie = serie;
             this.dataCriacao = DateTime.Now.Date;
+            this.titulo = titulo;
         }
 
-        public Teste(Materia materia, Disciplina disciplina, int numeroQuestoes, string serie, int id)
+        public Teste(Materia materia, Disciplina disciplina, int numeroQuestoes, string serie, int id, string titulo)
         {
             this.numeroQuestoes = numeroQuestoes;
             this.materia = materia;
@@ -37,9 +38,10 @@ namespace TestesDonaMariana.Dominio.ModuloTeste
             this.serie = serie;
             this.dataCriacao = DateTime.Now.Date;
             this.id = id;
+            this.titulo = titulo;
         }
 
-        public Teste(Materia materia, Disciplina disciplina, int numeroQuestoes, string serie, List<Questao> questoes)
+        public Teste(Materia materia, Disciplina disciplina, int numeroQuestoes, string serie, List<Questao> questoes, string titulo)
         {
             this.numeroQuestoes = numeroQuestoes;
             this.materia = materia;
@@ -47,6 +49,7 @@ namespace TestesDonaMariana.Dominio.ModuloTeste
             this.serie = serie;
             this.dataCriacao = DateTime.Now.Date;
             this.questoes = questoes;
+            this.titulo = titulo;
         }
 
         public Teste()
@@ -60,11 +63,32 @@ namespace TestesDonaMariana.Dominio.ModuloTeste
             this.disciplina = registroAtualizado.disciplina;
             this.numeroQuestoes = registroAtualizado.numeroQuestoes;
             this.serie = registroAtualizado.serie;
+            this.titulo = registroAtualizado.titulo;
         }
 
         public override string[] Validar()
         {
-            throw new NotImplementedException();
+            List<string> erros = new List<string>();
+
+            if (string.IsNullOrEmpty(titulo))
+                erros.Add("O campo 'Titulo' eh obrigatorio!");
+
+            else if (titulo.Length < 5)
+                erros.Add("O campo 'Titulo' necessita ter mais que cinco caracteres!");
+
+            else if (string.IsNullOrEmpty(serie))
+                erros.Add("O campo 'Serie' eh obrigatorio!");
+
+            else if (disciplina == null)
+                erros.Add("O campo 'Disciplina' eh obrigatorio!");
+
+            else if (numeroQuestoes == 0)
+                erros.Add("Nao pode ser feito um teste com 0 questoes!");
+
+            else if (questoes.Count == 0)
+                erros.Add("Eh necessario gerar questões!");
+
+            return erros.ToArray();
         }
         public object Clone()
         {

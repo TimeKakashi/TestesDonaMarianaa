@@ -34,6 +34,11 @@ namespace TestesDonaMariana.WinForm.ModuloTeste
         },
         new DataGridViewTextBoxColumn()
         {
+            Name = "titulo",
+            HeaderText = "Titulo"
+        },
+        new DataGridViewTextBoxColumn()
+        {
             Name = "nomeMateria",
             HeaderText = "Materia"
         },
@@ -63,7 +68,7 @@ namespace TestesDonaMariana.WinForm.ModuloTeste
 
             foreach (Teste teste in testes)
             {
-                grid.Rows.Add(teste.id, teste.materia.nome, teste.disciplina.nome, teste.serie, teste.dataCriacao);
+                grid.Rows.Add(teste.id,teste.titulo ,teste.materia.nome, teste.disciplina.nome, teste.serie, teste.dataCriacao);
             }
         }
         public int ObterIdSelecionado()

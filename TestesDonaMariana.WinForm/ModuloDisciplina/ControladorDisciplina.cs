@@ -156,7 +156,20 @@ namespace TestesDonaMariana.WinForm.ModuloDisciplina
                 MessageBox.Show("Nenhuma Disciplina Selecionada","Excluir Disciplina",MessageBoxButtons.OK);
                 return;
             }
-            DialogResult opcaoEscolhida = MessageBox.Show($"Deseja Excluir a Disciplina{disciplinaSelecionada}?","Exclusão de Disciplina",MessageBoxButtons.OKCancel,MessageBoxIcon.Question);
+
+            else if (repositorioDisciplina.VerificarTestesNaDisciplina(disciplinaSelecionada).Count > 0)
+            {
+                MessageBox.Show("A Disciplina Selecionada contem um teste cadastrado!", "Excluir Disciplina", MessageBoxButtons.OK);
+                return;
+            }
+
+            else if(repositorioDisciplina.VerificarMateriasNaDisciplina(disciplinaSelecionada).Count > 0)
+            {
+                MessageBox.Show("A Disciplina Selecionada contem uma materia cadastrada!", "Excluir Disciplina", MessageBoxButtons.OK);
+                return;
+            }
+
+            DialogResult opcaoEscolhida = MessageBox.Show($"Deseja Excluir a Disciplina {disciplinaSelecionada}?","Exclusão de Disciplina",MessageBoxButtons.OKCancel,MessageBoxIcon.Question);
 
             if (opcaoEscolhida == DialogResult.OK) 
             {
