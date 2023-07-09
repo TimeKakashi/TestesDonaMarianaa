@@ -1,10 +1,16 @@
-﻿using System.Text;
+﻿using System.Reflection.Metadata;
+using iTextSharp.text;
+using iTextSharp.text.pdf;
+using System.IO;
+using System.Text;
 using TestesDonaMariana.Dominio.ModuloDisciplina;
 using TestesDonaMariana.Dominio.ModuloGabarito;
 using TestesDonaMariana.Dominio.ModuloMateria;
 using TestesDonaMariana.Dominio.ModuloQuestoes;
 using TestesDonaMariana.Dominio.ModuloTeste;
 using TestesDonaMariana.WinForm.Compartilhado;
+using Document = iTextSharp.text.Document;
+using TestesDonaMariana.Dominio.ModuloQuestao;
 
 namespace TestesDonaMariana.WinForm.ModuloTeste
 {
@@ -161,12 +167,68 @@ namespace TestesDonaMariana.WinForm.ModuloTeste
 
         public override void GerarPdf()
         {
-            
+            Teste testeSelecionado = ObterTesteSelecionado();
+
+            if (testeSelecionado != null)
+            {
+                string diretorioTemporario = Path.GetTempPath();
+
+                string caminhoArquivo = Path.Combine(diretorioTemporario, "arquivo.pdf");
+
+                Document doc = new Document();
+
+                PdfWriter writer = PdfWriter.GetInstance(doc, new FileStream(caminhoArquivo, FileMode.Create));
+
+                doc.Open();
+
+                doc.Add(new Paragraph($"ID do Teste: {testeSelecionado.id}"));
+                doc.Add(new Paragraph($"Disciplina: {testeSelecionado.disciplina.nome}"));
+                doc.Add(new Paragraph($"Matéria: {testeSelecionado.materia.nome}"));
+                doc.Add(new Paragraph("Questões:"));
+
+                foreach (Questao questao in testeSelecionado.questoes)
+                {
+                    doc.Add(new Paragraph($"- {questao.titulo}"));
+
+                    foreach(Alternativa alternativa in repositorioQuestoes.SelecionarAlternativas(questao))
+                    {
+                        doc.Add(new Paragraph($"- {alternativa.alternativa}"));
+                    }
+                    doc.Add(new Paragraph($"--------------------------------------------------------------------------------------"));
+                }
+
+
+                doc.Close();
+
+                MessageBox.Show("PDF gerado com sucesso!");
+
+
+                
+
+                //    Process.Start(sfd.FileName);
+
+                //PdfDocument document = new PdfDocument();
+                ////You will have to add Page in PDF Document
+                //PdfPage page = document.AddPage();
+                ////For drawing in PDF Page you will nedd XGraphics Object
+                //XGraphics gfx = XGraphics.FromPdfPage(page);
+                ////For Test you will have to define font to be used
+                //XFont font = new XFont("Verdana", 20, XFontStyle.Bold);
+                ////Finally use XGraphics & font object to draw text in PDF Page
+                //gfx.DrawString("My First PDF Document", font, XBrushes.Black,
+                //new XRect(0, 0, page.Width, page.Height), XStringFormats.Center);
+                ////Specify file name of the PDF file
+                //string filename = "FirstPDFDocument.pdf";
+                ////Save PDF File
+                //document.Save(filename);
+                ////Load PDF File for viewing
+                //Process.Start(filename);
+
+            }
+
+
+            //Process.Start(filename);
 
         }
-
-
-        //Process.Start(filename);
-
     }
 }
