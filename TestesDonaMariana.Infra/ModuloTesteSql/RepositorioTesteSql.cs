@@ -23,7 +23,8 @@ namespace TestesDonaMariana.Infra.Dados.Sql.ModuloTesteSql
 													[Id_Materia],
 													[Data],
 													[NumeroQuestoes],
-													[Titulo]
+													[Titulo],
+													[Recuperacao]
 												)
 												VALUES
 												(
@@ -31,7 +32,8 @@ namespace TestesDonaMariana.Infra.Dados.Sql.ModuloTesteSql
 													@ID_MATERIA,
 													@DATA,
 													@NUMERO_QUESTAO,
-													@TITULO_TESTE
+													@TITULO_TESTE,
+													@RECUPERACAO
 												)
 												SELECT SCOPE_IDENTITY();";
 
@@ -65,6 +67,7 @@ namespace TestesDonaMariana.Infra.Dados.Sql.ModuloTesteSql
 															T.[NumeroQuestoes]		NUMERO_QUESTAO,
 															T.[Id]					ID_TESTE,
 															T.[Titulo]				TITULO_TESTE,
+															T.[Recuperacao]			RECUPERACAO,
 
 															D.Nome					NOME_DISCIPLINA,
 
@@ -98,6 +101,7 @@ namespace TestesDonaMariana.Infra.Dados.Sql.ModuloTesteSql
 															T.[NumeroQuestoes]		NUMERO_QUESTAO,
 															T.[Id]					ID_TESTE,
 															T.[Titulo]				TITULO_TESTE,
+															T.[Recuperacao]			RECUPERACAO,
 
 															D.Nome					NOME_DISCIPLINA,
 

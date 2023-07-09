@@ -1,14 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using TestesDonaMariana.Dominio.ModuloDisciplina;
+﻿using TestesDonaMariana.Dominio.ModuloDisciplina;
 using TestesDonaMariana.Dominio.ModuloMateria;
 using TestesDonaMariana.Dominio.ModuloQuestoes;
-using TestesDonaMariana.Infra.Dados.Sql.ModuloMateriaSql;
 using TestesDonaMariana.WinForm.Compartilhado;
-using TestesDonaMariana.WinForm.ModuloGabarito;
 
 namespace TestesDonaMariana.WinForm.ModuloMateria
 {

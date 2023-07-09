@@ -8,11 +8,11 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace TestesDonaMariana.WinForm.ModuloGabarito
+namespace TestesDonaMariana.WinForm.ModuloTeste
 {
-    public partial class ListagemGabaritoControl : UserControl
+    public partial class TelaGabarito : Form
     {
-        public ListagemGabaritoControl()
+        public TelaGabarito()
         {
             InitializeComponent();
         }

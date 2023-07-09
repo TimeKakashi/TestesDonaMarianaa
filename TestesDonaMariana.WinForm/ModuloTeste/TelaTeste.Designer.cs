@@ -45,6 +45,7 @@
             button2 = new Button();
             label6 = new Label();
             tbTitulo = new TextBox();
+            checkRecuperacao = new CheckBox();
             cxRadio.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)numericNumeroQuestoes).BeginInit();
             SuspendLayout();
@@ -94,7 +95,7 @@
             cbDisciplina.FormattingEnabled = true;
             cbDisciplina.Location = new Point(136, 113);
             cbDisciplina.Name = "cbDisciplina";
-            cbDisciplina.Size = new Size(149, 23);
+            cbDisciplina.Size = new Size(210, 23);
             cbDisciplina.TabIndex = 4;
             cbDisciplina.SelectedValueChanged += cbDisciplina_SelectedValueChanged;
             // 
@@ -104,7 +105,7 @@
             cbMateria.FormattingEnabled = true;
             cbMateria.Location = new Point(116, 155);
             cbMateria.Name = "cbMateria";
-            cbMateria.Size = new Size(149, 23);
+            cbMateria.Size = new Size(230, 23);
             cbMateria.TabIndex = 5;
             // 
             // cxRadio
@@ -216,11 +217,24 @@
             tbTitulo.Size = new Size(244, 23);
             tbTitulo.TabIndex = 16;
             // 
+            // checkRecuperacao
+            // 
+            checkRecuperacao.AutoSize = true;
+            checkRecuperacao.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
+            checkRecuperacao.Location = new Point(376, 113);
+            checkRecuperacao.Name = "checkRecuperacao";
+            checkRecuperacao.Size = new Size(162, 25);
+            checkRecuperacao.TabIndex = 17;
+            checkRecuperacao.Text = "Prova Recuperacao";
+            checkRecuperacao.UseVisualStyleBackColor = true;
+            checkRecuperacao.CheckedChanged += checkRecuperacao_CheckedChanged;
+            // 
             // TelaTeste
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(599, 684);
+            Controls.Add(checkRecuperacao);
             Controls.Add(tbTitulo);
             Controls.Add(label6);
             Controls.Add(button2);
@@ -269,5 +283,6 @@
         private Button button2;
         private Label label6;
         private TextBox tbTitulo;
+        private CheckBox checkRecuperacao;
     }
 }

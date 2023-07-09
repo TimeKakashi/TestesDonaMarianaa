@@ -18,8 +18,9 @@ namespace TestesDonaMariana.Infra.Dados.Sql.ModuloTesteSql
         public override void ConfigurarParametros(SqlCommand comando, Teste registro)
         {
             comando.Parameters.AddWithValue("ID_DISCIPLINA", registro.disciplina.id);
+            comando.Parameters.AddWithValue("RECUPERACAO", registro.numeroQuestoes);
 
-            if(registro.materia == null || registro.materia.id == 0)
+            if (registro.materia == null || registro.materia.id == 0)
                 comando.Parameters.AddWithValue("ID_MATERIA", DBNull.Value);
             else
             comando.Parameters.AddWithValue("ID_MATERIA", registro.materia.id);
@@ -27,6 +28,7 @@ namespace TestesDonaMariana.Infra.Dados.Sql.ModuloTesteSql
             comando.Parameters.AddWithValue("TITULO_TESTE", registro.titulo);
             comando.Parameters.AddWithValue("DATA", registro.dataCriacao.Ticks);
             comando.Parameters.AddWithValue("NUMERO_QUESTAO", registro.numeroQuestoes);
+
         }
 
         public override Teste ConverterRegistro(SqlDataReader leitorRegistros)
@@ -41,9 +43,9 @@ namespace TestesDonaMariana.Infra.Dados.Sql.ModuloTesteSql
             int numeroQuestoes = Convert.ToInt32(leitorRegistros["NUMERO_QUESTAO"]);
             string serie = "Priemira serie";
             int idTeste = Convert.ToInt32(leitorRegistros["ID_TESTE"]);
-            
+            bool recuperacao = Convert.ToBoolean(leitorRegistros["RECUPERACAO"]);
 
-            return new Teste(materia, disciplina, numeroQuestoes, serie, idTeste, titulo);
+            return new Teste(materia, disciplina, numeroQuestoes, serie, idTeste, titulo, recuperacao);
         }
     }
 }

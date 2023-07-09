@@ -9,10 +9,10 @@ namespace TestesDonaMariana.WinForm.ModuloTeste
 {
     public partial class TelaTeste : Form
     {
+        private bool recuperacao = false;
         private IRepositorioDisciplina repositorioDisciplina { get; }
         private IRepositorioMateria repositorioMateria { get; }
         private IRepositorioQuestoes repositorioQuestoes { get; }
-
         private IRepositorioTeste repositorioTeste { get; }
 
         List<Questao> questoesFinais { get; set; } = new List<Questao>();
@@ -35,10 +35,16 @@ namespace TestesDonaMariana.WinForm.ModuloTeste
         {
             Materia materia;
 
-            if (cbMateria.SelectedItem == "")
-            {
+            //if (cbMateria.SelectedItem == "")
+            //{
+            //    materia = null;
+            //}
+            //else
+            //    materia = (Materia)cbMateria.SelectedItem;
+
+            if (recuperacao)
                 materia = null;
-            }
+
             else
                 materia = (Materia)cbMateria.SelectedItem;
 
@@ -56,7 +62,7 @@ namespace TestesDonaMariana.WinForm.ModuloTeste
             int numeroQuestoes = Convert.ToInt32((numericNumeroQuestoes.Value));
             List<Questao> questoes = questoesFinais;
 
-            return new Teste(materia, disciplina, numeroQuestoes, serieNome, questoes, titulo);
+            return new Teste(materia, disciplina, numeroQuestoes, serieNome, questoes, titulo, recuperacao);
         }
 
         public void ConfigurarTela(Teste teste)
@@ -138,7 +144,6 @@ namespace TestesDonaMariana.WinForm.ModuloTeste
 
         private void PegarMateriasDisciplina(Disciplina? disciplina)
         {
-            cbMateria.Enabled = true;
             cbMateria.Text = "";
 
             cbMateria.Items.Clear();
@@ -149,6 +154,9 @@ namespace TestesDonaMariana.WinForm.ModuloTeste
 
         private void cbDisciplina_SelectedValueChanged(object sender, EventArgs e)
         {
+            if (!checkRecuperacao.Checked)
+                cbMateria.Enabled = true;
+
             Disciplina disciplina = cbDisciplina.SelectedItem as Disciplina;
 
             PegarMateriasDisciplina(disciplina);
@@ -218,6 +226,20 @@ namespace TestesDonaMariana.WinForm.ModuloTeste
         private void label6_Click(object sender, EventArgs e)
         {
 
+        }
+
+        private void checkRecuperacao_CheckedChanged(object sender, EventArgs e)
+        {
+            if (!checkRecuperacao.Checked) 
+            {
+                cbMateria.Enabled = true;
+            }
+            else
+            {
+                cbMateria.Text = "";
+                cbMateria.Enabled = false;
+                recuperacao = true;
+            }
         }
     }
 }

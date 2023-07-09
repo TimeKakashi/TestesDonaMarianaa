@@ -18,19 +18,10 @@ namespace TestesDonaMariana.Dominio.ModuloTeste
         public int numeroQuestoes { get; set; }
         public DateTime dataCriacao { get; set; }
         public string serie { get; set; }
+        public bool recuperacao { get; set; } = false;
         public List<Questao> questoes { get; set; } = new List<Questao>();
 
-        public Teste(Materia materia, Disciplina disciplina, int numeroQuestoes, string serie, string titulo)
-        {
-            this.numeroQuestoes = numeroQuestoes;
-            this.materia = materia;
-            this.disciplina = disciplina;
-            this.serie = serie;
-            this.dataCriacao = DateTime.Now.Date;
-            this.titulo = titulo;
-        }
-
-        public Teste(Materia materia, Disciplina disciplina, int numeroQuestoes, string serie, int id, string titulo)
+        public Teste(Materia materia, Disciplina disciplina, int numeroQuestoes, string serie, int id, string titulo, bool recuperacao)
         {
             this.numeroQuestoes = numeroQuestoes;
             this.materia = materia;
@@ -38,10 +29,11 @@ namespace TestesDonaMariana.Dominio.ModuloTeste
             this.serie = serie;
             this.dataCriacao = DateTime.Now.Date;
             this.id = id;
+            this.recuperacao = recuperacao;
             this.titulo = titulo;
         }
 
-        public Teste(Materia materia, Disciplina disciplina, int numeroQuestoes, string serie, List<Questao> questoes, string titulo)
+        public Teste(Materia materia, Disciplina disciplina, int numeroQuestoes, string serie, List<Questao> questoes, string titulo, bool recuperacao)
         {
             this.numeroQuestoes = numeroQuestoes;
             this.materia = materia;
@@ -50,6 +42,7 @@ namespace TestesDonaMariana.Dominio.ModuloTeste
             this.dataCriacao = DateTime.Now.Date;
             this.questoes = questoes;
             this.titulo = titulo;
+            this.recuperacao = recuperacao;
         }
 
         public Teste()
@@ -87,6 +80,12 @@ namespace TestesDonaMariana.Dominio.ModuloTeste
 
             else if (questoes.Count == 0)
                 erros.Add("Eh necessario gerar questões!");
+
+            if(recuperacao == false)
+            {
+                if (materia == null)
+                    erros.Add("Caso nao seja uma prova de recuperacao, eh necessario selecionar uma materia");
+            }
 
             return erros.ToArray();
         }
