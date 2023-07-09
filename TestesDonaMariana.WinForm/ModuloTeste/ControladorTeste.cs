@@ -1,10 +1,15 @@
-﻿using System.Text;
+﻿using System.Reflection.Metadata;
+using iTextSharp.text;
+using iTextSharp.text.pdf;
+using System.IO;
+using System.Text;
 using TestesDonaMariana.Dominio.ModuloDisciplina;
 using TestesDonaMariana.Dominio.ModuloGabarito;
 using TestesDonaMariana.Dominio.ModuloMateria;
 using TestesDonaMariana.Dominio.ModuloQuestoes;
 using TestesDonaMariana.Dominio.ModuloTeste;
 using TestesDonaMariana.WinForm.Compartilhado;
+using Document = iTextSharp.text.Document;
 
 namespace TestesDonaMariana.WinForm.ModuloTeste
 {
@@ -161,54 +166,45 @@ namespace TestesDonaMariana.WinForm.ModuloTeste
 
         public override void GerarPdf()
         {
-            //using (SaveFileDialog sfd = new SaveFileDialog())
-            //{
-            //    Teste teste = ObterTesteSelecionado();
+            Teste testeSelecionado = ObterTesteSelecionado();
 
-            //    if (teste == null)
-            //    {
-            //        MessageBox.Show("Nenhum Teste Selecionado", "Excluir Teste", MessageBoxButtons.OK);
-            //        return;
-            //    }
+            if (testeSelecionado != null)
+            {
+                // Obter o diretório temporário do sistema
+                string diretorioTemporario = Path.GetTempPath();
 
-            //    PdfDocument document = new PdfDocument();
+                // Definir o caminho completo do arquivo PDF
+                string caminhoArquivo = Path.Combine(diretorioTemporario, "arquivo.pdf");
 
-            //    document.Info.Title = "Teste";
+                // Criar um novo documento PDF
+                Document doc = new Document();
 
-            //    PdfPage page = document.AddPage();
+                // Definir o caminho de saída do arquivo PDF
+                PdfWriter writer = PdfWriter.GetInstance(doc, new FileStream(caminhoArquivo, FileMode.Create));
 
-            //    XGraphics gfx = XGraphics.FromPdfPage(page);
+                // Abrir o documento para escrever o conteúdo
+                doc.Open();
 
-            //    XFont font = new XFont("Verdana", 20, XFontStyle.Bold);
+                // Adicionar conteúdo ao documento
+                doc.Add(new Paragraph($"ID do Teste: {testeSelecionado.id}"));
+                doc.Add(new Paragraph($"Disciplina: {testeSelecionado.disciplina}"));
+                doc.Add(new Paragraph($"Matéria: {testeSelecionado.materia}"));
+                doc.Add(new Paragraph("Questões:"));
 
-            //    gfx.DrawString($"{teste.disciplina.nome}", font, XBrushes.Black, new XRect(0, 0, page.Width, page.Height), XStringFormat.Center);
+                foreach (Questao questao in testeSelecionado.questoes)
+                {
+                    doc.Add(new Paragraph($"- {questao.titulo}"));
+                }
 
-            //    if (teste.materia != null)
-            //        gfx.DrawString($"{teste.materia.nome}", font, XBrushes.Black, new XRect(0, 0, page.Width, page.Height), XStringFormat.Center);
+                // Fechar o documento
+                doc.Close();
 
+                // Exibir uma mensagem de sucesso
+                MessageBox.Show("PDF gerado com sucesso!");
 
-
-            //    document.Save(sfd.FileName);
-
-            //    Process.Start(sfd.FileName);
-
-            //PdfDocument document = new PdfDocument();
-            ////You will have to add Page in PDF Document
-            //PdfPage page = document.AddPage();
-            ////For drawing in PDF Page you will nedd XGraphics Object
-            //XGraphics gfx = XGraphics.FromPdfPage(page);
-            ////For Test you will have to define font to be used
-            //XFont font = new XFont("Verdana", 20, XFontStyle.Bold);
-            ////Finally use XGraphics & font object to draw text in PDF Page
-            //gfx.DrawString("My First PDF Document", font, XBrushes.Black,
-            //new XRect(0, 0, page.Width, page.Height), XStringFormats.Center);
-            ////Specify file name of the PDF file
-            //string filename = "FirstPDFDocument.pdf";
-            ////Save PDF File
-            //document.Save(filename);
-            ////Load PDF File for viewing
-            //Process.Start(filename);
-
+                // Abrir o arquivo PDF após a geração
+                System.Diagnostics.Process.Start(caminhoArquivo);
+            }
         }
 
 
