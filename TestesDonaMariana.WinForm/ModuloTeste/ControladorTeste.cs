@@ -217,35 +217,8 @@ namespace TestesDonaMariana.WinForm.ModuloTeste
 
                 doc.Close();
 
-                MessageBox.Show("PDF gerado com sucesso!");
-
-
-
-
-                //    Process.Start(sfd.FileName);
-
-                //PdfDocument document = new PdfDocument();
-                ////You will have to add Page in PDF Document
-                //PdfPage page = document.AddPage();
-                ////For drawing in PDF Page you will nedd XGraphics Object
-                //XGraphics gfx = XGraphics.FromPdfPage(page);
-                ////For Test you will have to define font to be used
-                //XFont font = new XFont("Verdana", 20, XFontStyle.Bold);
-                ////Finally use XGraphics & font object to draw text in PDF Page
-                //gfx.DrawString("My First PDF Document", font, XBrushes.Black,
-                //new XRect(0, 0, page.Width, page.Height), XStringFormats.Center);
-                ////Specify file name of the PDF file
-                //string filename = "FirstPDFDocument.pdf";
-                ////Save PDF File
-                //document.Save(filename);
-                ////Load PDF File for viewing
-                //Process.Start(filename);
-
+                MessageBox.Show("PDF do 'Teste' gerado com sucesso! \n'AppData - Local - Temp - teste.pdf'");
             }
-
-
-            //Process.Start(filename);
-
         }
 
         public override void GerarGabarito()
@@ -266,7 +239,12 @@ namespace TestesDonaMariana.WinForm.ModuloTeste
 
                 doc.Add(new Paragraph($"ID do Teste: {testeSelecionado.id}"));
                 doc.Add(new Paragraph($"Disciplina: {testeSelecionado.disciplina.nome}"));
-                doc.Add(new Paragraph($"Matéria: {testeSelecionado.materia.nome}"));
+
+                if(testeSelecionado.materia.id == 0)
+                    doc.Add(new Paragraph($"Prova de Recuperação"));
+                else
+                    doc.Add(new Paragraph($"Matéria: {testeSelecionado.materia.nome}"));
+                
                 doc.Add(new Paragraph("Questões: \n--------------------------------------------------------------------------------------"));
 
                 string letra = string.Empty;
@@ -275,65 +253,14 @@ namespace TestesDonaMariana.WinForm.ModuloTeste
                 {
                     int contadorAlternativa = 0;
                     doc.Add(new Paragraph($"Titulo: {questao.titulo} \n"));
-                    bool certa = false;
-                    System.Drawing.Image image = Properties.Resources.delete_FILL0_wght400_GRAD0_opsz24__1_;
-                    iTextSharp.text.Image itextImage = iTextSharp.text.Image.GetInstance(image, System.Drawing.Imaging.ImageFormat.Png);
 
                     foreach (Alternativa alternativa in repositorioQuestoes.SelecionarAlternativas(questao))
                     {
-
-                        if (contadorAlternativa == 0)
-                        {
-                            letra = "A) ";
-                            if (questao.alternativaCorretaENUM == EnumAlternativaCorreta.AlternativaA)
-                            {
-                                certa = true;
-                                letra = "X ";
-                            }
-                        }
-                        else if (contadorAlternativa == 1)
-                        {
-                            letra = "B) ";
-                            if (questao.alternativaCorretaENUM == EnumAlternativaCorreta.AlternativaB)
-                            {
-                                certa = true;
-                                letra = "X ";
-                            }
-                        }
-                        else if (contadorAlternativa == 2)
-                        {
-                            letra = "C) ";
-                            if (questao.alternativaCorretaENUM == EnumAlternativaCorreta.AlternativaC)
-                            {
-                                certa = true;
-                                letra = "X ";
-                            }
-
-                            
-                        }
-                        else if (contadorAlternativa == 3)
-                        {
-                            letra = "D) ";
-                            if (questao.alternativaCorretaENUM == EnumAlternativaCorreta.AlternativaD)
-                            {
-                                certa = true;
-                                letra = "X ";
-                            }
-                        }
-
-                        
+                        VerificarLetra(ref letra, questao, contadorAlternativa);
 
                         contadorAlternativa++;
 
-                        if(!certa)
-                            doc.Add(new Paragraph($"{letra} {alternativa.alternativa}"));
-                        else
-                        {
-                            certa = false;
-                            doc.Add(new Paragraph($"{itextImage} {alternativa.alternativa}"));
-                            doc.Add(itextImage);
-                        }
-
+                        doc.Add(new Paragraph($"{letra} {alternativa.alternativa}"));
                     }
                     doc.Add(new Paragraph($"--------------------------------------------------------------------------------------"));
                 }
@@ -341,7 +268,37 @@ namespace TestesDonaMariana.WinForm.ModuloTeste
 
                 doc.Close();
 
-                MessageBox.Show("PDF gerado com sucesso!");
+                MessageBox.Show("PDF do 'Gabarito' gerado com sucesso!\n'AppData - Local - Temp - gabarito.pdf'");
+            }
+        }
+
+        private static void VerificarLetra(ref string letra, Questao questao, int contadorAlternativa)
+        {
+            if (contadorAlternativa == 0)
+            {
+                letra = "A) ";
+                if (questao.alternativaCorretaENUM == EnumAlternativaCorreta.AlternativaA)
+                    letra = "X ";
+            }
+            else if (contadorAlternativa == 1)
+            {
+                letra = "B) ";
+                if (questao.alternativaCorretaENUM == EnumAlternativaCorreta.AlternativaB)
+                    letra = "X ";
+            }
+            else if (contadorAlternativa == 2)
+            {
+                letra = "C) ";
+                if (questao.alternativaCorretaENUM == EnumAlternativaCorreta.AlternativaC)
+                    letra = "X ";
+
+
+            }
+            else if (contadorAlternativa == 3)
+            {
+                letra = "D) ";
+                if (questao.alternativaCorretaENUM == EnumAlternativaCorreta.AlternativaD)
+                    letra = "X ";
             }
         }
     }
