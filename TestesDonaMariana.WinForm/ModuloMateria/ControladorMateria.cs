@@ -47,7 +47,7 @@ namespace TestesDonaMariana.WinForm.ModuloMateria
                 return;
             }
 
-            TelaMateria telaMateria = new TelaMateria(repositorioDisciplina);
+            TelaMateria telaMateria = new TelaMateria(repositorioDisciplina, repositorioMateria);
             telaMateria.ArrumaTela(materia);
 
             while (true)
@@ -121,7 +121,7 @@ namespace TestesDonaMariana.WinForm.ModuloMateria
 
         public override void Inserir()
         {
-            TelaMateria telaMateria = new TelaMateria(repositorioDisciplina);
+            TelaMateria telaMateria = new TelaMateria(repositorioDisciplina, repositorioMateria);
             while (true)
             {
                 DialogResult result = telaMateria.ShowDialog();

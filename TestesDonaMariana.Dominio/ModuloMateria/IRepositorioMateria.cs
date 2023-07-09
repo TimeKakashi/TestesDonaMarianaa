@@ -17,5 +17,7 @@ namespace TestesDonaMariana.Dominio.ModuloMateria
         Materia SelecionarPorId(int id);
         List<Questao> SelecionarQuestoesMateria(Materia materia);
         List<Materia> SelecionarMateriasDaDisciplina(Disciplina? disciplina);
+        void InserirSeries();
+        Serie SelecionarSerieNome(string nome);
     }
 }

@@ -7,12 +7,14 @@ namespace TestesDonaMariana.WinForm.ModuloMateria
     public partial class TelaMateria : Form
     {
         private IRepositorioDisciplina repositorioDisciplina;
+        private IRepositorioMateria repositorioMateria;
         private Materia materia;
 
-        public TelaMateria(IRepositorioDisciplina repositorioDisciplina)
+        public TelaMateria(IRepositorioDisciplina repositorioDisciplina, IRepositorioMateria repositorioMateria)
         {
             InitializeComponent();
             this.repositorioDisciplina = repositorioDisciplina;
+            this.repositorioMateria = repositorioMateria;
             EncharComboBox(repositorioDisciplina);
         }
 
@@ -39,16 +41,11 @@ namespace TestesDonaMariana.WinForm.ModuloMateria
             {
                 string serieNome = gbRadio.Controls.OfType<RadioButton>().SingleOrDefault(RadioButton => RadioButton.Checked).Text;
 
-                if (serieNome == "Primeira Série")
-                {
-                    serie.id = 1006;
-                    serie.nome = "Primeira Série";
-                }
+                if (serieNome == "Primeira Serie")
+                    serie = repositorioMateria.SelecionarSerieNome("Primeira Serie");
+
                 else
-                {
-                    serie.id = 1007;
-                    serie.nome = "Segunda Série";
-                }
+                    serie = repositorioMateria.SelecionarSerieNome("Segunda Serie");
             }
 
 

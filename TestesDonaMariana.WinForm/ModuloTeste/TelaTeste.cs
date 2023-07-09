@@ -1,4 +1,5 @@
-﻿using TestesDonaMariana.Dominio.ModuloDisciplina;
+﻿using TestesDonaMariana.Dominio;
+using TestesDonaMariana.Dominio.ModuloDisciplina;
 using TestesDonaMariana.Dominio.ModuloMateria;
 using TestesDonaMariana.Dominio.ModuloQuestoes;
 using TestesDonaMariana.Dominio.ModuloTeste;
@@ -26,6 +27,9 @@ namespace TestesDonaMariana.WinForm.ModuloTeste
             this.repositorioMateria = repositorioMateria;
             this.repositorioQuestoes = repositorioQuestoes;
             this.repositorioTeste = repositorioTeste;
+
+           
+
             EncherBox();
         }
 

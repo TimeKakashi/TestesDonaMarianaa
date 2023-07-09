@@ -1,3 +1,4 @@
+using TestesDonaMariana.Dominio;
 using TestesDonaMariana.Dominio.ModuloDisciplina;
 using TestesDonaMariana.Dominio.ModuloGabarito;
 using TestesDonaMariana.Dominio.ModuloMateria;
@@ -31,8 +32,12 @@ namespace TestesDonaMariana.WinForm
         {
             InitializeComponent();
 
-            telaPrincipal = this;
+            Serie serie = repositorioMateria.SelecionarSerieNome("Primeira Serie");
 
+            if (serie == null)
+                repositorioMateria.InserirSeries();
+
+            telaPrincipal = this;
         }
         public static TelaPrincipal Instancia
         {
