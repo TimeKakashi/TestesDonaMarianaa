@@ -1,16 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
-using TestesDonaMariana.Dominio;
+﻿using TestesDonaMariana.Dominio;
 using TestesDonaMariana.Dominio.ModuloDisciplina;
 using TestesDonaMariana.Dominio.ModuloMateria;
-using TestesDonaMariana.WinForm.ModuloQuestao;
 
 namespace TestesDonaMariana.WinForm.ModuloMateria
 {
@@ -39,8 +29,8 @@ namespace TestesDonaMariana.WinForm.ModuloMateria
             string nome = textBox1.Text;
             Disciplina disciplina = (Disciplina)comboBox1.SelectedItem;
             Serie serie = new Serie();
-            
-            if(gbRadio.Controls.OfType<RadioButton>().SingleOrDefault(RadioButton => RadioButton.Checked) == null)
+
+            if (gbRadio.Controls.OfType<RadioButton>().SingleOrDefault(RadioButton => RadioButton.Checked) == null)
             {
                 serie = null;
             }
@@ -60,7 +50,7 @@ namespace TestesDonaMariana.WinForm.ModuloMateria
                     serie.nome = "Segunda Série";
                 }
             }
-           
+
 
 
             return new Materia(nome, disciplina, serie);
@@ -82,7 +72,7 @@ namespace TestesDonaMariana.WinForm.ModuloMateria
 
             string[] erros = materia.Validar();
 
-            if(erros.Length > 0)
+            if (erros.Length > 0)
             {
                 TelaPrincipal.Instancia.AtualizarRodape(erros[0]);
                 DialogResult = DialogResult.None;

@@ -1,14 +1,4 @@
 ﻿using FestasInfantis.WinApp.Compartilhado;
-using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
-using TestesDonaMariana.Dominio.ModuloMateria;
 using TestesDonaMariana.Dominio.ModuloTeste;
 
 namespace TestesDonaMariana.WinForm.ModuloTeste
@@ -68,7 +58,7 @@ namespace TestesDonaMariana.WinForm.ModuloTeste
 
             foreach (Teste teste in testes)
             {
-                grid.Rows.Add(teste.id,teste.titulo ,teste.materia.nome, teste.disciplina.nome, teste.serie, teste.dataCriacao);
+                grid.Rows.Add(teste.id, teste.titulo, teste.materia.nome, teste.disciplina.nome, teste.serie, teste.dataCriacao);
             }
         }
         public int ObterIdSelecionado()

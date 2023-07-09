@@ -14,7 +14,6 @@
 
   <ItemGroup>
     <PackageReference Include="PdfSharp" Version="1.50.5147" />
-    <PackageReference Include="System.Text.Encoding" Version="4.3.0" />
   </ItemGroup>
 
   <ItemGroup>

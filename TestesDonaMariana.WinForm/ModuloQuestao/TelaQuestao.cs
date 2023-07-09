@@ -1,15 +1,4 @@
-﻿using Microsoft.Identity.Client.Kerberos;
-using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
-using TestesDonaMariana.Dominio.ModuloDisciplina;
-using TestesDonaMariana.Dominio.ModuloMateria;
+﻿using TestesDonaMariana.Dominio.ModuloMateria;
 using TestesDonaMariana.Dominio.ModuloQuestao;
 using TestesDonaMariana.Dominio.ModuloQuestoes;
 
@@ -72,7 +61,7 @@ namespace TestesDonaMariana.WinForm.ModuloQuestao
 
             string[] erros = questao.Validar();
 
-            if(erros.Length > 0)
+            if (erros.Length > 0)
             {
                 TelaPrincipal.Instancia.AtualizarRodape(erros[0]);
                 DialogResult = DialogResult.None;

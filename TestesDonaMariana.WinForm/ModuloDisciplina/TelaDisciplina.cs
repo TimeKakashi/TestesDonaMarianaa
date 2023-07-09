@@ -1,14 +1,4 @@
-﻿using Microsoft.Identity.Client;
-using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
-using TestesDonaMariana.Dominio.ModuloDisciplina;
+﻿using TestesDonaMariana.Dominio.ModuloDisciplina;
 
 namespace TestesDonaMariana.WinForm.ModuloDisciplina
 {
@@ -50,7 +40,7 @@ namespace TestesDonaMariana.WinForm.ModuloDisciplina
 
             string[] erros = disciplina.Validar();
 
-            if(erros.Length > 0)
+            if (erros.Length > 0)
             {
                 DialogResult = DialogResult.None;
                 TelaPrincipal.Instancia.AtualizarRodape(erros[0]);

@@ -1,6 +1,4 @@
-﻿using System.Drawing.Drawing2D;
-using TestesDonaMariana.Dominio;
-using TestesDonaMariana.Dominio.ModuloDisciplina;
+﻿using TestesDonaMariana.Dominio.ModuloDisciplina;
 using TestesDonaMariana.Dominio.ModuloMateria;
 using TestesDonaMariana.Dominio.ModuloQuestoes;
 using TestesDonaMariana.Dominio.ModuloTeste;
@@ -230,7 +228,7 @@ namespace TestesDonaMariana.WinForm.ModuloTeste
 
         private void checkRecuperacao_CheckedChanged(object sender, EventArgs e)
         {
-            if (!checkRecuperacao.Checked) 
+            if (!checkRecuperacao.Checked)
             {
                 cbMateria.Enabled = true;
             }

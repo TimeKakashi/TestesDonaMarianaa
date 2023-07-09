@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using TestesDonaMariana.Dominio.ModuloMateria;
+﻿using TestesDonaMariana.Dominio.ModuloMateria;
 using TestesDonaMariana.Dominio.ModuloQuestao;
 using TestesDonaMariana.Dominio.ModuloQuestoes;
 using TestesDonaMariana.Dominio.ModuloTeste;
@@ -161,11 +156,11 @@ namespace TestesDonaMariana.WinForm.ModuloQuestao
 
             bool podeExcluir = true;
 
-            foreach(Teste teste in repositorioTeste.SelecionarTodos())
+            foreach (Teste teste in repositorioTeste.SelecionarTodos())
             {
                 teste.questoes = repositorioTeste.SelecionarQuestoes(teste);
 
-                foreach(Questao q in teste.questoes)
+                foreach (Questao q in teste.questoes)
                 {
                     if (q.id == questao.id)
                     {
@@ -215,7 +210,7 @@ namespace TestesDonaMariana.WinForm.ModuloQuestao
         }
 
         public override string ObterTipoCadastro() => "Cadastro de Questões";
-        
+
 
         private Questao ObterQuestaoSelecionada()
         {

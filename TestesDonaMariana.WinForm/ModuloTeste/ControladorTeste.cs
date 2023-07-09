@@ -1,14 +1,10 @@
-﻿using PdfSharp.Drawing;
-using PdfSharp.Pdf;
-using System.Diagnostics;
-using System.Text;
+﻿using System.Text;
 using TestesDonaMariana.Dominio.ModuloDisciplina;
 using TestesDonaMariana.Dominio.ModuloGabarito;
 using TestesDonaMariana.Dominio.ModuloMateria;
 using TestesDonaMariana.Dominio.ModuloQuestoes;
 using TestesDonaMariana.Dominio.ModuloTeste;
 using TestesDonaMariana.WinForm.Compartilhado;
-using static System.Net.Mime.MediaTypeNames;
 
 namespace TestesDonaMariana.WinForm.ModuloTeste
 {
@@ -55,7 +51,7 @@ namespace TestesDonaMariana.WinForm.ModuloTeste
         public override bool EditarHabilitado => false;
         public override bool DuplicarHabilitado => true;
 
-        
+
 
         public override void Inserir()
         {
@@ -63,7 +59,7 @@ namespace TestesDonaMariana.WinForm.ModuloTeste
 
             DialogResult resultado = telaTeste.ShowDialog();
 
-            if(resultado == DialogResult.OK)
+            if (resultado == DialogResult.OK)
             {
                 Teste teste = telaTeste.ObterTeste();
 
@@ -109,7 +105,7 @@ namespace TestesDonaMariana.WinForm.ModuloTeste
         {
             int id = listagemTeste.ObterIdSelecionado();
 
-            Teste teste =  repositorioTeste.SelecionarPorId(id);
+            Teste teste = repositorioTeste.SelecionarPorId(id);
 
             List<Questao> questoes = new List<Questao>();
 
@@ -216,7 +212,7 @@ namespace TestesDonaMariana.WinForm.ModuloTeste
         }
 
 
-            //Process.Start(filename);
-        
+        //Process.Start(filename);
+
     }
 }

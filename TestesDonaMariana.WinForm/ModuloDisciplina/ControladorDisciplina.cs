@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using TestesDonaMariana.Dominio.ModuloDisciplina;
-using TestesDonaMariana.Infra.Dados.Sql.ModuloDisciplinaSql;
+﻿using TestesDonaMariana.Dominio.ModuloDisciplina;
 using TestesDonaMariana.WinForm.Compartilhado;
 
 namespace TestesDonaMariana.WinForm.ModuloDisciplina
@@ -151,9 +145,9 @@ namespace TestesDonaMariana.WinForm.ModuloDisciplina
         {
             Disciplina disciplinaSelecionada = ObterDisciplinaSelecionado();
 
-            if (disciplinaSelecionada == null) 
+            if (disciplinaSelecionada == null)
             {
-                MessageBox.Show("Nenhuma Disciplina Selecionada","Excluir Disciplina",MessageBoxButtons.OK);
+                MessageBox.Show("Nenhuma Disciplina Selecionada", "Excluir Disciplina", MessageBoxButtons.OK);
                 return;
             }
 
@@ -163,15 +157,15 @@ namespace TestesDonaMariana.WinForm.ModuloDisciplina
                 return;
             }
 
-            else if(repositorioDisciplina.VerificarMateriasNaDisciplina(disciplinaSelecionada).Count > 0)
+            else if (repositorioDisciplina.VerificarMateriasNaDisciplina(disciplinaSelecionada).Count > 0)
             {
                 MessageBox.Show("A Disciplina Selecionada contem uma materia cadastrada!", "Excluir Disciplina", MessageBoxButtons.OK);
                 return;
             }
 
-            DialogResult opcaoEscolhida = MessageBox.Show($"Deseja Excluir a Disciplina {disciplinaSelecionada}?","Exclusão de Disciplina",MessageBoxButtons.OKCancel,MessageBoxIcon.Question);
+            DialogResult opcaoEscolhida = MessageBox.Show($"Deseja Excluir a Disciplina {disciplinaSelecionada}?", "Exclusão de Disciplina", MessageBoxButtons.OKCancel, MessageBoxIcon.Question);
 
-            if (opcaoEscolhida == DialogResult.OK) 
+            if (opcaoEscolhida == DialogResult.OK)
             {
                 repositorioDisciplina.Excluir(disciplinaSelecionada);
                 CarregarDisciplina();

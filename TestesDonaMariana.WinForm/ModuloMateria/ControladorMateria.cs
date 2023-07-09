@@ -62,19 +62,16 @@ namespace TestesDonaMariana.WinForm.ModuloMateria
 
                     if (listaMateria.Any(x => x.nome.ToLower() == materiaNova.nome.ToLower() && x.id != materiaNova.id))
                     {
-                        // Nome repetido, exibir mensagem de erro e retornar à tela de edição
                         TelaPrincipal.Instancia.AtualizarRodape("O nome da matéria já existe. Por favor, insira um nome diferente.");
-                        continue; // Retorna ao início do loop para exibir a tela de edição novamente
+                        continue;
                     }
 
                     repositorioMateria.Editar(materiaNova.id, materiaNova);
-                    break; // Sai do loop quando o nome é válido e a matéria é editada
-                }
-                else if (result == DialogResult.Cancel)
-                {
-                    // O usuário cancelou a operação de edição
+
                     break;
                 }
+                else if (result == DialogResult.Cancel)
+                    break;
             }
 
             CarregarMaterias();
@@ -142,11 +139,11 @@ namespace TestesDonaMariana.WinForm.ModuloMateria
 
                     repositorioMateria.Inserir(materia);
                     CarregarMaterias();
-                    break; 
+                    break;
                 }
                 else if (result == DialogResult.Cancel)
                     break;
-                
+
             }
         }
 
@@ -181,7 +178,7 @@ namespace TestesDonaMariana.WinForm.ModuloMateria
             return materia;
         }
 
-       
+
 
 
 
