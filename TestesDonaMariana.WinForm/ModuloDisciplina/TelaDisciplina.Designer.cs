@@ -38,6 +38,7 @@
             // 
             // tbNome
             // 
+            tbNome.Enabled = false;
             tbNome.Location = new Point(133, 56);
             tbNome.Name = "tbNome";
             tbNome.Size = new Size(49, 23);

@@ -5,9 +5,12 @@
     [Data]           BIGINT       NOT NULL,
     [Id_disciplina]  INT          NOT NULL,
     [Titulo]         VARCHAR (50) NOT NULL,
+    [Recuperacao]    BIT          NOT NULL,
     CONSTRAINT [PK_TBTeste] PRIMARY KEY CLUSTERED ([Id] ASC),
     CONSTRAINT [FK_TBTeste_TB_Materia] FOREIGN KEY ([Id_Materia]) REFERENCES [dbo].[TB_Materia] ([Id])
 );
+
+
 
 
 
