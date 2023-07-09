@@ -48,8 +48,6 @@ namespace TestesDonaMariana.WinForm.ModuloMateria
                     serie = repositorioMateria.SelecionarSerieNome("Segunda Serie");
             }
 
-
-
             return new Materia(nome, disciplina, serie);
         }
 

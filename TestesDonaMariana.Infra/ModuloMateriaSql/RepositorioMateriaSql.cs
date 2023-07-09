@@ -167,8 +167,6 @@ namespace TestesDonaMariana.Infra.Dados.Sql.ModuloMateriaSql
 
             if (leitorItem.Read())
             {
-                Questao questao = new MapeadorQuestao().ConverterRegistro(leitorItem);
-
 				string nomeSerie = Convert.ToString(leitorItem["NOME_SERIE"]);
 				int id = Convert.ToInt32(leitorItem["ID_SERIE"]);
 
