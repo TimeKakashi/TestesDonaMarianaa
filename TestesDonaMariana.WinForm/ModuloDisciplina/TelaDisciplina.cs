@@ -17,10 +17,6 @@ namespace TestesDonaMariana.WinForm.ModuloDisciplina
             this.repositorioDisciplina = repositorioDisciplina;
         }
 
-        private Disciplina disciplina;
-
-
-
         public void ConfigurarTela(Disciplina? disciplinaSelecionada)
         {
             tbNome.Text = disciplinaSelecionada.id.ToString();

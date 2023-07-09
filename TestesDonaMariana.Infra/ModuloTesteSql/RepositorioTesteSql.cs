@@ -165,7 +165,10 @@ namespace TestesDonaMariana.Infra.Dados.Sql.ModuloTesteSql
 																	Inner Join 
 																		TBTeste as T
 																	ON 
-																		T.Id = @ID_TESTE";
+																		T.Id_disciplina = D.Id
+																	where 
+																		T.id = @ID_TESTE
+";
 
 		
 
