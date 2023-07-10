@@ -144,26 +144,46 @@ namespace TestesDonaMariana.WinForm.ModuloTeste
 
             if (testeSelecionado != null)
             {
-                Teste testeDuplicado = testeSelecionado.Clone() as Teste;
+                TelaTeste telaDuplicar = new TelaTeste(repositorioDisciplina, repositorioMateria, repositorioQuestoes, repositorioTeste);
+                telaDuplicar.Text = "Duplicar Teste";
 
-                if (testeDuplicado != null)
+                DialogResult resultado = telaDuplicar.ShowDialog();
+
+                if (resultado == DialogResult.OK)
                 {
-                    List<Questao> questoesDuplicadas = new List<Questao>();
+                    Teste testeDuplicado = testeSelecionado.Clone() as Teste;
 
-                    foreach (Questao questao in testeSelecionado.questoes)
+                    if (testeDuplicado != null)
                     {
-                        Questao questaoDuplicada = questao.Clone() as Questao;
-                        questoesDuplicadas.Add(questaoDuplicada);
+                        testeDuplicado.titulo = telaDuplicar.ObterTituloTeste();
+
+                        // Verificar se o título duplicado já existe
+                        if (repositorioTeste.TituloExistente(testeDuplicado.titulo))
+                        {
+                            MessageBox.Show("O título do teste já existe. Por favor, escolha um título diferente.", "Erro de duplicação", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                            return;
+                        }
+
+                        List<Questao> questoesDuplicadas = new List<Questao>();
+
+                        foreach (Questao questao in testeSelecionado.questoes)
+                        {
+                            Questao questaoDuplicada = questao.Clone() as Questao;
+                            questoesDuplicadas.Add(questaoDuplicada);
+                        }
+
+                        testeDuplicado.questoes = questoesDuplicadas;
+
+                        repositorioTeste.Inserir(testeDuplicado, questoesDuplicadas);
+
+                        CarregarTestes();
                     }
-
-                    testeDuplicado.questoes = questoesDuplicadas;
-
-                    repositorioTeste.Inserir(testeDuplicado, questoesDuplicadas);
-
-                    CarregarTestes();
                 }
             }
         }
+
+
+
 
         public override string ObterTipoCadastro() => "Cadastro de Testes";
 

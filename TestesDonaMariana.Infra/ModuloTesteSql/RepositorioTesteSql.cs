@@ -315,6 +315,24 @@ namespace TestesDonaMariana.Infra.Dados.Sql.ModuloTesteSql
 
             return questoes;
         }
+
+        public bool TituloExistente(string titulo)
+        {
+            SqlConnection conexaoBanco = new SqlConnection(enderecoBanco);
+            conexaoBanco.Open();
+
+            SqlCommand comandoVerificarTitulo = conexaoBanco.CreateCommand();
+            comandoVerificarTitulo.CommandText = "SELECT COUNT(*) FROM TBTeste WHERE Titulo = @TITULO";
+
+            comandoVerificarTitulo.Parameters.AddWithValue("TITULO", titulo);
+
+            int count = (int)comandoVerificarTitulo.ExecuteScalar();
+
+            conexaoBanco.Close();
+
+            return count > 0;
+        }
+
     }
 
 }

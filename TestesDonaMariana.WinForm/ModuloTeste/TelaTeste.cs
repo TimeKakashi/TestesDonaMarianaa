@@ -229,6 +229,11 @@ namespace TestesDonaMariana.WinForm.ModuloTeste
         {
 
         }
+        public string ObterTituloTeste()
+        {
+            return tbTitulo.Text;
+        }
+
 
         private void checkRecuperacao_CheckedChanged(object sender, EventArgs e)
         {
