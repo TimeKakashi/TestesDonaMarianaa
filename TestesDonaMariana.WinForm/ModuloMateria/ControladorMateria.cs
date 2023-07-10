@@ -33,10 +33,6 @@ namespace TestesDonaMariana.WinForm.ModuloMateria
 
         public override string ToolTipDuplicar => "Este botão está desabilitado nessa Tela";
 
-        public override bool VisualizarHabilitado => true;
-
-
-
         public override void Editar()
         {
             Materia materia = ObterMateriaSelecionada();
