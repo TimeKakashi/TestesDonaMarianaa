@@ -98,7 +98,7 @@ namespace TestesDonaMariana.Dominio.ModuloTeste
                 numeroQuestoes = this.numeroQuestoes,
                 dataCriacao = this.dataCriacao,
                 serie = this.serie,
-                questoes = new List<Questao>(this.questoes.Count),
+                questoes = new List<Questao>(this.questoes),
                 titulo = this.titulo
             };
 

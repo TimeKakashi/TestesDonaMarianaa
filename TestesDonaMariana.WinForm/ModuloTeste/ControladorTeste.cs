@@ -119,10 +119,10 @@ namespace TestesDonaMariana.WinForm.ModuloTeste
 
             if (teste.materia == null || teste.materia.id == 0)
             {
-                questoes = repositorioQuestoes.SelecionarQuestoesDisciplina(teste.disciplina);
+                questoes = repositorioTeste.SelecionarQuestoesTeste(teste);
             }
             else
-                questoes = repositorioTeste.SelecionarQuestoes(teste);
+                questoes = repositorioTeste.SelecionarQuestoesTeste(teste);
 
             teste.questoes = questoes;
 

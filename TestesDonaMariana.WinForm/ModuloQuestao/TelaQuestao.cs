@@ -79,7 +79,8 @@ namespace TestesDonaMariana.WinForm.ModuloQuestao
 
             foreach (EnumAlternativaCorreta item in valoresEnum)
             {
-
+                if (item == EnumAlternativaCorreta.Erro)
+                    continue;
 
                 cbAlternativaCorreta.Items.Add(item);
             }

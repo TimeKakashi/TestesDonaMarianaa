@@ -158,7 +158,7 @@ namespace TestesDonaMariana.WinForm.ModuloQuestao
 
             foreach (Teste teste in repositorioTeste.SelecionarTodos())
             {
-                teste.questoes = repositorioTeste.SelecionarQuestoes(teste);
+                teste.questoes = repositorioTeste.SelecionarQuestoesPorMateria(teste);
 
                 foreach (Questao q in teste.questoes)
                 {
@@ -172,7 +172,7 @@ namespace TestesDonaMariana.WinForm.ModuloQuestao
 
             if (!podeExcluir)
             {
-                MessageBox.Show($"Essa questão esta atelada a um teste!",
+                MessageBox.Show($"Essa questão esta atrelada a um teste!",
                    "Exclusão de Questões",
                    MessageBoxButtons.OK,
                    MessageBoxIcon.Exclamation);

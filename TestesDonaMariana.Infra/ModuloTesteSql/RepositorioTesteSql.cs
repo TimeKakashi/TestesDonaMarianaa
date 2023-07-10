@@ -165,9 +165,50 @@ namespace TestesDonaMariana.Infra.Dados.Sql.ModuloTesteSql
 																	Inner Join 
 																		TBTeste as T
 																	ON 
-																		T.Id_disciplina = D.Id
+																		T.Id_Materia = M.Id
 																	where 
 																		T.id = @ID_TESTE";
+
+		private const string sqlSelecionarQuestoesTeste = @"SELECT 
+																		Q.[Id]					ID_QUESTAO,
+																		Q.[Titulo]				TITULO_QUESTAO,
+																		Q.[AlternativaCorreta]	ALTERNATIVA_CORRETA,
+																		Q.[Id_Materia]			QUESTAO_ID_MATERIA,
+
+																		M.[Nome]				NOME_MATERIA,
+																		M.[Id_Disciplina]		MATERIA_ID_DISCIPLINA,
+																		M.[Id_Serie]			MATERIA_ID_SERIE,
+		
+																		D.[Nome]				NOME_DISCIPLINA,
+
+																		S.[serie]				SERIE_NOME,
+																		S.[ID]					ID_SERIE
+				
+
+																		FROM 
+																			[TB_Questao] as Q
+																		left Join 
+																			[TB_Materia] as M 
+																		ON 
+																			Q.Id_Materia = M.Id
+																		Inner Join
+																			[TB_Disciplina] as D
+																		ON
+																			M.Id_Disciplina = D.Id
+																		left Join
+																			[TB_Serie] as S
+																		ON
+																			M.Id_Serie = S.Id
+																		Inner Join 
+																			TB_Questao_TB_Teste as QT
+																		ON 
+																			QT.Id_Questao = Q.Id
+																		Inner Join 
+																			TBTeste as T
+																		ON 
+																			QT.Id_Teste = T.Id
+																		where 
+																			T.id = @ID_TESTE";
 
 		
 
@@ -223,7 +264,7 @@ namespace TestesDonaMariana.Infra.Dados.Sql.ModuloTesteSql
             conexaoBanco.Close();
         }
 
-        public List<Questao> SelecionarQuestoes(Teste teste1)
+        public List<Questao> SelecionarQuestoesPorMateria(Teste teste1)
         {
             SqlConnection conexaoComBanco = new SqlConnection(enderecoBanco);
             conexaoComBanco.Open();
@@ -249,7 +290,31 @@ namespace TestesDonaMariana.Infra.Dados.Sql.ModuloTesteSql
             return questoes;
         }
 
-		
-	}
+        public List<Questao> SelecionarQuestoesTeste(Teste teste1)
+        {
+            SqlConnection conexaoComBanco = new SqlConnection(enderecoBanco);
+            conexaoComBanco.Open();
+
+            SqlCommand comandoSelecionarQuestoesTeste = conexaoComBanco.CreateCommand();
+            comandoSelecionarQuestoesTeste.CommandText = sqlSelecionarQuestoesTeste;
+
+            comandoSelecionarQuestoesTeste.Parameters.AddWithValue("ID_TESTE", teste1.id);
+
+            SqlDataReader leitorItem = comandoSelecionarQuestoesTeste.ExecuteReader();
+
+            List<Questao> questoes = new List<Questao>();
+
+            while (leitorItem.Read())
+            {
+                Questao alternativa = new MapeadorQuestao().ConverterRegistro(leitorItem);
+
+                questoes.Add(alternativa);
+            }
+
+            conexaoComBanco.Close();
+
+            return questoes;
+        }
+    }
 
 }
