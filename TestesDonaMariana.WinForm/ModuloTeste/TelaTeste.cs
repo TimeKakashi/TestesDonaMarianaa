@@ -29,7 +29,7 @@ namespace TestesDonaMariana.WinForm.ModuloTeste
             this.repositorioQuestoes = repositorioQuestoes;
             this.repositorioTeste = repositorioTeste;
 
-           
+
 
             EncherBoxDisciplina();
         }
