@@ -92,6 +92,7 @@
             // 
             // cbDisciplina
             // 
+            cbDisciplina.DropDownStyle = ComboBoxStyle.DropDownList;
             cbDisciplina.FormattingEnabled = true;
             cbDisciplina.Location = new Point(136, 113);
             cbDisciplina.Name = "cbDisciplina";
@@ -101,6 +102,7 @@
             // 
             // cbMateria
             // 
+            cbMateria.DropDownStyle = ComboBoxStyle.DropDownList;
             cbMateria.Enabled = false;
             cbMateria.FormattingEnabled = true;
             cbMateria.Location = new Point(116, 155);
