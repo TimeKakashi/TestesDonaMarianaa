@@ -71,28 +71,28 @@
             // disciplinaToolStripMenuItem
             // 
             disciplinaToolStripMenuItem.Name = "disciplinaToolStripMenuItem";
-            disciplinaToolStripMenuItem.Size = new Size(125, 22);
+            disciplinaToolStripMenuItem.Size = new Size(180, 22);
             disciplinaToolStripMenuItem.Text = "Disciplina";
             disciplinaToolStripMenuItem.Click += disciplinaToolStripMenuItem_Click;
             // 
             // materiaToolStripMenuItem
             // 
             materiaToolStripMenuItem.Name = "materiaToolStripMenuItem";
-            materiaToolStripMenuItem.Size = new Size(125, 22);
+            materiaToolStripMenuItem.Size = new Size(180, 22);
             materiaToolStripMenuItem.Text = "Materia";
             materiaToolStripMenuItem.Click += materiaToolStripMenuItem_Click;
             // 
             // questaoToolStripMenuItem
             // 
             questaoToolStripMenuItem.Name = "questaoToolStripMenuItem";
-            questaoToolStripMenuItem.Size = new Size(125, 22);
+            questaoToolStripMenuItem.Size = new Size(180, 22);
             questaoToolStripMenuItem.Text = "Questao";
             questaoToolStripMenuItem.Click += questaoToolStripMenuItem_Click;
             // 
             // testeToolStripMenuItem
             // 
             testeToolStripMenuItem.Name = "testeToolStripMenuItem";
-            testeToolStripMenuItem.Size = new Size(125, 22);
+            testeToolStripMenuItem.Size = new Size(180, 22);
             testeToolStripMenuItem.Text = "Teste";
             testeToolStripMenuItem.Click += testeToolStripMenuItem_Click;
             // 
@@ -141,7 +141,7 @@
             // btnFiltrar
             // 
             btnFiltrar.DisplayStyle = ToolStripItemDisplayStyle.Image;
-            btnFiltrar.Image = Properties.Resources.filter_alt_FILL0_wght400_GRAD0_opsz24__1_;
+            btnFiltrar.Image = Properties.Resources.visibility_FILL0_wght400_GRAD0_opsz24;
             btnFiltrar.ImageTransparentColor = Color.Magenta;
             btnFiltrar.Name = "btnFiltrar";
             btnFiltrar.Padding = new Padding(7);
@@ -163,7 +163,7 @@
             // btnDuplicar
             // 
             btnDuplicar.DisplayStyle = ToolStripItemDisplayStyle.Image;
-            btnDuplicar.Image = Properties.Resources.edit_FILL0_wght400_GRAD0_opsz24__1_;
+            btnDuplicar.Image = Properties.Resources.content_copy_FILL0_wght400_GRAD0_opsz24;
             btnDuplicar.ImageTransparentColor = Color.Magenta;
             btnDuplicar.Name = "btnDuplicar";
             btnDuplicar.Size = new Size(23, 34);
