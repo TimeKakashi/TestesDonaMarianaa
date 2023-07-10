@@ -115,16 +115,7 @@ namespace TestesDonaMariana.WinForm.ModuloTeste
 
             Teste teste = repositorioTeste.SelecionarPorId(id);
 
-            List<Questao> questoes = new List<Questao>();
-
-            if (teste.materia == null || teste.materia.id == 0)
-            {
-                questoes = repositorioTeste.SelecionarQuestoesTeste(teste);
-            }
-            else
-                questoes = repositorioTeste.SelecionarQuestoesTeste(teste);
-
-            teste.questoes = questoes;
+            teste.questoes = repositorioTeste.SelecionarQuestoesTeste(teste);
 
             return teste;
         }
@@ -217,7 +208,7 @@ namespace TestesDonaMariana.WinForm.ModuloTeste
 
                 doc.Close();
 
-                MessageBox.Show("PDF do 'Teste' gerado com sucesso! \n'AppData - Local - Temp - teste.pdf'");
+                MessageBox.Show("PDF do 'Teste' gerado com sucesso! \n'AppData/Local/Temp/teste.pdf'");
             }
         }
 
@@ -268,7 +259,7 @@ namespace TestesDonaMariana.WinForm.ModuloTeste
 
                 doc.Close();
 
-                MessageBox.Show("PDF do 'Gabarito' gerado com sucesso!\n'AppData - Local - Temp - gabarito.pdf'");
+                MessageBox.Show("PDF do 'Gabarito' gerado com sucesso!\n'AppData/Local/Temp/teste.pdf'");
             }
         }
 
