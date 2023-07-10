@@ -68,6 +68,41 @@ namespace TestesDonaMariana.Dominio.ModuloQuestoes
             else if (alternativaCorretaENUM == null)
                 erros.Add("O campo 'alternativa correta' eh obrigatorio!");
 
+            // if(alternativaCorretaENUM == EnumAlternativaCorreta.AlternativaA)
+            // {
+            //    if (this.alternativas[0].alternativa == "")
+            //        erros.Add("A alternatia correta nao pode ser um campo vazio!");
+            // }
+
+            //else if (alternativaCorretaENUM == EnumAlternativaCorreta.AlternativaB)
+            //{
+            //    if (this.alternativas[1].alternativa == "")
+            //        erros.Add("A alternatia correta nao pode ser um campo vazio!");
+            //}
+
+            //else if(alternativaCorretaENUM == EnumAlternativaCorreta.AlternativaC)
+            //{
+            //    if (this.alternativas[2].alternativa == "")
+            //        erros.Add("A alternatia correta nao pode ser um campo vazio!");
+            //}
+
+            //else if(alternativaCorretaENUM == EnumAlternativaCorreta.AlternativaD)
+            //{
+            //    if (this.alternativas[3].alternativa == "")
+            //        erros.Add("A alternatia correta nao pode ser um campo vazio!");
+            //}
+
+            for (int i = 0; i < alternativas.Count; i++)
+            {
+                if ((int)alternativaCorretaENUM == i)
+                {
+                    if (this.alternativas[i].alternativa == "")
+                    {
+                        erros.Add("A alternativa correta não pode ser um campo vazio!");
+                    }
+                }
+            }
+
             return erros.ToArray();
         }
 

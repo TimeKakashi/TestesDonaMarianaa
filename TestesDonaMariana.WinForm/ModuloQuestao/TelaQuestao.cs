@@ -42,12 +42,16 @@ namespace TestesDonaMariana.WinForm.ModuloQuestao
 
             Materia materia = null;
 
-            if (cbMateria.SelectedItem.GetType() == typeof(string))
+            if(cbMateria.SelectedItem != null)
             {
-                materia = materias.Find(m => m.nome == (string)cbMateria.SelectedItem);
+                if (cbMateria.SelectedItem.GetType() == typeof(string))
+                {
+                    materia = materias.Find(m => m.nome == (string)cbMateria.SelectedItem);
+                }
+                else
+                    materia = (Materia)cbMateria.SelectedItem;
             }
-            else
-                materia = (Materia)cbMateria.SelectedItem;
+          
 
             return new Questao(titulo, Alternativas, alternativaCorrea, materia);
         }
