@@ -76,7 +76,7 @@
             button1.Location = new Point(326, 96);
             button1.Name = "button1";
             button1.Size = new Size(90, 31);
-            button1.TabIndex = 3;
+            button1.TabIndex = 4;
             button1.Text = "Cadastrar";
             button1.UseVisualStyleBackColor = true;
             button1.Click += button1_Click;
@@ -88,7 +88,7 @@
             button2.Location = new Point(422, 96);
             button2.Name = "button2";
             button2.Size = new Size(90, 31);
-            button2.TabIndex = 4;
+            button2.TabIndex = 5;
             button2.Text = "Cancelar";
             button2.UseVisualStyleBackColor = true;
             // 
@@ -97,7 +97,7 @@
             textBox1.Location = new Point(74, 6);
             textBox1.Name = "textBox1";
             textBox1.Size = new Size(155, 23);
-            textBox1.TabIndex = 5;
+            textBox1.TabIndex = 0;
             // 
             // comboBox1
             // 
@@ -106,7 +106,7 @@
             comboBox1.Location = new Point(74, 47);
             comboBox1.Name = "comboBox1";
             comboBox1.Size = new Size(155, 23);
-            comboBox1.TabIndex = 6;
+            comboBox1.TabIndex = 1;
             // 
             // primeiraSerie
             // 
@@ -114,8 +114,7 @@
             primeiraSerie.Location = new Point(1, 22);
             primeiraSerie.Name = "primeiraSerie";
             primeiraSerie.Size = new Size(97, 19);
-            primeiraSerie.TabIndex = 7;
-            primeiraSerie.TabStop = true;
+            primeiraSerie.TabIndex = 2;
             primeiraSerie.Text = "Primeira Série";
             primeiraSerie.UseVisualStyleBackColor = true;
             // 
@@ -125,7 +124,7 @@
             SegundSerie.Location = new Point(101, 22);
             SegundSerie.Name = "SegundSerie";
             SegundSerie.Size = new Size(99, 19);
-            SegundSerie.TabIndex = 8;
+            SegundSerie.TabIndex = 3;
             SegundSerie.TabStop = true;
             SegundSerie.Text = "Segunda Série";
             SegundSerie.UseVisualStyleBackColor = true;

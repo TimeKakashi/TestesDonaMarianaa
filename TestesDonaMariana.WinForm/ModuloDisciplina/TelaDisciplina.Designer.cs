@@ -49,7 +49,7 @@
             tbListaDeMateria.Location = new Point(133, 102);
             tbListaDeMateria.Name = "tbListaDeMateria";
             tbListaDeMateria.Size = new Size(212, 23);
-            tbListaDeMateria.TabIndex = 5;
+            tbListaDeMateria.TabIndex = 0;
             // 
             // button1
             // 
@@ -58,7 +58,7 @@
             button1.Location = new Point(216, 216);
             button1.Name = "button1";
             button1.Size = new Size(75, 37);
-            button1.TabIndex = 3;
+            button1.TabIndex = 1;
             button1.Text = "Cadastrar ";
             button1.UseVisualStyleBackColor = false;
             button1.Click += button1_Click;
@@ -70,7 +70,7 @@
             button2.Location = new Point(297, 216);
             button2.Name = "button2";
             button2.Size = new Size(75, 37);
-            button2.TabIndex = 4;
+            button2.TabIndex = 2;
             button2.Text = "Cancelar";
             button2.UseVisualStyleBackColor = false;
             // 
