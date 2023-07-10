@@ -151,36 +151,30 @@ namespace TestesDonaMariana.WinForm.ModuloTeste
 
                 if (resultado == DialogResult.OK)
                 {
-                    Teste testeDuplicado = testeSelecionado.Clone() as Teste;
+                    Teste testeDuplicado = new Teste();
+                    testeDuplicado.materia = testeSelecionado.materia;
+                    testeDuplicado.disciplina = testeSelecionado.disciplina;
+                    testeDuplicado.numeroQuestoes = testeSelecionado.numeroQuestoes;
+                    testeDuplicado.serie = testeSelecionado.serie;
+                    testeDuplicado.questoes = testeSelecionado.questoes.Select(questao => questao.Clone() as Questao).ToList();
+                    testeDuplicado.titulo = telaDuplicar.ObterTituloTeste();
+                    testeDuplicado.recuperacao = testeSelecionado.recuperacao;
 
-                    if (testeDuplicado != null)
+                    // Verificar se o título duplicado já existe
+                    if (repositorioTeste.TituloExistente(testeDuplicado.titulo))
                     {
-                        testeDuplicado.titulo = telaDuplicar.ObterTituloTeste();
-
-                        // Verificar se o título duplicado já existe
-                        if (repositorioTeste.TituloExistente(testeDuplicado.titulo))
-                        {
-                            MessageBox.Show("O título do teste já existe. Por favor, escolha um título diferente.", "Erro de duplicação", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                            return;
-                        }
-
-                        List<Questao> questoesDuplicadas = new List<Questao>();
-
-                        foreach (Questao questao in testeSelecionado.questoes)
-                        {
-                            Questao questaoDuplicada = questao.Clone() as Questao;
-                            questoesDuplicadas.Add(questaoDuplicada);
-                        }
-
-                        testeDuplicado.questoes = questoesDuplicadas;
-
-                        repositorioTeste.Inserir(testeDuplicado, questoesDuplicadas);
-
-                        CarregarTestes();
+                        MessageBox.Show("O título do teste já existe. Por favor, escolha um título diferente.", "Erro de duplicação", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        return;
                     }
+
+                    repositorioTeste.Inserir(testeDuplicado, testeDuplicado.questoes);
+
+                    CarregarTestes();
                 }
             }
         }
+
+
 
 
 
