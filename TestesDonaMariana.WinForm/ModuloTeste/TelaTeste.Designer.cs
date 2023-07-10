@@ -126,7 +126,7 @@
             radioSegunda.Location = new Point(18, 11);
             radioSegunda.Name = "radioSegunda";
             radioSegunda.Size = new Size(99, 19);
-            radioSegunda.TabIndex = 1;
+            radioSegunda.TabIndex = 10;
             radioSegunda.TabStop = true;
             radioSegunda.Text = "Segunda Serie";
             radioSegunda.UseVisualStyleBackColor = true;
@@ -137,7 +137,7 @@
             radioPrimeira.Location = new Point(151, 11);
             radioPrimeira.Name = "radioPrimeira";
             radioPrimeira.Size = new Size(97, 19);
-            radioPrimeira.TabIndex = 0;
+            radioPrimeira.TabIndex = 10;
             radioPrimeira.TabStop = true;
             radioPrimeira.Text = "Primeira Serie";
             radioPrimeira.UseVisualStyleBackColor = true;
@@ -147,7 +147,7 @@
             numericNumeroQuestoes.Location = new Point(174, 205);
             numericNumeroQuestoes.Name = "numericNumeroQuestoes";
             numericNumeroQuestoes.Size = new Size(53, 23);
-            numericNumeroQuestoes.TabIndex = 7;
+            numericNumeroQuestoes.TabIndex = 5;
             // 
             // label5
             // 
@@ -226,7 +226,7 @@
             checkRecuperacao.Location = new Point(391, 198);
             checkRecuperacao.Name = "checkRecuperacao";
             checkRecuperacao.Size = new Size(162, 25);
-            checkRecuperacao.TabIndex = 17;
+            checkRecuperacao.TabIndex = 4;
             checkRecuperacao.Text = "Prova Recuperacao";
             checkRecuperacao.UseVisualStyleBackColor = true;
             checkRecuperacao.CheckedChanged += checkRecuperacao_CheckedChanged;
