@@ -141,7 +141,7 @@
             // btnFiltrar
             // 
             btnFiltrar.DisplayStyle = ToolStripItemDisplayStyle.Image;
-            btnFiltrar.Image = Properties.Resources.visibility_FILL0_wght400_GRAD0_opsz24;
+            btnFiltrar.Image = Properties.Resources.filter_alt_FILL0_wght400_GRAD0_opsz24__1_;
             btnFiltrar.ImageTransparentColor = Color.Magenta;
             btnFiltrar.Name = "btnFiltrar";
             btnFiltrar.Padding = new Padding(7);
@@ -163,7 +163,7 @@
             // btnDuplicar
             // 
             btnDuplicar.DisplayStyle = ToolStripItemDisplayStyle.Image;
-            btnDuplicar.Image = Properties.Resources.content_copy_FILL0_wght400_GRAD0_opsz24;
+            btnDuplicar.Image = Properties.Resources.add_FILL0_wght400_GRAD0_opsz24__2_;
             btnDuplicar.ImageTransparentColor = Color.Magenta;
             btnDuplicar.Name = "btnDuplicar";
             btnDuplicar.Size = new Size(23, 34);
