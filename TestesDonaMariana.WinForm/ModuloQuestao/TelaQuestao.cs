@@ -40,14 +40,14 @@ namespace TestesDonaMariana.WinForm.ModuloQuestao
             else
                 alternativaCorrea = (EnumAlternativaCorreta)cbAlternativaCorreta.SelectedItem;
 
-            Materia materia= null;
+            Materia materia = null;
 
             if (cbMateria.SelectedItem.GetType() == typeof(string))
             {
-                 materia = materias.Find(m => m.nome == (string)cbMateria.SelectedItem);
+                materia = materias.Find(m => m.nome == (string)cbMateria.SelectedItem);
             }
             else
-                 materia = (Materia)cbMateria.SelectedItem;
+                materia = (Materia)cbMateria.SelectedItem;
 
             return new Questao(titulo, Alternativas, alternativaCorrea, materia);
         }
