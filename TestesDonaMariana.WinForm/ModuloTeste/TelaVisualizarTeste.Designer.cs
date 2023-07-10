@@ -69,6 +69,7 @@
             // lBtitulo
             // 
             lBtitulo.AutoSize = true;
+            lBtitulo.BackColor = SystemColors.ButtonHighlight;
             lBtitulo.Location = new Point(122, 34);
             lBtitulo.Name = "lBtitulo";
             lBtitulo.Size = new Size(38, 15);
@@ -78,6 +79,7 @@
             // lBdisciplina
             // 
             lBdisciplina.AutoSize = true;
+            lBdisciplina.BackColor = SystemColors.ButtonHighlight;
             lBdisciplina.Location = new Point(122, 72);
             lBdisciplina.Name = "lBdisciplina";
             lBdisciplina.Size = new Size(38, 15);
@@ -87,6 +89,7 @@
             // lBmateria
             // 
             lBmateria.AutoSize = true;
+            lBmateria.BackColor = SystemColors.ButtonHighlight;
             lBmateria.Location = new Point(122, 112);
             lBmateria.Name = "lBmateria";
             lBmateria.Size = new Size(38, 15);
@@ -137,7 +140,12 @@
             Controls.Add(label3);
             Controls.Add(label2);
             Controls.Add(label1);
+            FormBorderStyle = FormBorderStyle.FixedSingle;
+            MaximizeBox = false;
+            MdiChildrenMinimizedAnchorBottom = false;
+            MinimizeBox = false;
             Name = "TelaVisualizarTeste";
+            StartPosition = FormStartPosition.CenterScreen;
             Text = "TelaVisualizarTeste";
             ResumeLayout(false);
             PerformLayout();

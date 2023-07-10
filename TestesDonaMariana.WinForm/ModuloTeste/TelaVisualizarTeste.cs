@@ -19,14 +19,14 @@ namespace TestesDonaMariana.WinForm.ModuloTeste
             InitializeComponent();
         }
 
-        public void SetarValores(Teste TesteSelecionado) 
+        public void SetarValores(Teste TesteSelecionado)
         {
             lBdisciplina.Text = TesteSelecionado.disciplina.nome;
 
             if (TesteSelecionado.recuperacao)
                 lBmateria.Text = "Esta em Prova de Recuperação";
             else
-            lBmateria.Text = TesteSelecionado.materia.nome;
+                lBmateria.Text = TesteSelecionado.materia.nome;
 
             lBtitulo.Text = TesteSelecionado.titulo;
 
