@@ -146,7 +146,7 @@
             btnFiltrar.Name = "btnFiltrar";
             btnFiltrar.Padding = new Padding(7);
             btnFiltrar.Size = new Size(34, 34);
-            btnFiltrar.Text = "Filtrar";
+            btnFiltrar.Text = "VisualizarTeste";
             btnFiltrar.Click += btnFiltrar_Click;
             // 
             // btnGerarGabarito

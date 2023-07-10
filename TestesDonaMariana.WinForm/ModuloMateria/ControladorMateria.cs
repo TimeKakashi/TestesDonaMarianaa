@@ -25,7 +25,7 @@ namespace TestesDonaMariana.WinForm.ModuloMateria
         public override string ToolTipEditar => "Editar Materia";
 
         public override string ToolTipExcluir => "Excluir Materia";
-        public override string ToolTipFiltrar => "Filtrar Matérias";
+        public override string ToolTipFiltrar => "VisualizarTeste Matérias";
 
         public override string ToolTipPdf => "Este botão está desabilitado nessa Tela";
 
@@ -33,7 +33,7 @@ namespace TestesDonaMariana.WinForm.ModuloMateria
 
         public override string ToolTipDuplicar => "Este botão está desabilitado nessa Tela";
 
-        public override bool FiltrarHabilitado => true;
+        public override bool VisualizarHabilitado => true;
 
 
 

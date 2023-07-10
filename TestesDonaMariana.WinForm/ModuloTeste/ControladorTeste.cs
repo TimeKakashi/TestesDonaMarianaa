@@ -42,7 +42,7 @@ namespace TestesDonaMariana.WinForm.ModuloTeste
         public override string ToolTipEditar => "Este botão está desabilitado nessa Tela";
 
         public override string ToolTipExcluir => "Excluir Teste";
-        public override string ToolTipFiltrar => "Filtrar Testes";
+        public override string ToolTipFiltrar => "VisualizarTeste Testes";
 
         public override string ToolTipPdf => "Gerar PDF";
 
@@ -50,7 +50,7 @@ namespace TestesDonaMariana.WinForm.ModuloTeste
 
         public override string ToolTipDuplicar => "Duplicar Teste";
 
-        public override bool FiltrarHabilitado => true;
+        public override bool VisualizarHabilitado => true;
 
         public override bool GerarGabaritoHabilitado => true;
 
@@ -166,6 +166,20 @@ namespace TestesDonaMariana.WinForm.ModuloTeste
         }
 
         public override string ObterTipoCadastro() => "Cadastro de Testes";
+
+        public override void VisualizarTeste()
+        {
+            Teste testeSelecionado = ObterTesteSelecionado();
+            if (testeSelecionado == null)
+            {
+                MessageBox.Show($"Nenhum Teste Selecionado!", "Edição de Testes", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                return;
+            }
+            TelaVisualizarTeste telaVisualizarTeste = new TelaVisualizarTeste();
+
+            telaVisualizarTeste.SetarValores(testeSelecionado);
+            telaVisualizarTeste.ShowDialog();
+        }
 
         public override void GerarPdf()
         {
