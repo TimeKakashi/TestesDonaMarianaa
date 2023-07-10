@@ -42,27 +42,30 @@
             // label1
             // 
             label1.AutoSize = true;
+            label1.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
             label1.Location = new Point(52, 34);
             label1.Name = "label1";
-            label1.Size = new Size(40, 15);
+            label1.Size = new Size(52, 21);
             label1.TabIndex = 0;
             label1.Text = "Titulo:";
             // 
             // label2
             // 
             label2.AutoSize = true;
+            label2.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
             label2.Location = new Point(52, 72);
             label2.Name = "label2";
-            label2.Size = new Size(61, 15);
+            label2.Size = new Size(80, 21);
             label2.TabIndex = 1;
             label2.Text = "Disciplina:";
             // 
             // label3
             // 
             label3.AutoSize = true;
+            label3.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
             label3.Location = new Point(52, 112);
             label3.Name = "label3";
-            label3.Size = new Size(50, 15);
+            label3.Size = new Size(66, 21);
             label3.TabIndex = 2;
             label3.Text = "Matéria:";
             // 
@@ -70,9 +73,10 @@
             // 
             lBtitulo.AutoSize = true;
             lBtitulo.BackColor = SystemColors.ButtonHighlight;
-            lBtitulo.Location = new Point(122, 34);
+            lBtitulo.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
+            lBtitulo.Location = new Point(156, 34);
             lBtitulo.Name = "lBtitulo";
-            lBtitulo.Size = new Size(38, 15);
+            lBtitulo.Size = new Size(52, 21);
             lBtitulo.TabIndex = 3;
             lBtitulo.Text = "label4";
             // 
@@ -80,9 +84,10 @@
             // 
             lBdisciplina.AutoSize = true;
             lBdisciplina.BackColor = SystemColors.ButtonHighlight;
-            lBdisciplina.Location = new Point(122, 72);
+            lBdisciplina.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
+            lBdisciplina.Location = new Point(156, 72);
             lBdisciplina.Name = "lBdisciplina";
-            lBdisciplina.Size = new Size(38, 15);
+            lBdisciplina.Size = new Size(52, 21);
             lBdisciplina.TabIndex = 4;
             lBdisciplina.Text = "label5";
             // 
@@ -90,9 +95,10 @@
             // 
             lBmateria.AutoSize = true;
             lBmateria.BackColor = SystemColors.ButtonHighlight;
-            lBmateria.Location = new Point(122, 112);
+            lBmateria.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
+            lBmateria.Location = new Point(156, 112);
             lBmateria.Name = "lBmateria";
-            lBmateria.Size = new Size(38, 15);
+            lBmateria.Size = new Size(52, 21);
             lBmateria.TabIndex = 5;
             lBmateria.Text = "label6";
             // 
@@ -109,7 +115,7 @@
             // 
             button1.BackColor = SystemColors.ButtonHighlight;
             button1.DialogResult = DialogResult.Cancel;
-            button1.Location = new Point(318, 423);
+            button1.Location = new Point(302, 431);
             button1.Name = "button1";
             button1.Size = new Size(75, 23);
             button1.TabIndex = 7;
@@ -130,7 +136,7 @@
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(409, 458);
+            ClientSize = new Size(400, 466);
             Controls.Add(label4);
             Controls.Add(button1);
             Controls.Add(lBquestoes);

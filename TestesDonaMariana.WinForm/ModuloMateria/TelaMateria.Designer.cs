@@ -45,7 +45,7 @@
             // lblNome
             // 
             lblNome.AutoSize = true;
-            lblNome.Location = new Point(12, 9);
+            lblNome.Location = new Point(12, 14);
             lblNome.Name = "lblNome";
             lblNome.Size = new Size(43, 15);
             lblNome.TabIndex = 0;
@@ -54,7 +54,7 @@
             // lblDisciplina
             // 
             lblDisciplina.AutoSize = true;
-            lblDisciplina.Location = new Point(12, 50);
+            lblDisciplina.Location = new Point(12, 65);
             lblDisciplina.Name = "lblDisciplina";
             lblDisciplina.Size = new Size(61, 15);
             lblDisciplina.TabIndex = 1;
@@ -63,7 +63,7 @@
             // lblSerie
             // 
             lblSerie.AutoSize = true;
-            lblSerie.Location = new Point(12, 104);
+            lblSerie.Location = new Point(12, 120);
             lblSerie.Name = "lblSerie";
             lblSerie.Size = new Size(35, 15);
             lblSerie.TabIndex = 2;
@@ -72,30 +72,32 @@
             // button1
             // 
             button1.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
+            button1.BackColor = SystemColors.ButtonHighlight;
             button1.DialogResult = DialogResult.OK;
-            button1.Location = new Point(159, 163);
+            button1.Location = new Point(159, 187);
             button1.Name = "button1";
             button1.Size = new Size(90, 31);
             button1.TabIndex = 4;
             button1.Text = "Cadastrar";
-            button1.UseVisualStyleBackColor = true;
+            button1.UseVisualStyleBackColor = false;
             button1.Click += button1_Click;
             // 
             // button2
             // 
             button2.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
+            button2.BackColor = SystemColors.ButtonHighlight;
             button2.DialogResult = DialogResult.Cancel;
-            button2.Location = new Point(255, 163);
+            button2.Location = new Point(255, 187);
             button2.Name = "button2";
             button2.Size = new Size(90, 31);
             button2.TabIndex = 5;
             button2.Text = "Cancelar";
-            button2.UseVisualStyleBackColor = true;
+            button2.UseVisualStyleBackColor = false;
             // 
             // textBox1
             // 
             textBox1.BackColor = SystemColors.ButtonHighlight;
-            textBox1.Location = new Point(94, 6);
+            textBox1.Location = new Point(94, 11);
             textBox1.Name = "textBox1";
             textBox1.Size = new Size(155, 23);
             textBox1.TabIndex = 0;
@@ -104,7 +106,7 @@
             // 
             comboBox1.DropDownStyle = ComboBoxStyle.DropDownList;
             comboBox1.FormattingEnabled = true;
-            comboBox1.Location = new Point(94, 47);
+            comboBox1.Location = new Point(94, 57);
             comboBox1.Name = "comboBox1";
             comboBox1.Size = new Size(155, 23);
             comboBox1.TabIndex = 1;
@@ -112,32 +114,34 @@
             // primeiraSerie
             // 
             primeiraSerie.AutoSize = true;
-            primeiraSerie.Location = new Point(6, 11);
+            primeiraSerie.BackColor = SystemColors.Control;
+            primeiraSerie.Location = new Point(6, 17);
             primeiraSerie.Name = "primeiraSerie";
             primeiraSerie.Size = new Size(97, 19);
             primeiraSerie.TabIndex = 2;
             primeiraSerie.Text = "Primeira Série";
-            primeiraSerie.UseVisualStyleBackColor = true;
+            primeiraSerie.UseVisualStyleBackColor = false;
             // 
             // SegundSerie
             // 
             SegundSerie.AutoSize = true;
-            SegundSerie.Location = new Point(138, 11);
+            SegundSerie.BackColor = SystemColors.Control;
+            SegundSerie.Location = new Point(106, 17);
             SegundSerie.Name = "SegundSerie";
             SegundSerie.Size = new Size(99, 19);
             SegundSerie.TabIndex = 3;
             SegundSerie.TabStop = true;
             SegundSerie.Text = "Segunda Série";
-            SegundSerie.UseVisualStyleBackColor = true;
+            SegundSerie.UseVisualStyleBackColor = false;
             SegundSerie.CheckedChanged += radioButton2_CheckedChanged;
             // 
             // gbRadio
             // 
             gbRadio.Controls.Add(SegundSerie);
             gbRadio.Controls.Add(primeiraSerie);
-            gbRadio.Location = new Point(74, 97);
+            gbRadio.Location = new Point(94, 108);
             gbRadio.Name = "gbRadio";
-            gbRadio.Size = new Size(237, 47);
+            gbRadio.Size = new Size(220, 43);
             gbRadio.TabIndex = 9;
             gbRadio.TabStop = false;
             // 
@@ -145,7 +149,7 @@
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(347, 198);
+            ClientSize = new Size(347, 222);
             Controls.Add(gbRadio);
             Controls.Add(comboBox1);
             Controls.Add(textBox1);

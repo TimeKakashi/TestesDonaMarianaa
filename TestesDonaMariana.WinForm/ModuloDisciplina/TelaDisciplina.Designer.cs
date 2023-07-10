@@ -53,7 +53,7 @@
             // 
             // button1
             // 
-            button1.BackColor = SystemColors.ButtonFace;
+            button1.BackColor = SystemColors.ButtonHighlight;
             button1.DialogResult = DialogResult.OK;
             button1.Location = new Point(231, 161);
             button1.Name = "button1";
@@ -65,7 +65,7 @@
             // 
             // button2
             // 
-            button2.BackColor = SystemColors.ButtonFace;
+            button2.BackColor = SystemColors.ButtonHighlight;
             button2.DialogResult = DialogResult.Cancel;
             button2.Location = new Point(312, 161);
             button2.Name = "button2";
@@ -98,7 +98,7 @@
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            BackColor = Color.LightGray;
+            BackColor = SystemColors.Control;
             ClientSize = new Size(399, 210);
             Controls.Add(label2);
             Controls.Add(label1);

@@ -35,8 +35,8 @@
             cbDisciplina = new ComboBox();
             cbMateria = new ComboBox();
             cxRadio = new GroupBox();
-            radioSegunda = new RadioButton();
             radioPrimeira = new RadioButton();
+            radioSegunda = new RadioButton();
             numericNumeroQuestoes = new NumericUpDown();
             label5 = new Label();
             button1 = new Button();
@@ -120,17 +120,6 @@
             cxRadio.TabIndex = 6;
             cxRadio.TabStop = false;
             // 
-            // radioSegunda
-            // 
-            radioSegunda.AutoSize = true;
-            radioSegunda.Location = new Point(18, 11);
-            radioSegunda.Name = "radioSegunda";
-            radioSegunda.Size = new Size(99, 19);
-            radioSegunda.TabIndex = 10;
-            radioSegunda.TabStop = true;
-            radioSegunda.Text = "Segunda Serie";
-            radioSegunda.UseVisualStyleBackColor = true;
-            // 
             // radioPrimeira
             // 
             radioPrimeira.AutoSize = true;
@@ -141,6 +130,17 @@
             radioPrimeira.TabStop = true;
             radioPrimeira.Text = "Primeira Serie";
             radioPrimeira.UseVisualStyleBackColor = true;
+            // 
+            // radioSegunda
+            // 
+            radioSegunda.AutoSize = true;
+            radioSegunda.Location = new Point(18, 11);
+            radioSegunda.Name = "radioSegunda";
+            radioSegunda.Size = new Size(99, 19);
+            radioSegunda.TabIndex = 10;
+            radioSegunda.TabStop = true;
+            radioSegunda.Text = "Segunda Serie";
+            radioSegunda.UseVisualStyleBackColor = true;
             // 
             // numericNumeroQuestoes
             // 
@@ -161,24 +161,26 @@
             // 
             // button1
             // 
+            button1.BackColor = SystemColors.ButtonHighlight;
             button1.DialogResult = DialogResult.OK;
-            button1.Location = new Point(391, 632);
+            button1.Location = new Point(366, 632);
             button1.Name = "button1";
             button1.Size = new Size(91, 40);
             button1.TabIndex = 10;
             button1.Text = "Cadastrar";
-            button1.UseVisualStyleBackColor = true;
+            button1.UseVisualStyleBackColor = false;
             button1.Click += button1_Click;
             // 
             // button3
             // 
+            button3.BackColor = SystemColors.ButtonHighlight;
             button3.DialogResult = DialogResult.Cancel;
-            button3.Location = new Point(488, 632);
+            button3.Location = new Point(469, 632);
             button3.Name = "button3";
             button3.Size = new Size(88, 40);
             button3.TabIndex = 12;
             button3.Text = "Cancelar";
-            button3.UseVisualStyleBackColor = true;
+            button3.UseVisualStyleBackColor = false;
             // 
             // listBox1
             // 
@@ -192,13 +194,14 @@
             // 
             // button2
             // 
+            button2.BackColor = SystemColors.ButtonHighlight;
             button2.Font = new Font("Segoe UI", 13F, FontStyle.Regular, GraphicsUnit.Point);
             button2.Location = new Point(391, 248);
             button2.Name = "button2";
             button2.Size = new Size(175, 36);
             button2.TabIndex = 14;
             button2.Text = "Gerar Questões";
-            button2.UseVisualStyleBackColor = true;
+            button2.UseVisualStyleBackColor = false;
             button2.Click += button2_Click_1;
             // 
             // label6
