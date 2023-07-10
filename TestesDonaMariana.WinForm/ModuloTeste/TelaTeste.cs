@@ -263,10 +263,7 @@ namespace TestesDonaMariana.WinForm.ModuloTeste
             }
 
             if (teste.recuperacao)
-            {
-                cbMateria.Enabled = false;
                 checkRecuperacao.Checked = true;
-            }
             else
                 cbMateria.SelectedItem = teste.materia.nome;
 

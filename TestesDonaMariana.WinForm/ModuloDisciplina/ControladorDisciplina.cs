@@ -26,7 +26,6 @@ namespace TestesDonaMariana.WinForm.ModuloDisciplina
         public override string ToolTipPdf => "Este botão está desabilitado nessa Tela";
 
         public override string ToolTipGabarito => "Este botão está desabilitado nessa Tela";
-        public override bool VisualizarHabilitado => true;
 
         private Disciplina ObterDisciplinaSelecionado()
         {
