@@ -146,7 +146,7 @@
             MinimizeBox = false;
             Name = "TelaVisualizarTeste";
             StartPosition = FormStartPosition.CenterScreen;
-            Text = "TelaVisualizarTeste";
+            Text = "Visualizar Teste";
             ResumeLayout(false);
             PerformLayout();
         }

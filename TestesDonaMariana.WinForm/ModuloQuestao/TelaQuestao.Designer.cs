@@ -49,7 +49,7 @@
             // label1
             // 
             label1.AutoSize = true;
-            label1.Location = new Point(40, 30);
+            label1.Location = new Point(12, 30);
             label1.Name = "label1";
             label1.Size = new Size(47, 15);
             label1.TabIndex = 0;
@@ -58,7 +58,7 @@
             // label2
             // 
             label2.AutoSize = true;
-            label2.Location = new Point(36, 72);
+            label2.Location = new Point(12, 72);
             label2.Name = "label2";
             label2.Size = new Size(37, 15);
             label2.TabIndex = 1;
@@ -67,7 +67,7 @@
             // label3
             // 
             label3.AutoSize = true;
-            label3.Location = new Point(36, 155);
+            label3.Location = new Point(12, 155);
             label3.Name = "label3";
             label3.Size = new Size(74, 15);
             label3.TabIndex = 3;
@@ -76,7 +76,7 @@
             // label4
             // 
             label4.AutoSize = true;
-            label4.Location = new Point(36, 113);
+            label4.Location = new Point(12, 113);
             label4.Name = "label4";
             label4.Size = new Size(75, 15);
             label4.TabIndex = 2;
@@ -85,7 +85,7 @@
             // label8
             // 
             label8.AutoSize = true;
-            label8.Location = new Point(36, 197);
+            label8.Location = new Point(12, 197);
             label8.Name = "label8";
             label8.Size = new Size(75, 15);
             label8.TabIndex = 4;
@@ -94,7 +94,7 @@
             // label7
             // 
             label7.AutoSize = true;
-            label7.Location = new Point(36, 240);
+            label7.Location = new Point(12, 240);
             label7.Name = "label7";
             label7.Size = new Size(75, 15);
             label7.TabIndex = 5;
@@ -103,7 +103,7 @@
             // label6
             // 
             label6.AutoSize = true;
-            label6.Location = new Point(38, 281);
+            label6.Location = new Point(12, 286);
             label6.Name = "label6";
             label6.Size = new Size(106, 15);
             label6.TabIndex = 6;
@@ -113,7 +113,7 @@
             // 
             cbMateria.DropDownStyle = ComboBoxStyle.DropDownList;
             cbMateria.FormattingEnabled = true;
-            cbMateria.Location = new Point(93, 27);
+            cbMateria.Location = new Point(79, 27);
             cbMateria.Name = "cbMateria";
             cbMateria.Size = new Size(120, 23);
             cbMateria.TabIndex = 7;
@@ -157,31 +157,33 @@
             // 
             cbAlternativaCorreta.DropDownStyle = ComboBoxStyle.DropDownList;
             cbAlternativaCorreta.FormattingEnabled = true;
-            cbAlternativaCorreta.Location = new Point(150, 278);
+            cbAlternativaCorreta.Location = new Point(144, 278);
             cbAlternativaCorreta.Name = "cbAlternativaCorreta";
             cbAlternativaCorreta.Size = new Size(131, 23);
             cbAlternativaCorreta.TabIndex = 13;
             // 
             // btnGravar
             // 
+            btnGravar.BackColor = SystemColors.ButtonHighlight;
             btnGravar.DialogResult = DialogResult.OK;
             btnGravar.Location = new Point(320, 314);
             btnGravar.Name = "btnGravar";
             btnGravar.Size = new Size(97, 33);
             btnGravar.TabIndex = 14;
             btnGravar.Text = "Cadastrar";
-            btnGravar.UseVisualStyleBackColor = true;
+            btnGravar.UseVisualStyleBackColor = false;
             btnGravar.Click += btnGravar_Click;
             // 
             // button2
             // 
+            button2.BackColor = SystemColors.ButtonHighlight;
             button2.DialogResult = DialogResult.Cancel;
             button2.Location = new Point(423, 314);
             button2.Name = "button2";
             button2.Size = new Size(92, 33);
             button2.TabIndex = 15;
             button2.Text = "Cancelar";
-            button2.UseVisualStyleBackColor = true;
+            button2.UseVisualStyleBackColor = false;
             // 
             // TelaQuestao
             // 

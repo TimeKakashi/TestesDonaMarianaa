@@ -54,7 +54,7 @@
             // 
             label1.AutoSize = true;
             label1.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
-            label1.Location = new Point(47, 66);
+            label1.Location = new Point(31, 63);
             label1.Name = "label1";
             label1.Size = new Size(45, 21);
             label1.TabIndex = 0;
@@ -64,7 +64,7 @@
             // 
             label2.AutoSize = true;
             label2.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
-            label2.Location = new Point(47, 111);
+            label2.Location = new Point(31, 111);
             label2.Name = "label2";
             label2.Size = new Size(77, 21);
             label2.TabIndex = 1;
@@ -84,7 +84,7 @@
             // 
             label4.AutoSize = true;
             label4.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
-            label4.Location = new Point(47, 153);
+            label4.Location = new Point(33, 153);
             label4.Name = "label4";
             label4.Size = new Size(63, 21);
             label4.TabIndex = 2;
@@ -94,9 +94,9 @@
             // 
             cbDisciplina.DropDownStyle = ComboBoxStyle.DropDownList;
             cbDisciplina.FormattingEnabled = true;
-            cbDisciplina.Location = new Point(136, 113);
+            cbDisciplina.Location = new Point(116, 109);
             cbDisciplina.Name = "cbDisciplina";
-            cbDisciplina.Size = new Size(210, 23);
+            cbDisciplina.Size = new Size(230, 23);
             cbDisciplina.TabIndex = 4;
             cbDisciplina.SelectedValueChanged += cbDisciplina_SelectedValueChanged;
             // 
@@ -105,25 +105,25 @@
             cbMateria.DropDownStyle = ComboBoxStyle.DropDownList;
             cbMateria.Enabled = false;
             cbMateria.FormattingEnabled = true;
-            cbMateria.Location = new Point(116, 155);
+            cbMateria.Location = new Point(116, 151);
             cbMateria.Name = "cbMateria";
             cbMateria.Size = new Size(230, 23);
             cbMateria.TabIndex = 5;
             // 
             // cxRadio
             // 
-            cxRadio.Controls.Add(radioSegunda);
             cxRadio.Controls.Add(radioPrimeira);
+            cxRadio.Controls.Add(radioSegunda);
             cxRadio.Location = new Point(98, 52);
             cxRadio.Name = "cxRadio";
-            cxRadio.Size = new Size(216, 39);
+            cxRadio.Size = new Size(248, 39);
             cxRadio.TabIndex = 6;
             cxRadio.TabStop = false;
             // 
             // radioSegunda
             // 
             radioSegunda.AutoSize = true;
-            radioSegunda.Location = new Point(109, 14);
+            radioSegunda.Location = new Point(18, 11);
             radioSegunda.Name = "radioSegunda";
             radioSegunda.Size = new Size(99, 19);
             radioSegunda.TabIndex = 1;
@@ -134,7 +134,7 @@
             // radioPrimeira
             // 
             radioPrimeira.AutoSize = true;
-            radioPrimeira.Location = new Point(6, 14);
+            radioPrimeira.Location = new Point(151, 11);
             radioPrimeira.Name = "radioPrimeira";
             radioPrimeira.Size = new Size(97, 19);
             radioPrimeira.TabIndex = 0;
@@ -205,7 +205,7 @@
             // 
             label6.AutoSize = true;
             label6.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
-            label6.Location = new Point(47, 23);
+            label6.Location = new Point(31, 25);
             label6.Name = "label6";
             label6.Size = new Size(49, 21);
             label6.TabIndex = 15;
@@ -214,16 +214,16 @@
             // 
             // tbTitulo
             // 
-            tbTitulo.Location = new Point(102, 23);
+            tbTitulo.Location = new Point(116, 23);
             tbTitulo.Name = "tbTitulo";
-            tbTitulo.Size = new Size(244, 23);
+            tbTitulo.Size = new Size(230, 23);
             tbTitulo.TabIndex = 16;
             // 
             // checkRecuperacao
             // 
             checkRecuperacao.AutoSize = true;
             checkRecuperacao.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
-            checkRecuperacao.Location = new Point(376, 113);
+            checkRecuperacao.Location = new Point(391, 198);
             checkRecuperacao.Name = "checkRecuperacao";
             checkRecuperacao.Size = new Size(162, 25);
             checkRecuperacao.TabIndex = 17;

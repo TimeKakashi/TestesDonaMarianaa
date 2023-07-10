@@ -45,7 +45,7 @@
             // lblNome
             // 
             lblNome.AutoSize = true;
-            lblNome.Location = new Point(25, 9);
+            lblNome.Location = new Point(12, 9);
             lblNome.Name = "lblNome";
             lblNome.Size = new Size(43, 15);
             lblNome.TabIndex = 0;
@@ -63,7 +63,7 @@
             // lblSerie
             // 
             lblSerie.AutoSize = true;
-            lblSerie.Location = new Point(25, 94);
+            lblSerie.Location = new Point(12, 104);
             lblSerie.Name = "lblSerie";
             lblSerie.Size = new Size(35, 15);
             lblSerie.TabIndex = 2;
@@ -73,7 +73,7 @@
             // 
             button1.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
             button1.DialogResult = DialogResult.OK;
-            button1.Location = new Point(326, 96);
+            button1.Location = new Point(159, 163);
             button1.Name = "button1";
             button1.Size = new Size(90, 31);
             button1.TabIndex = 3;
@@ -85,7 +85,7 @@
             // 
             button2.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
             button2.DialogResult = DialogResult.Cancel;
-            button2.Location = new Point(422, 96);
+            button2.Location = new Point(255, 163);
             button2.Name = "button2";
             button2.Size = new Size(90, 31);
             button2.TabIndex = 4;
@@ -94,7 +94,8 @@
             // 
             // textBox1
             // 
-            textBox1.Location = new Point(74, 6);
+            textBox1.BackColor = SystemColors.ButtonHighlight;
+            textBox1.Location = new Point(94, 6);
             textBox1.Name = "textBox1";
             textBox1.Size = new Size(155, 23);
             textBox1.TabIndex = 5;
@@ -103,7 +104,7 @@
             // 
             comboBox1.DropDownStyle = ComboBoxStyle.DropDownList;
             comboBox1.FormattingEnabled = true;
-            comboBox1.Location = new Point(74, 47);
+            comboBox1.Location = new Point(94, 47);
             comboBox1.Name = "comboBox1";
             comboBox1.Size = new Size(155, 23);
             comboBox1.TabIndex = 6;
@@ -111,7 +112,7 @@
             // primeiraSerie
             // 
             primeiraSerie.AutoSize = true;
-            primeiraSerie.Location = new Point(1, 22);
+            primeiraSerie.Location = new Point(6, 11);
             primeiraSerie.Name = "primeiraSerie";
             primeiraSerie.Size = new Size(97, 19);
             primeiraSerie.TabIndex = 7;
@@ -122,7 +123,7 @@
             // SegundSerie
             // 
             SegundSerie.AutoSize = true;
-            SegundSerie.Location = new Point(101, 22);
+            SegundSerie.Location = new Point(138, 11);
             SegundSerie.Name = "SegundSerie";
             SegundSerie.Size = new Size(99, 19);
             SegundSerie.TabIndex = 8;
@@ -135,9 +136,9 @@
             // 
             gbRadio.Controls.Add(SegundSerie);
             gbRadio.Controls.Add(primeiraSerie);
-            gbRadio.Location = new Point(74, 68);
+            gbRadio.Location = new Point(74, 97);
             gbRadio.Name = "gbRadio";
-            gbRadio.Size = new Size(200, 51);
+            gbRadio.Size = new Size(237, 47);
             gbRadio.TabIndex = 9;
             gbRadio.TabStop = false;
             // 
@@ -145,7 +146,7 @@
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(514, 131);
+            ClientSize = new Size(347, 198);
             Controls.Add(gbRadio);
             Controls.Add(comboBox1);
             Controls.Add(textBox1);

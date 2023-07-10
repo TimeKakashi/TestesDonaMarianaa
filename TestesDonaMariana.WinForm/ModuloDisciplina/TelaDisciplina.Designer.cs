@@ -39,14 +39,14 @@
             // tbNome
             // 
             tbNome.Enabled = false;
-            tbNome.Location = new Point(133, 56);
+            tbNome.Location = new Point(111, 53);
             tbNome.Name = "tbNome";
             tbNome.Size = new Size(49, 23);
             tbNome.TabIndex = 5;
             // 
             // tbListaDeMateria
             // 
-            tbListaDeMateria.Location = new Point(133, 102);
+            tbListaDeMateria.Location = new Point(111, 97);
             tbListaDeMateria.Name = "tbListaDeMateria";
             tbListaDeMateria.Size = new Size(212, 23);
             tbListaDeMateria.TabIndex = 5;
@@ -55,7 +55,7 @@
             // 
             button1.BackColor = SystemColors.ButtonFace;
             button1.DialogResult = DialogResult.OK;
-            button1.Location = new Point(216, 216);
+            button1.Location = new Point(231, 161);
             button1.Name = "button1";
             button1.Size = new Size(75, 37);
             button1.TabIndex = 3;
@@ -67,7 +67,7 @@
             // 
             button2.BackColor = SystemColors.ButtonFace;
             button2.DialogResult = DialogResult.Cancel;
-            button2.Location = new Point(297, 216);
+            button2.Location = new Point(312, 161);
             button2.Name = "button2";
             button2.Size = new Size(75, 37);
             button2.TabIndex = 4;
@@ -77,20 +77,20 @@
             // label1
             // 
             label1.AutoSize = true;
-            label1.Font = new Font("Segoe UI", 15F, FontStyle.Regular, GraphicsUnit.Point);
+            label1.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
             label1.Location = new Point(35, 97);
             label1.Name = "label1";
-            label1.Size = new Size(75, 28);
+            label1.Size = new Size(60, 21);
             label1.TabIndex = 5;
             label1.Text = "Nome :";
             // 
             // label2
             // 
             label2.AutoSize = true;
-            label2.Font = new Font("Segoe UI", 15F, FontStyle.Regular, GraphicsUnit.Point);
+            label2.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
             label2.Location = new Point(35, 51);
             label2.Name = "label2";
-            label2.Size = new Size(38, 28);
+            label2.Size = new Size(30, 21);
             label2.TabIndex = 6;
             label2.Text = "Id :";
             // 
@@ -99,7 +99,7 @@
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.LightGray;
-            ClientSize = new Size(384, 265);
+            ClientSize = new Size(399, 210);
             Controls.Add(label2);
             Controls.Add(label1);
             Controls.Add(button2);
