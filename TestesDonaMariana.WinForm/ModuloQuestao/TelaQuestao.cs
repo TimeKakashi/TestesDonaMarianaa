@@ -17,6 +17,7 @@ namespace TestesDonaMariana.WinForm.ModuloQuestao
         public Questao ObterQuestao()
         {
             List<Alternativa> Alternativas = new List<Alternativa>();
+            List<Materia> materias = repositorioMateria.SelecionarTodos();
 
             string titulo = txTitulo.Text;
 
@@ -39,14 +40,22 @@ namespace TestesDonaMariana.WinForm.ModuloQuestao
             else
                 alternativaCorrea = (EnumAlternativaCorreta)cbAlternativaCorreta.SelectedItem;
 
-            Materia materia = (Materia)cbMateria.SelectedItem;
+            Materia materia= null;
+
+            if (cbMateria.SelectedItem.GetType() == typeof(string))
+            {
+                 materia = materias.Find(m => m.nome == (string)cbMateria.SelectedItem);
+            }
+            else
+                 materia = (Materia)cbMateria.SelectedItem;
 
             return new Questao(titulo, Alternativas, alternativaCorrea, materia);
         }
 
         public void ConfigurarTela(Questao questao)
         {
-            cbMateria.SelectedItem = questao.materia;
+
+            cbMateria.SelectedItem = questao.materia.nome;
             cbAlternativaCorreta.SelectedItem = questao.alternativaCorretaENUM;
             txAlternativaA.Text = questao.alternativas[0].alternativa;
             txAlternativaB.Text = questao.alternativas[1].alternativa;
@@ -72,7 +81,7 @@ namespace TestesDonaMariana.WinForm.ModuloQuestao
         {
             foreach (Materia materia in repositorioMateria.SelecionarTodos())
             {
-                cbMateria.Items.Add(materia);
+                cbMateria.Items.Add(materia.nome);
             }
 
             var valoresEnum = Enum.GetValues(typeof(EnumAlternativaCorreta));

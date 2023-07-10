@@ -147,6 +147,8 @@ namespace TestesDonaMariana.WinForm.ModuloTeste
                 TelaTeste telaDuplicar = new TelaTeste(repositorioDisciplina, repositorioMateria, repositorioQuestoes, repositorioTeste);
                 telaDuplicar.Text = "Duplicar Teste";
 
+
+
                 DialogResult resultado = telaDuplicar.ShowDialog();
 
                 if (resultado == DialogResult.OK)
