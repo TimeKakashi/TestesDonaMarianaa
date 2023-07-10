@@ -68,7 +68,7 @@ namespace TestesDonaMariana.WinForm
             btnInserir.Enabled = controlador.InserirHabilitado;
             btnEditar.Enabled = controlador.EditarHabilitado;
             btnExcluir.Enabled = controlador.ExcluirHabilitado;
-            btnFiltrar.Enabled = controlador.FiltrarHabilitado;
+            btnFiltrar.Enabled = controlador.VisualizarHabilitado;
             btnGerarGabarito.Enabled = controlador.GerarGabaritoHabilitado;
             btnPdf.Enabled = controlador.GerarPdfHabilitado;
             btnDuplicar.Enabled = controlador.DuplicarHabilitado;
@@ -170,7 +170,7 @@ namespace TestesDonaMariana.WinForm
                 return;
             }
 
-            controlador.Filtrar();
+            controlador.VisualizarTeste();
         }
 
         private void btnGerarGabarito_Click(object sender, EventArgs e)

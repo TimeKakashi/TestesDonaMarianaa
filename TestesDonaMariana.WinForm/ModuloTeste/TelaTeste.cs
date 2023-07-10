@@ -1,4 +1,5 @@
-﻿using TestesDonaMariana.Dominio;
+﻿using PdfSharp.Internal;
+using TestesDonaMariana.Dominio;
 using TestesDonaMariana.Dominio.ModuloDisciplina;
 using TestesDonaMariana.Dominio.ModuloMateria;
 using TestesDonaMariana.Dominio.ModuloQuestoes;
@@ -74,6 +75,22 @@ namespace TestesDonaMariana.WinForm.ModuloTeste
             cbDisciplina.SelectedItem = teste.disciplina;
             numericNumeroQuestoes.Value = teste.numeroQuestoes;
             cxRadio.Controls.OfType<RadioButton>().SingleOrDefault(RadioButton => RadioButton.Checked).Text = teste.serie;
+
+            EncherListBox(teste.questoes);
+        }
+
+        public void ConfigurarTelaVisualizar(Teste teste)
+        {
+            tbTitulo.Text = teste.titulo;
+            tbTitulo.Enabled = false;
+            cbMateria.SelectedItem = teste.materia;
+            cbMateria.Enabled = false;
+            cbDisciplina.SelectedItem = teste.disciplina;
+            cbDisciplina.Enabled = false;
+            numericNumeroQuestoes.Value = teste.numeroQuestoes;
+            numericNumeroQuestoes.Enabled = false;
+            //cxRadio.Controls.OfType<RadioButton>().SingleOrDefault(RadioButton => RadioButton.Checked).Text = teste.serie;
+            
 
             EncherListBox(teste.questoes);
         }
