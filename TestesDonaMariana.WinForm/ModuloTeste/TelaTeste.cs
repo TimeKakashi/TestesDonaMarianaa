@@ -31,25 +31,18 @@ namespace TestesDonaMariana.WinForm.ModuloTeste
 
            
 
-            EncherBox();
+            EncherBoxDisciplina();
         }
 
         public Teste ObterTeste()
         {
             Materia materia;
 
-            //if (cbMateria.SelectedItem == "")
-            //{
-            //    materia = null;
-            //}
-            //else
-            //    materia = (Materia)cbMateria.SelectedItem;
-
             if (recuperacao)
                 materia = null;
 
             else
-                materia = (Materia)cbMateria.SelectedItem;
+                materia = repositorioMateria.SelecionarTodos().Find(m => m.nome == (string)cbMateria.SelectedItem);
 
             string serieNome = string.Empty;
 
@@ -59,9 +52,10 @@ namespace TestesDonaMariana.WinForm.ModuloTeste
             else
                 serieNome = cxRadio.Controls.OfType<RadioButton>().SingleOrDefault(RadioButton => RadioButton.Checked).Text;
 
+            Disciplina disciplina = repositorioDisciplina.SelecionarTodos().Find(d => d.nome == (string)cbDisciplina.SelectedItem);
 
             string titulo = tbTitulo.Text;
-            Disciplina disciplina = (Disciplina)cbDisciplina.SelectedItem;
+
             int numeroQuestoes = Convert.ToInt32((numericNumeroQuestoes.Value));
             List<Questao> questoes = questoesFinais;
 
@@ -79,26 +73,10 @@ namespace TestesDonaMariana.WinForm.ModuloTeste
             EncherListBox(teste.questoes);
         }
 
-        public void ConfigurarTelaVisualizar(Teste teste)
-        {
-            tbTitulo.Text = teste.titulo;
-            tbTitulo.Enabled = false;
-            cbMateria.SelectedItem = teste.materia;
-            cbMateria.Enabled = false;
-            cbDisciplina.SelectedItem = teste.disciplina;
-            cbDisciplina.Enabled = false;
-            numericNumeroQuestoes.Value = teste.numeroQuestoes;
-            numericNumeroQuestoes.Enabled = false;
-            //cxRadio.Controls.OfType<RadioButton>().SingleOrDefault(RadioButton => RadioButton.Checked).Text = teste.serie;
-            
-
-            EncherListBox(teste.questoes);
-        }
-
-        public void EncherBox()
+        public void EncherBoxDisciplina()
         {
             foreach (Disciplina item in repositorioDisciplina.SelecionarTodos())
-                cbDisciplina.Items.Add(item);
+                cbDisciplina.Items.Add(item.nome);
         }
 
         public List<Questao> GeradorQuestao(Materia materia)
@@ -161,14 +139,14 @@ namespace TestesDonaMariana.WinForm.ModuloTeste
         }
 
 
-        private void PegarMateriasDisciplina(Disciplina? disciplina)
+        private void EnceherCBBoxMateria(Disciplina? disciplina)
         {
             cbMateria.Text = "";
 
             cbMateria.Items.Clear();
 
             foreach (Materia item in repositorioMateria.SelecionarMateriasDaDisciplina(disciplina))
-                cbMateria.Items.Add(item);
+                cbMateria.Items.Add(item.nome);
         }
 
         private void cbDisciplina_SelectedValueChanged(object sender, EventArgs e)
@@ -176,9 +154,9 @@ namespace TestesDonaMariana.WinForm.ModuloTeste
             if (!checkRecuperacao.Checked)
                 cbMateria.Enabled = true;
 
-            Disciplina disciplina = cbDisciplina.SelectedItem as Disciplina;
+            Disciplina disciplina = repositorioDisciplina.SelecionarTodos().Find(d => d.nome == (string)cbDisciplina.SelectedItem);
 
-            PegarMateriasDisciplina(disciplina);
+            EnceherCBBoxMateria(disciplina);
         }
 
         private void button2_Click_1(object sender, EventArgs e) //Gerar Questoes
@@ -264,6 +242,49 @@ namespace TestesDonaMariana.WinForm.ModuloTeste
                 cbMateria.Enabled = false;
                 recuperacao = true;
             }
+        }
+
+        public void SetarTelaDuplicacao(Teste teste)
+        {
+            tbTitulo.Text = teste.titulo;
+            cbDisciplina.SelectedItem = teste.disciplina.nome;
+
+            EnceherCBBoxMateria(teste.disciplina);
+
+            if (teste.serie == "Primeira Serie")
+            {
+                radioPrimeira.Checked = true;
+                radioSegunda.Checked = false;
+            }
+            else
+            {
+                radioPrimeira.Checked = false;
+                radioSegunda.Checked = true;
+            }
+
+            if (teste.recuperacao)
+            {
+                cbMateria.Enabled = false;
+                checkRecuperacao.Checked = true;
+            }
+            else
+                cbMateria.SelectedItem = teste.materia.nome;
+
+            numericNumeroQuestoes.Value = teste.numeroQuestoes;
+
+            DesabilitarCampos();
+
+
+        }
+
+        private void DesabilitarCampos()
+        {
+            cbDisciplina.Enabled = false;
+            radioPrimeira.Enabled = false;
+            radioSegunda.Enabled = false;
+            checkRecuperacao.Enabled = false;
+            cbMateria.Enabled = false;
+            numericNumeroQuestoes.Enabled = false;
         }
     }
 }

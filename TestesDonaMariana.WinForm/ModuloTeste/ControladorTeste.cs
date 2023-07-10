@@ -138,27 +138,13 @@ namespace TestesDonaMariana.WinForm.ModuloTeste
                 TelaTeste telaDuplicar = new TelaTeste(repositorioDisciplina, repositorioMateria, repositorioQuestoes, repositorioTeste);
                 telaDuplicar.Text = "Duplicar Teste";
 
-
+                telaDuplicar.SetarTelaDuplicacao(testeSelecionado);
 
                 DialogResult resultado = telaDuplicar.ShowDialog();
 
                 if (resultado == DialogResult.OK)
                 {
-                    Teste testeDuplicado = new Teste();
-                    testeDuplicado.materia = testeSelecionado.materia;
-                    testeDuplicado.disciplina = testeSelecionado.disciplina;
-                    testeDuplicado.numeroQuestoes = testeSelecionado.numeroQuestoes;
-                    testeDuplicado.serie = testeSelecionado.serie;
-                    testeDuplicado.questoes = testeSelecionado.questoes.Select(questao => questao.Clone() as Questao).ToList();
-                    testeDuplicado.titulo = telaDuplicar.ObterTituloTeste();
-                    testeDuplicado.recuperacao = testeSelecionado.recuperacao;
-
-                    // Verificar se o título duplicado já existe
-                    if (repositorioTeste.TituloExistente(testeDuplicado.titulo))
-                    {
-                        MessageBox.Show("O título do teste já existe. Por favor, escolha um título diferente.", "Erro de duplicação", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                        return;
-                    }
+                    Teste testeDuplicado = telaDuplicar.ObterTeste();
 
                     repositorioTeste.Inserir(testeDuplicado, testeDuplicado.questoes);
 
@@ -177,11 +163,13 @@ namespace TestesDonaMariana.WinForm.ModuloTeste
         public override void VisualizarTeste()
         {
             Teste testeSelecionado = ObterTesteSelecionado();
+
             if (testeSelecionado == null)
             {
                 MessageBox.Show($"Nenhum Teste Selecionado!", "Edição de Testes", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                 return;
             }
+
             TelaVisualizarTeste telaVisualizarTeste = new TelaVisualizarTeste();
 
             telaVisualizarTeste.SetarValores(testeSelecionado);
