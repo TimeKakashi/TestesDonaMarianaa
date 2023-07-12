@@ -45,36 +45,9 @@ namespace TestesDonaMariana.WinForm.ModuloQuestao
             {
                 DialogResult opcaoEscolhida = telaQuestao.ShowDialog();
 
-                if (opcaoEscolhida == DialogResult.OK)
-                {
-                    Questao questao = telaQuestao.ObterQuestao();
-
-                    List<Questao> listaQuestoes = repositorioQuestao.SelecionarTodos();
-                    if (listaQuestoes.Any(x => x.titulo.ToLower() == questao.titulo.ToLower()))
-                    {
-                        // Nome repetido, exibir mensagem de erro e continuar na tela de inserção
-                        TelaPrincipal.Instancia.AtualizarRodape("O nome da questão já existe. Por favor, insira um nome diferente.");
-                        nomeRepetido = true;
-                    }
-                    else
-                    {
-                        repositorioQuestao.Inserir(questao);
-                        repositorioQuestao.InserirAlternativa(questao.alternativas, questao);
-                        List<Alternativa> lista = repositorioQuestao.SelecionarAlternativas(questao);
-                        nomeRepetido = false;
-                    }
-                }
-                else if (opcaoEscolhida == DialogResult.Cancel)
-                {
-                    // O usuário cancelou a operação de inserção
-                    nomeRepetido = false;
-                }
-            }
-            while (nomeRepetido);
-
-            CarregarQuestoes();
+            if (opcaoEscolhida == DialogResult.OK)
+                CarregarQuestoes();
         }
-
 
         public override void Editar()
         {
@@ -154,33 +127,7 @@ namespace TestesDonaMariana.WinForm.ModuloQuestao
                 return;
             }
 
-            bool podeExcluir = true;
-
-            foreach (Teste teste in repositorioTeste.SelecionarTodos())
-            {
-                teste.questoes = repositorioTeste.SelecionarQuestoesPorMateria(teste);
-
-                foreach (Questao q in teste.questoes)
-                {
-                    if (q.id == questao.id)
-                    {
-                        podeExcluir = false;
-                        break;
-                    }
-                }
-            }
-
-            if (!podeExcluir)
-            {
-                MessageBox.Show($"Essa questão esta atrelada a um teste!",
-                   "Exclusão de Questões",
-                   MessageBoxButtons.OK,
-                   MessageBoxIcon.Exclamation);
-                return;
-            }
-
             DialogResult opcaoEscolhida = MessageBox.Show($"Deseja excluir a questão {questao.titulo}?", "Exclusão de Questões",
-                MessageBoxButtons.OKCancel, MessageBoxIcon.Question);
 
 
             if (opcaoEscolhida == DialogResult.OK)
