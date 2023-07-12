@@ -40,6 +40,10 @@ namespace TestesDonaMariana.Dominio.ModuloQuestoes
             this.id = idQuestao;
         }
 
+        public Questao()
+        {
+        }
+
         public override void AtualizarInformacoes(Questao registroAtualizado)
         {
             this.titulo = registroAtualizado.titulo;

@@ -1,3 +1,4 @@
+using TestesDonaMariana.Aplicacao.ModuloQuestao;
 using TestesDonaMariana.Dominio;
 using TestesDonaMariana.Dominio.ModuloDisciplina;
 using TestesDonaMariana.Dominio.ModuloGabarito;
@@ -24,6 +25,9 @@ namespace TestesDonaMariana.WinForm
         private IRepositorioMateria repositorioMateria = new RepositorioMateriaSql();
         private IRepositorioQuestoes repositorioQuestao = new RepositorioQuestaoSql();
         private IRepositorioTeste repositorioTeste = new RepositorioTesteSql();
+    
+        
+        
 
         private static TelaPrincipal telaPrincipal;
         public ControladorBase controlador { get; set; }
@@ -107,7 +111,8 @@ namespace TestesDonaMariana.WinForm
 
         private void questaoToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            controlador = new ControladorQuestao(repositorioQuestao, repositorioMateria, repositorioTeste);
+            ServicoQuestao servicoQuestao = new ServicoQuestao(repositorioQuestao);
+            controlador = new ControladorQuestao(repositorioQuestao, repositorioMateria, repositorioTeste, servicoQuestao);
             ConfigurarTelaPrincipal(controlador);
         }
 

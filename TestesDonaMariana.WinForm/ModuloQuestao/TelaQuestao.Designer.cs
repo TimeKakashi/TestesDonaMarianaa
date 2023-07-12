@@ -44,6 +44,8 @@
             cbAlternativaCorreta = new ComboBox();
             btnGravar = new Button();
             button2 = new Button();
+            fodae = new Label();
+            txId = new TextBox();
             SuspendLayout();
             // 
             // label1
@@ -58,7 +60,7 @@
             // label2
             // 
             label2.AutoSize = true;
-            label2.Location = new Point(12, 72);
+            label2.Location = new Point(12, 96);
             label2.Name = "label2";
             label2.Size = new Size(37, 15);
             label2.TabIndex = 1;
@@ -67,7 +69,7 @@
             // label3
             // 
             label3.AutoSize = true;
-            label3.Location = new Point(12, 155);
+            label3.Location = new Point(12, 179);
             label3.Name = "label3";
             label3.Size = new Size(74, 15);
             label3.TabIndex = 3;
@@ -76,7 +78,7 @@
             // label4
             // 
             label4.AutoSize = true;
-            label4.Location = new Point(12, 113);
+            label4.Location = new Point(12, 137);
             label4.Name = "label4";
             label4.Size = new Size(75, 15);
             label4.TabIndex = 2;
@@ -85,7 +87,7 @@
             // label8
             // 
             label8.AutoSize = true;
-            label8.Location = new Point(12, 197);
+            label8.Location = new Point(12, 221);
             label8.Name = "label8";
             label8.Size = new Size(75, 15);
             label8.TabIndex = 4;
@@ -94,7 +96,7 @@
             // label7
             // 
             label7.AutoSize = true;
-            label7.Location = new Point(12, 240);
+            label7.Location = new Point(12, 264);
             label7.Name = "label7";
             label7.Size = new Size(75, 15);
             label7.TabIndex = 5;
@@ -103,7 +105,7 @@
             // label6
             // 
             label6.AutoSize = true;
-            label6.Location = new Point(12, 286);
+            label6.Location = new Point(12, 310);
             label6.Name = "label6";
             label6.Size = new Size(106, 15);
             label6.TabIndex = 6;
@@ -120,35 +122,35 @@
             // 
             // txTitulo
             // 
-            txTitulo.Location = new Point(79, 69);
+            txTitulo.Location = new Point(79, 93);
             txTitulo.Name = "txTitulo";
             txTitulo.Size = new Size(356, 23);
             txTitulo.TabIndex = 8;
             // 
             // txAlternativaA
             // 
-            txAlternativaA.Location = new Point(117, 113);
+            txAlternativaA.Location = new Point(117, 137);
             txAlternativaA.Name = "txAlternativaA";
             txAlternativaA.Size = new Size(318, 23);
             txAlternativaA.TabIndex = 9;
             // 
             // txAlternativaB
             // 
-            txAlternativaB.Location = new Point(117, 155);
+            txAlternativaB.Location = new Point(117, 179);
             txAlternativaB.Name = "txAlternativaB";
             txAlternativaB.Size = new Size(318, 23);
             txAlternativaB.TabIndex = 10;
             // 
             // txAlternativaC
             // 
-            txAlternativaC.Location = new Point(117, 197);
+            txAlternativaC.Location = new Point(117, 221);
             txAlternativaC.Name = "txAlternativaC";
             txAlternativaC.Size = new Size(318, 23);
             txAlternativaC.TabIndex = 11;
             // 
             // txAlternativaD
             // 
-            txAlternativaD.Location = new Point(117, 240);
+            txAlternativaD.Location = new Point(117, 264);
             txAlternativaD.Name = "txAlternativaD";
             txAlternativaD.Size = new Size(318, 23);
             txAlternativaD.TabIndex = 12;
@@ -157,7 +159,7 @@
             // 
             cbAlternativaCorreta.DropDownStyle = ComboBoxStyle.DropDownList;
             cbAlternativaCorreta.FormattingEnabled = true;
-            cbAlternativaCorreta.Location = new Point(144, 278);
+            cbAlternativaCorreta.Location = new Point(144, 302);
             cbAlternativaCorreta.Name = "cbAlternativaCorreta";
             cbAlternativaCorreta.Size = new Size(131, 23);
             cbAlternativaCorreta.TabIndex = 13;
@@ -185,11 +187,31 @@
             button2.Text = "Cancelar";
             button2.UseVisualStyleBackColor = false;
             // 
+            // fodae
+            // 
+            fodae.AutoSize = true;
+            fodae.Location = new Point(12, 63);
+            fodae.Name = "fodae";
+            fodae.Size = new Size(17, 15);
+            fodae.TabIndex = 16;
+            fodae.Text = "Id";
+            fodae.Click += label5_Click;
+            // 
+            // txId
+            // 
+            txId.Enabled = false;
+            txId.Location = new Point(79, 60);
+            txId.Name = "txId";
+            txId.Size = new Size(120, 23);
+            txId.TabIndex = 17;
+            // 
             // TelaQuestao
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(522, 364);
+            Controls.Add(txId);
+            Controls.Add(fodae);
             Controls.Add(button2);
             Controls.Add(btnGravar);
             Controls.Add(cbAlternativaCorreta);
@@ -235,5 +257,7 @@
         private ComboBox cbAlternativaCorreta;
         private Button btnGravar;
         private Button button2;
+        private Label fodae;
+        private TextBox txId;
     }
 }
