@@ -9,15 +9,13 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Folder Include="Compartilhado\" />
-  </ItemGroup>
-
-  <ItemGroup>
+    <PackageReference Include="FluentResults" Version="3.15.2" />
     <PackageReference Include="iTextSharp" Version="5.5.13.3" />
     <PackageReference Include="PdfSharp" Version="1.50.5147" />
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\TestesDonaMariana.Aplicacao\TestesDonaMariana.Aplicacao.csproj" />
     <ProjectReference Include="..\TestesDonaMariana.Dominio\TestesDonaMariana.Dominio.csproj" />
     <ProjectReference Include="..\TestesDonaMariana.Infra\TestesDonaMariana.Infra.Dados.Sql.csproj" />
   </ItemGroup>

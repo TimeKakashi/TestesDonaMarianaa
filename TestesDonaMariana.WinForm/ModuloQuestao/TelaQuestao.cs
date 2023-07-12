@@ -1,12 +1,18 @@
-﻿using TestesDonaMariana.Dominio.ModuloMateria;
+﻿using FluentResults;
+using TestesDonaMariana.Dominio.ModuloMateria;
 using TestesDonaMariana.Dominio.ModuloQuestao;
 using TestesDonaMariana.Dominio.ModuloQuestoes;
+using TestesDonaMariana.WinForm.Compartilhado;
 
 namespace TestesDonaMariana.WinForm.ModuloQuestao
 {
     public partial class TelaQuestao : Form
     {
         private IRepositorioMateria repositorioMateria;
+
+        private Questao questao;
+
+        public event GravarRegistroDelegate onGravarRegistro;
         public TelaQuestao(IRepositorioMateria repositorioMateria)
         {
             InitializeComponent();
@@ -16,10 +22,18 @@ namespace TestesDonaMariana.WinForm.ModuloQuestao
 
         public Questao ObterQuestao()
         {
+
+            int id = 0;
+
             List<Alternativa> Alternativas = new List<Alternativa>();
             List<Materia> materias = repositorioMateria.SelecionarTodos();
 
             string titulo = txTitulo.Text;
+
+            if(txId.Text != null && txId.Text != "")
+            {
+                id = Convert.ToInt32(txId.Text);
+            }
 
             Alternativa alternativaA = new Alternativa(txAlternativaA.Text);
             Alternativa alternativaB = new Alternativa(txAlternativaB.Text);
@@ -42,7 +56,7 @@ namespace TestesDonaMariana.WinForm.ModuloQuestao
 
             Materia materia = null;
 
-            if(cbMateria.SelectedItem != null)
+            if (cbMateria.SelectedItem != null)
             {
                 if (cbMateria.SelectedItem.GetType() == typeof(string))
                 {
@@ -51,9 +65,16 @@ namespace TestesDonaMariana.WinForm.ModuloQuestao
                 else
                     materia = (Materia)cbMateria.SelectedItem;
             }
-          
 
-            return new Questao(titulo, Alternativas, alternativaCorrea, materia);
+            questao = new Questao();
+
+            questao.titulo = titulo;
+            questao.materia = materia;
+            questao.alternativas = Alternativas;
+            questao.id = id;
+            questao.alternativaCorretaENUM = alternativaCorrea;
+            
+             return new Questao(titulo, Alternativas, alternativaCorrea, materia);
         }
 
         public void ConfigurarTela(Questao questao)
@@ -65,6 +86,7 @@ namespace TestesDonaMariana.WinForm.ModuloQuestao
             txAlternativaB.Text = questao.alternativas[1].alternativa;
             txAlternativaC.Text = questao.alternativas[2].alternativa;
             txAlternativaD.Text = questao.alternativas[3].alternativa;
+            txId.Text = questao.id.ToString();
             txTitulo.Text = questao.titulo;
         }
 
@@ -72,11 +94,14 @@ namespace TestesDonaMariana.WinForm.ModuloQuestao
         {
             Questao questao = ObterQuestao();
 
-            string[] erros = questao.Validar();
+            Result result = onGravarRegistro(this.questao);
 
-            if (erros.Length > 0)
+            if (result.IsFailed)
             {
-                TelaPrincipal.Instancia.AtualizarRodape(erros[0]);
+                string erro = result.Errors[0].Message;
+
+                TelaPrincipal.Instancia.AtualizarRodape(erro);
+
                 DialogResult = DialogResult.None;
             }
         }
@@ -99,7 +124,9 @@ namespace TestesDonaMariana.WinForm.ModuloQuestao
             }
         }
 
+        private void label5_Click(object sender, EventArgs e)
+        {
 
-
+        }
     }
 }
