@@ -49,10 +49,10 @@ namespace TestesDonaMariana.WinForm.ModuloDisciplina
             Result result;
 
             if (this.disciplina1.id != 0)
-                result = onGravarRegistro(disciplina);
+                result = onGravarRegistro(disciplina1);
 
             else
-                result = onGravarRegistro(this.disciplina1);
+                result = onGravarRegistro(disciplina);
 
             if (result.IsFailed)
             {
