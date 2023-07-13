@@ -90,31 +90,6 @@ namespace TestesDonaMariana.WinForm.ModuloQuestao
                 return;
             }
 
-            //bool podeExcluir = true;
-
-            //foreach (Teste teste in repositorioTeste.SelecionarTodos())
-            //{
-            //    teste.questoes = repositorioTeste.SelecionarQuestoesPorMateria(teste);
-
-            //    foreach (Questao q in teste.questoes)
-            //    {
-            //        if (q.id == questao.id)
-            //        {
-            //            podeExcluir = false;
-            //            break;
-            //        }
-            //    }
-            //}
-
-            //if (!podeExcluir)
-            //{
-            //    MessageBox.Show($"Essa questão esta atrelada a um teste!",
-            //       "Exclusão de Questões",
-            //       MessageBoxButtons.OK,
-            //       MessageBoxIcon.Exclamation);
-            //    return;
-            //}
-
             DialogResult opcaoEscolhida = MessageBox.Show($"Deseja excluir a questão {questao.titulo}?", "Exclusão de Questões",
                                                             MessageBoxButtons.OKCancel, MessageBoxIcon.Question);
 

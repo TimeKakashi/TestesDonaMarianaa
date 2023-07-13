@@ -12,7 +12,7 @@ namespace TestesDonaMariana.WinForm.ModuloQuestao
 
         private Questao questao;
 
-        public event GravarRegistroDelegate onGravarRegistro;
+        public event GravarRegistroDelegate<Questao> onGravarRegistro;
         public TelaQuestao(IRepositorioMateria repositorioMateria)
         {
             InitializeComponent();

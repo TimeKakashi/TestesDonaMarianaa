@@ -1,4 +1,6 @@
-﻿using TestesDonaMariana.Dominio.ModuloDisciplina;
+﻿using FluentResults;
+using TestesDonaMariana.Aplicacao.ModuloQuestao;
+using TestesDonaMariana.Dominio.ModuloDisciplina;
 using TestesDonaMariana.WinForm.Compartilhado;
 
 namespace TestesDonaMariana.WinForm.ModuloDisciplina
@@ -6,11 +8,13 @@ namespace TestesDonaMariana.WinForm.ModuloDisciplina
     public class ControladorDisciplina : ControladorBase
     {
         private IRepositorioDisciplina repositorioDisciplina;
-        ListagemDisciplinaControl listagemDisciplina;
+        private ListagemDisciplinaControl listagemDisciplina;
+        private ServicoDisciplina servicoDisciplina;
 
-        public ControladorDisciplina(IRepositorioDisciplina repositorioDisciplina)
+        public ControladorDisciplina(IRepositorioDisciplina repositorioDisciplina, ServicoDisciplina servicoDisciplina)
         {
             this.repositorioDisciplina = repositorioDisciplina;
+            this.servicoDisciplina = servicoDisciplina;
         }
 
         public override string ToolTipInserir => "Cadastrar Disciplina";
@@ -58,37 +62,13 @@ namespace TestesDonaMariana.WinForm.ModuloDisciplina
         public override void Inserir()
         {
             TelaDisciplina telaDisciplina = new TelaDisciplina();
-            bool nomeRepetido = false;
 
-            do
-            {
-                DialogResult opcaoEscolhida = telaDisciplina.ShowDialog();
+            telaDisciplina.onGravarRegistro += servicoDisciplina.Inserir;
 
-                if (opcaoEscolhida == DialogResult.OK)
-                {
-                    Disciplina novaDisciplina = telaDisciplina.ObterDisciplina();
+            DialogResult opcaoEscolhida = telaDisciplina.ShowDialog();
 
-                    List<Disciplina> listaDisciplinas = repositorioDisciplina.SelecionarTodos();
-                    if (listaDisciplinas.Any(x => x.nome.ToLower() == novaDisciplina.nome.ToLower()))
-                    {
-                        // Nome repetido, exibir mensagem de erro e continuar na tela de cadastro
-                        TelaPrincipal.Instancia.AtualizarRodape("O nome da disciplina já existe. Por favor, insira um nome diferente.");
-                        nomeRepetido = true;
-                    }
-                    else
-                    {
-                        repositorioDisciplina.Inserir(novaDisciplina);
-                        CarregarDisciplina();
-                        nomeRepetido = false;
-                    }
-                }
-                else if (opcaoEscolhida == DialogResult.Cancel)
-                {
-                    // O usuário cancelou a operação de inserção
-                    nomeRepetido = false;
-                }
-            }
-            while (nomeRepetido);
+            if (opcaoEscolhida == DialogResult.OK)
+                  CarregarDisciplina();
         }
 
 
@@ -104,39 +84,13 @@ namespace TestesDonaMariana.WinForm.ModuloDisciplina
 
             TelaDisciplina telaDisciplina = new TelaDisciplina(repositorioDisciplina);
             telaDisciplina.ConfigurarTela(disciplinaSelecionada);
+            telaDisciplina.onGravarRegistro += servicoDisciplina.Editar;
+            
+            DialogResult opcaoEscolhida = telaDisciplina.ShowDialog();
 
-            bool nomeRepetido = false;
-
-            do
-            {
-                DialogResult opcaoEscolhida = telaDisciplina.ShowDialog();
-
-                if (opcaoEscolhida == DialogResult.OK)
-                {
-                    Disciplina novaDisciplina = telaDisciplina.ObterDisciplina();
-                    novaDisciplina.id = disciplinaSelecionada.id;
-
-                    List<Disciplina> listaDisciplinas = repositorioDisciplina.SelecionarTodos();
-                    if (listaDisciplinas.Any(x => x.nome.ToLower() == novaDisciplina.nome.ToLower() && x.id != novaDisciplina.id))
-                    {
-                        // Nome repetido, exibir mensagem de erro e continuar na tela de edição
-                        TelaPrincipal.Instancia.AtualizarRodape("O nome da disciplina já existe. Por favor, insira um nome diferente.");
-                        nomeRepetido = true;
-                    }
-                    else
-                    {
-                        repositorioDisciplina.Editar(novaDisciplina.id, novaDisciplina);
-                        CarregarDisciplina();
-                        nomeRepetido = false;
-                    }
-                }
-                else if (opcaoEscolhida == DialogResult.Cancel)
-                {
-                    // O usuário cancelou a operação de edição
-                    nomeRepetido = false;
-                }
-            }
-            while (nomeRepetido);
+            if (opcaoEscolhida == DialogResult.OK)
+                CarregarDisciplina();
+               
         }
 
 
@@ -150,23 +104,19 @@ namespace TestesDonaMariana.WinForm.ModuloDisciplina
                 return;
             }
 
-            else if (repositorioDisciplina.VerificarTestesNaDisciplina(disciplinaSelecionada).Count > 0)
-            {
-                MessageBox.Show("A Disciplina Selecionada contem um teste cadastrado!", "Excluir Disciplina", MessageBoxButtons.OK);
-                return;
-            }
-
-            else if (repositorioDisciplina.VerificarMateriasNaDisciplina(disciplinaSelecionada).Count > 0)
-            {
-                MessageBox.Show("A Disciplina Selecionada contem uma materia cadastrada!", "Excluir Disciplina", MessageBoxButtons.OK);
-                return;
-            }
-
             DialogResult opcaoEscolhida = MessageBox.Show($"Deseja Excluir a Disciplina {disciplinaSelecionada}?", "Exclusão de Disciplina", MessageBoxButtons.OKCancel, MessageBoxIcon.Question);
 
             if (opcaoEscolhida == DialogResult.OK)
             {
-                repositorioDisciplina.Excluir(disciplinaSelecionada);
+                Result resultado = servicoDisciplina.Excluir(disciplinaSelecionada);
+
+                if(resultado.IsFailed)
+                {
+                    MessageBox.Show(resultado.Errors[0].Message, "Exclusão de Disciplina", MessageBoxButtons.OK, MessageBoxIcon.Error);
+
+                    return;
+                }
+
                 CarregarDisciplina();
             }
         }

@@ -1,11 +1,17 @@
-﻿using TestesDonaMariana.Dominio.ModuloDisciplina;
+﻿using FluentResults;
+using TestesDonaMariana.Dominio.ModuloDisciplina;
+using TestesDonaMariana.WinForm.Compartilhado;
 
 namespace TestesDonaMariana.WinForm.ModuloDisciplina
 {
-
     public partial class TelaDisciplina : Form
     {
         private IRepositorioDisciplina repositorioDisciplina;
+
+        private Disciplina disciplina1;
+
+        public event GravarRegistroDelegate<Disciplina> onGravarRegistro;
+
         public TelaDisciplina()
         {
             InitializeComponent();
@@ -17,10 +23,6 @@ namespace TestesDonaMariana.WinForm.ModuloDisciplina
             this.repositorioDisciplina = repositorioDisciplina;
         }
 
-        private Disciplina disciplina;
-
-
-
         public void ConfigurarTela(Disciplina? disciplinaSelecionada)
         {
             tbNome.Text = disciplinaSelecionada.id.ToString();
@@ -29,7 +31,14 @@ namespace TestesDonaMariana.WinForm.ModuloDisciplina
 
         public Disciplina ObterDisciplina()
         {
+            int id = 0;
+
             string nome = tbListaDeMateria.Text;
+
+            if(tbNome.Text != "")
+                id = Convert.ToInt32(tbNome.Text);
+
+            disciplina1 = new Disciplina(nome, id);
 
             return new Disciplina(nome);
         }
@@ -37,13 +46,19 @@ namespace TestesDonaMariana.WinForm.ModuloDisciplina
         private void button1_Click(object sender, EventArgs e)
         {
             Disciplina disciplina = ObterDisciplina();
+            Result result;
 
-            string[] erros = disciplina.Validar();
+            if (this.disciplina1.id != 0)
+                result = onGravarRegistro(disciplina);
 
-            if (erros.Length > 0)
+            else
+                result = onGravarRegistro(this.disciplina1);
+
+            if (result.IsFailed)
             {
+                TelaPrincipal.Instancia.AtualizarRodape(result.Errors[0].Message);
+
                 DialogResult = DialogResult.None;
-                TelaPrincipal.Instancia.AtualizarRodape(erros[0]);
             }
         }
     }

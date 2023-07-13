@@ -99,7 +99,8 @@ namespace TestesDonaMariana.WinForm
 
         private void disciplinaToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            controlador = new ControladorDisciplina(repositorioDisciplina);
+            ServicoDisciplina servicoDisciplina = new ServicoDisciplina(repositorioDisciplina);
+            controlador = new ControladorDisciplina(repositorioDisciplina, servicoDisciplina);
             ConfigurarTelaPrincipal(controlador);
         }
 

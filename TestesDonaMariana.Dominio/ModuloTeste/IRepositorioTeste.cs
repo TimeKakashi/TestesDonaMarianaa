@@ -1,8 +1,9 @@
-﻿using TestesDonaMariana.Dominio.ModuloQuestoes;
+﻿using TestesDonaMariana.Dominio.Compartilhado;
+using TestesDonaMariana.Dominio.ModuloQuestoes;
 
 namespace TestesDonaMariana.Dominio.ModuloTeste
 {
-    public interface IRepositorioTeste
+    public interface IRepositorioTeste : IRepositorioBase<Teste>
     {
         void Inserir(Teste teste, List<Questao> questoes);
         void Editar(int id, Teste teste);

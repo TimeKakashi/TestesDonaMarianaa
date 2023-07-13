@@ -3,12 +3,13 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using TestesDonaMariana.Dominio.Compartilhado;
 using TestesDonaMariana.Dominio.ModuloDisciplina;
 using TestesDonaMariana.Dominio.ModuloQuestoes;
 
 namespace TestesDonaMariana.Dominio.ModuloMateria
 {
-    public interface IRepositorioMateria
+    public interface IRepositorioMateria : IRepositorioBase<Materia>
     {
         void Inserir(Materia novaMateria);
         void Editar(int id, Materia materiaSelecionada);

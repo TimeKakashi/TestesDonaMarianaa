@@ -258,12 +258,12 @@ namespace TestesDonaMariana.Infra.Dados.Sql.ModuloQuestaoSql
             conexaoComBanco.Close();
         }
 
-        public void InserirAlternativa(List<Alternativa> alternativas, Questao questao)
+        public void InserirAlternativa(Questao questao)
         {
             //obter a conexão com o banco e abrir ela
             
 
-            foreach (Alternativa item in alternativas)
+            foreach (Alternativa item in questao.alternativas)
             {
                 SqlConnection conexaoComBanco = new SqlConnection(enderecoBanco);
                 conexaoComBanco.Open();
