@@ -1,6 +1,4 @@
-﻿using System;
-
-using TestesDonaMariana.Dominio.Compartilhado;
+﻿using TestesDonaMariana.Dominio.Compartilhado;
 using TestesDonaMariana.Dominio.ModuloMateria;
 using TestesDonaMariana.Dominio.ModuloQuestao;
 using TestesDonaMariana.WinForm.ModuloQuestao;
@@ -23,7 +21,7 @@ namespace TestesDonaMariana.Dominio.ModuloQuestoes
             this.materia = materia;
         }
 
-        public Questao(int id,string titulo, List<Alternativa> alternativas, EnumAlternativaCorreta alternativaCorrea, Materia materia)
+        public Questao(int id, string titulo, List<Alternativa> alternativas, EnumAlternativaCorreta alternativaCorrea, Materia materia)
         {
             this.titulo = titulo;
             this.alternativas = alternativas;
@@ -32,7 +30,7 @@ namespace TestesDonaMariana.Dominio.ModuloQuestoes
             this.id = id;
         }
 
-        public Questao(int idQuestao,string titulo,Materia materia, EnumAlternativaCorreta alternativaCorreta)
+        public Questao(int idQuestao, string titulo, Materia materia, EnumAlternativaCorreta alternativaCorreta)
         {
             this.titulo = titulo;
             this.alternativaCorretaENUM = alternativaCorreta;
@@ -51,7 +49,7 @@ namespace TestesDonaMariana.Dominio.ModuloQuestoes
             this.alternativaCorreta = registroAtualizado.alternativaCorreta;
             this.materia = registroAtualizado.materia;
 
-            
+
         }
 
         public override string[] Validar()
@@ -116,7 +114,7 @@ namespace TestesDonaMariana.Dominio.ModuloQuestoes
         }
         public object Clone()
         {
-            Questao clone = new Questao(this.id ,this.titulo, new List<Alternativa>(this.alternativas.Count), this.alternativaCorretaENUM, this.materia);
+            Questao clone = new Questao(this.id, this.titulo, new List<Alternativa>(this.alternativas.Count), this.alternativaCorretaENUM, this.materia);
 
             clone.alternativaCorreta = this.alternativaCorreta;
 

@@ -1,9 +1,4 @@
 ﻿using Microsoft.Data.SqlClient;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using TestesDonaMariana.Dominio;
 using TestesDonaMariana.Dominio.ModuloDisciplina;
 using TestesDonaMariana.Dominio.ModuloMateria;
@@ -32,7 +27,7 @@ namespace TestesDonaMariana.Infra.Dados.Sql.ModuloMateriaSql
             Disciplina disciplina = new MapeadorDisciplina().ConverterRegistro(leitorRegistros);
             int id = 0;
 
-            if(leitorRegistros["ID_MATERIA"] != DBNull.Value)
+            if (leitorRegistros["ID_MATERIA"] != DBNull.Value)
             {
                 id = Convert.ToInt32(leitorRegistros["ID_MATERIA"]);
             }

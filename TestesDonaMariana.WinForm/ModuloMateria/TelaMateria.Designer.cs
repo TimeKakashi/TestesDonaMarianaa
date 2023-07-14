@@ -39,13 +39,15 @@
             primeiraSerie = new RadioButton();
             SegundSerie = new RadioButton();
             gbRadio = new GroupBox();
+            label1 = new Label();
+            txId = new TextBox();
             gbRadio.SuspendLayout();
             SuspendLayout();
             // 
             // lblNome
             // 
             lblNome.AutoSize = true;
-            lblNome.Location = new Point(12, 14);
+            lblNome.Location = new Point(12, 55);
             lblNome.Name = "lblNome";
             lblNome.Size = new Size(43, 15);
             lblNome.TabIndex = 0;
@@ -54,7 +56,7 @@
             // lblDisciplina
             // 
             lblDisciplina.AutoSize = true;
-            lblDisciplina.Location = new Point(12, 65);
+            lblDisciplina.Location = new Point(12, 87);
             lblDisciplina.Name = "lblDisciplina";
             lblDisciplina.Size = new Size(61, 15);
             lblDisciplina.TabIndex = 1;
@@ -97,7 +99,7 @@
             // textBox1
             // 
             textBox1.BackColor = SystemColors.ButtonHighlight;
-            textBox1.Location = new Point(94, 11);
+            textBox1.Location = new Point(94, 52);
             textBox1.Name = "textBox1";
             textBox1.Size = new Size(155, 23);
             textBox1.TabIndex = 0;
@@ -106,7 +108,7 @@
             // 
             comboBox1.DropDownStyle = ComboBoxStyle.DropDownList;
             comboBox1.FormattingEnabled = true;
-            comboBox1.Location = new Point(94, 57);
+            comboBox1.Location = new Point(94, 84);
             comboBox1.Name = "comboBox1";
             comboBox1.Size = new Size(155, 23);
             comboBox1.TabIndex = 1;
@@ -145,11 +147,31 @@
             gbRadio.TabIndex = 9;
             gbRadio.TabStop = false;
             // 
+            // label1
+            // 
+            label1.AutoSize = true;
+            label1.Location = new Point(12, 18);
+            label1.Name = "label1";
+            label1.Size = new Size(17, 15);
+            label1.TabIndex = 10;
+            label1.Text = "Id";
+            // 
+            // txId
+            // 
+            txId.BackColor = SystemColors.ButtonHighlight;
+            txId.Enabled = false;
+            txId.Location = new Point(94, 18);
+            txId.Name = "txId";
+            txId.Size = new Size(155, 23);
+            txId.TabIndex = 11;
+            // 
             // TelaMateria
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(347, 222);
+            Controls.Add(txId);
+            Controls.Add(label1);
             Controls.Add(gbRadio);
             Controls.Add(comboBox1);
             Controls.Add(textBox1);
@@ -186,5 +208,7 @@
         private RadioButton primeiraSerie;
         private RadioButton SegundSerie;
         private GroupBox gbRadio;
+        private Label label1;
+        private TextBox txId;
     }
 }

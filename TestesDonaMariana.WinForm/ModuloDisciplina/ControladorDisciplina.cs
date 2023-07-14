@@ -68,7 +68,7 @@ namespace TestesDonaMariana.WinForm.ModuloDisciplina
             DialogResult opcaoEscolhida = telaDisciplina.ShowDialog();
 
             if (opcaoEscolhida == DialogResult.OK)
-                  CarregarDisciplina();
+                CarregarDisciplina();
         }
 
 
@@ -85,12 +85,12 @@ namespace TestesDonaMariana.WinForm.ModuloDisciplina
             TelaDisciplina telaDisciplina = new TelaDisciplina(repositorioDisciplina);
             telaDisciplina.ConfigurarTela(disciplinaSelecionada);
             telaDisciplina.onGravarRegistro += servicoDisciplina.Editar;
-            
+
             DialogResult opcaoEscolhida = telaDisciplina.ShowDialog();
 
             if (opcaoEscolhida == DialogResult.OK)
                 CarregarDisciplina();
-               
+
         }
 
 
@@ -110,7 +110,7 @@ namespace TestesDonaMariana.WinForm.ModuloDisciplina
             {
                 Result resultado = servicoDisciplina.Excluir(disciplinaSelecionada);
 
-                if(resultado.IsFailed)
+                if (resultado.IsFailed)
                 {
                     MessageBox.Show(resultado.Errors[0].Message, "Exclusão de Disciplina", MessageBoxButtons.OK, MessageBoxIcon.Error);
 

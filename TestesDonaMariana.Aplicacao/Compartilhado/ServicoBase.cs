@@ -1,8 +1,6 @@
 ﻿using FluentResults;
 using Microsoft.Data.SqlClient;
 using TestesDonaMariana.Dominio.Compartilhado;
-using TestesDonaMariana.Dominio.ModuloQuestoes;
-using TestesDonaMariana.Infra.Dados.Sql.Compatilhado;
 using TestesDonaMariana.Infra.Dados.Sql.ModuloQuestaoSql;
 
 namespace TestesDonaMariana.Aplicacao.Compartilhado
@@ -23,7 +21,7 @@ namespace TestesDonaMariana.Aplicacao.Compartilhado
 
             repositorio.Inserir(item);
 
-            if(repositorio.GetType() == typeof(RepositorioQuestaoSql))
+            if (repositorio.GetType() == typeof(RepositorioQuestaoSql))
                 InserirAlternativas(item);
 
             return Result.Ok();
@@ -57,7 +55,7 @@ namespace TestesDonaMariana.Aplicacao.Compartilhado
             }
             catch (SqlException ex)
             {
-                 erros.Add("Nao eh possivel excluir esse item!");
+                erros.Add("Nao eh possivel excluir esse item!");
 
                 return Result.Fail(erros);
             }

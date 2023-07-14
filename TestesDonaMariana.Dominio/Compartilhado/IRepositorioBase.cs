@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace TestesDonaMariana.Dominio.Compartilhado
+﻿namespace TestesDonaMariana.Dominio.Compartilhado
 {
     public interface IRepositorioBase<T> where T : EntidadeBase<T>
     {
@@ -18,5 +12,5 @@ namespace TestesDonaMariana.Dominio.Compartilhado
 
         T SelecionarPorId(int id);
     }
-    
+
 }

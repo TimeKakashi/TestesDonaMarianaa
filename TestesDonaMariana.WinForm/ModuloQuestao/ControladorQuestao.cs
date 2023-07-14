@@ -1,7 +1,6 @@
 ﻿using FluentResults;
 using TestesDonaMariana.Aplicacao.ModuloQuestao;
 using TestesDonaMariana.Dominio.ModuloMateria;
-using TestesDonaMariana.Dominio.ModuloQuestao;
 using TestesDonaMariana.Dominio.ModuloQuestoes;
 using TestesDonaMariana.Dominio.ModuloTeste;
 using TestesDonaMariana.WinForm.Compartilhado;
@@ -42,7 +41,7 @@ namespace TestesDonaMariana.WinForm.ModuloQuestao
         public override void Inserir()
         {
             TelaQuestao telaQuestao = new TelaQuestao(repositorioMateria);
-           
+
             telaQuestao.onGravarRegistro += servicoQuestao.Inserir;
 
             DialogResult opcaoEscolhida = telaQuestao.ShowDialog();
@@ -73,7 +72,7 @@ namespace TestesDonaMariana.WinForm.ModuloQuestao
             DialogResult opcaoEscolhida = telaQuestao.ShowDialog();
 
             if (opcaoEscolhida == DialogResult.OK)
-                 CarregarQuestoes();
+                CarregarQuestoes();
         }
 
         public override void Excluir()

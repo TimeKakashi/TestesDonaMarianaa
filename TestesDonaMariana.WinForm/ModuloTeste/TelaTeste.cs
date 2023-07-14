@@ -1,9 +1,9 @@
-﻿using PdfSharp.Internal;
-using TestesDonaMariana.Dominio;
+﻿using FluentResults;
 using TestesDonaMariana.Dominio.ModuloDisciplina;
 using TestesDonaMariana.Dominio.ModuloMateria;
 using TestesDonaMariana.Dominio.ModuloQuestoes;
 using TestesDonaMariana.Dominio.ModuloTeste;
+using TestesDonaMariana.WinForm.Compartilhado;
 
 namespace TestesDonaMariana.WinForm.ModuloTeste
 {
@@ -14,6 +14,8 @@ namespace TestesDonaMariana.WinForm.ModuloTeste
         private IRepositorioMateria repositorioMateria { get; }
         private IRepositorioQuestoes repositorioQuestoes { get; }
         private IRepositorioTeste repositorioTeste { get; }
+        public event GravarRegistroDelegate<Teste> onGravarRegistro;
+        private Teste teste;
 
         List<Questao> questoesFinais { get; set; } = new List<Questao>();
 
@@ -37,6 +39,10 @@ namespace TestesDonaMariana.WinForm.ModuloTeste
         public Teste ObterTeste()
         {
             Materia materia;
+            int idTeste = 0;
+
+            if (txId.Text != "")
+                idTeste = Convert.ToInt32(txId.Text);
 
             if (recuperacao)
                 materia = null;
@@ -59,6 +65,8 @@ namespace TestesDonaMariana.WinForm.ModuloTeste
             int numeroQuestoes = Convert.ToInt32((numericNumeroQuestoes.Value));
             List<Questao> questoes = questoesFinais;
 
+            this.teste = new Teste(materia, disciplina, numeroQuestoes, serieNome, idTeste, titulo, recuperacao);
+
             return new Teste(materia, disciplina, numeroQuestoes, serieNome, questoes, titulo, recuperacao);
         }
 
@@ -69,6 +77,7 @@ namespace TestesDonaMariana.WinForm.ModuloTeste
             cbDisciplina.SelectedItem = teste.disciplina;
             numericNumeroQuestoes.Value = teste.numeroQuestoes;
             cxRadio.Controls.OfType<RadioButton>().SingleOrDefault(RadioButton => RadioButton.Checked).Text = teste.serie;
+            txId.Text = teste.id.ToString();
 
             EncherListBox(teste.questoes);
         }
@@ -198,37 +207,26 @@ namespace TestesDonaMariana.WinForm.ModuloTeste
         private void button1_Click(object sender, EventArgs e) //Cadastrar
         {
             Teste teste = ObterTeste();
+            Result result;
 
-            List<Teste> testes = repositorioTeste.SelecionarTodos();
-            string[] erros = teste.Validar();
+            if (this.teste.id != 0)
+                result = onGravarRegistro(this.teste);
 
-            if (testes.Any(t => t.titulo == teste.titulo))
+            else
+                result = onGravarRegistro(teste);
+
+            if (result.IsFailed)
             {
-                TelaPrincipal.Instancia.AtualizarRodape("Nao eh possivel cadastrar um teste com o mesmo titulo de outro!");
+                TelaPrincipal.Instancia.AtualizarRodape(result.Errors[0].Message);
                 DialogResult = DialogResult.None;
                 return;
             }
-
-            if (erros.Length > 0)
-            {
-                TelaPrincipal.Instancia.AtualizarRodape(erros[0]);
-                DialogResult = DialogResult.None;
-                return;
-            }
-
-
-
         }
 
         private void label6_Click(object sender, EventArgs e)
         {
 
         }
-        public string ObterTituloTeste()
-        {
-            return tbTitulo.Text;
-        }
-
 
         private void checkRecuperacao_CheckedChanged(object sender, EventArgs e)
         {
@@ -270,8 +268,6 @@ namespace TestesDonaMariana.WinForm.ModuloTeste
             numericNumeroQuestoes.Value = teste.numeroQuestoes;
 
             DesabilitarCampos();
-
-
         }
 
         private void DesabilitarCampos()

@@ -35,7 +35,7 @@ namespace TestesDonaMariana.WinForm.ModuloDisciplina
 
             string nome = tbListaDeMateria.Text;
 
-            if(tbNome.Text != "")
+            if (tbNome.Text != "")
                 id = Convert.ToInt32(tbNome.Text);
 
             disciplina1 = new Disciplina(nome, id);

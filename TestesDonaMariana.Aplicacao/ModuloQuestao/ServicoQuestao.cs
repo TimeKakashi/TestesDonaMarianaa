@@ -1,18 +1,8 @@
 ﻿using FluentResults;
-using Microsoft.Data.SqlClient;
-using Microsoft.Identity.Client.Kerberos;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using TestesDonaMariana.Aplicacao.Compartilhado;
 using TestesDonaMariana.Dominio.Compartilhado;
-using TestesDonaMariana.Dominio.ModuloDisciplina;
 using TestesDonaMariana.Dominio.ModuloQuestao;
 using TestesDonaMariana.Dominio.ModuloQuestoes;
-using TestesDonaMariana.Infra.Dados.Sql.Compatilhado;
-using TestesDonaMariana.Infra.Dados.Sql.ModuloQuestaoSql;
 
 namespace TestesDonaMariana.Aplicacao.ModuloQuestao
 {
@@ -56,7 +46,7 @@ namespace TestesDonaMariana.Aplicacao.ModuloQuestao
 
         public Result Inserir(Questao questao)
         {
-           Result resultado = base.Inserir(questao);
+            Result resultado = base.Inserir(questao);
 
             return resultado;
         }

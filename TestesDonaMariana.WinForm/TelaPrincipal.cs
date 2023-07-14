@@ -25,9 +25,9 @@ namespace TestesDonaMariana.WinForm
         private IRepositorioMateria repositorioMateria = new RepositorioMateriaSql();
         private IRepositorioQuestoes repositorioQuestao = new RepositorioQuestaoSql();
         private IRepositorioTeste repositorioTeste = new RepositorioTesteSql();
-    
-        
-        
+
+
+
 
         private static TelaPrincipal telaPrincipal;
         public ControladorBase controlador { get; set; }
@@ -106,7 +106,8 @@ namespace TestesDonaMariana.WinForm
 
         private void materiaToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            controlador = new ControladorMateria(repositorioMateria, repositorioDisciplina, repositorioQuestao);
+            ServicoMateria servicoMateria = new ServicoMateria(repositorioMateria);
+            controlador = new ControladorMateria(repositorioMateria, repositorioDisciplina, repositorioQuestao, servicoMateria);
             ConfigurarTelaPrincipal(controlador);
         }
 
@@ -119,7 +120,8 @@ namespace TestesDonaMariana.WinForm
 
         private void testeToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            controlador = new ControladorTeste(repositorioTeste, repositorioGabarito, repositorioDisciplina, repositorioMateria, repositorioQuestao);
+            ServicoTeste servicoTeste = new ServicoTeste(repositorioTeste);
+            controlador = new ControladorTeste(repositorioTeste, repositorioDisciplina, repositorioMateria, repositorioQuestao, servicoTeste);
             ConfigurarTelaPrincipal(controlador);
         }
 
