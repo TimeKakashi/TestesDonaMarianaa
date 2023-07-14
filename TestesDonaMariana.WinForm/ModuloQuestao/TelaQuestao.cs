@@ -12,7 +12,7 @@ namespace TestesDonaMariana.WinForm.ModuloQuestao
 
         private Questao questao;
 
-        public event GravarRegistroDelegate onGravarRegistro;
+        public event GravarRegistroDelegate<Questao> onGravarRegistro;
         public TelaQuestao(IRepositorioMateria repositorioMateria)
         {
             InitializeComponent();
@@ -30,7 +30,7 @@ namespace TestesDonaMariana.WinForm.ModuloQuestao
 
             string titulo = txTitulo.Text;
 
-            if(txId.Text != null && txId.Text != "")
+            if (txId.Text != null && txId.Text != "")
             {
                 id = Convert.ToInt32(txId.Text);
             }
@@ -73,8 +73,8 @@ namespace TestesDonaMariana.WinForm.ModuloQuestao
             questao.alternativas = Alternativas;
             questao.id = id;
             questao.alternativaCorretaENUM = alternativaCorrea;
-            
-             return new Questao(titulo, Alternativas, alternativaCorrea, materia);
+
+            return new Questao(titulo, Alternativas, alternativaCorrea, materia);
         }
 
         public void ConfigurarTela(Questao questao)

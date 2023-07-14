@@ -1,4 +1,6 @@
-﻿using TestesDonaMariana.Dominio.ModuloDisciplina;
+﻿using FluentResults;
+using TestesDonaMariana.Aplicacao.ModuloQuestao;
+using TestesDonaMariana.Dominio.ModuloDisciplina;
 using TestesDonaMariana.Dominio.ModuloMateria;
 using TestesDonaMariana.Dominio.ModuloQuestoes;
 using TestesDonaMariana.WinForm.Compartilhado;
@@ -11,12 +13,14 @@ namespace TestesDonaMariana.WinForm.ModuloMateria
         private IRepositorioMateria repositorioMateria;
         private IRepositorioDisciplina repositorioDisciplina;
         private IRepositorioQuestoes repositorioQuestao;
+        private ServicoMateria servicoMateria;
 
-        public ControladorMateria(IRepositorioMateria repositorioMateria, IRepositorioDisciplina repositorioDisciplina, IRepositorioQuestoes repositorioQuestao)
+        public ControladorMateria(IRepositorioMateria repositorioMateria, IRepositorioDisciplina repositorioDisciplina, IRepositorioQuestoes repositorioQuestao, ServicoMateria servicoMateria)
         {
             this.repositorioMateria = repositorioMateria;
             this.repositorioDisciplina = repositorioDisciplina;
             this.repositorioQuestao = repositorioQuestao;
+            this.servicoMateria = servicoMateria;
             CarregarMaterias();
         }
 
@@ -45,55 +49,22 @@ namespace TestesDonaMariana.WinForm.ModuloMateria
 
             TelaMateria telaMateria = new TelaMateria(repositorioDisciplina, repositorioMateria);
             telaMateria.ArrumaTela(materia);
+            telaMateria.onGravarRegistro += servicoMateria.Editar;
 
-            while (true)
-            {
-                DialogResult result = telaMateria.ShowDialog();
+            DialogResult result = telaMateria.ShowDialog();
 
-                if (result == DialogResult.OK)
-                {
-                    List<Materia> listaMateria = repositorioMateria.SelecionarTodos();
-                    Materia materiaNova = telaMateria.ObterMateria();
-                    materiaNova.id = materia.id;
-
-                    if (listaMateria.Any(x => x.nome.ToLower() == materiaNova.nome.ToLower() && x.id != materiaNova.id))
-                    {
-                        TelaPrincipal.Instancia.AtualizarRodape("O nome da matéria já existe. Por favor, insira um nome diferente.");
-                        continue;
-                    }
-
-                    repositorioMateria.Editar(materiaNova.id, materiaNova);
-
-                    break;
-                }
-                else if (result == DialogResult.Cancel)
-                    break;
-            }
-
-            CarregarMaterias();
+            if (result == DialogResult.OK)
+                CarregarMaterias();
         }
 
 
         public override void Excluir()
         {
             Materia materia = ObterMateriaSelecionada();
-            bool PossuiQuestao = false;
 
             if (materia == null)
             {
                 MessageBox.Show("Selecione uma matéria primeiro!",
-                    "Exclusão de Matéria",
-                    MessageBoxButtons.OK,
-                    MessageBoxIcon.Exclamation);
-
-                return;
-            }
-
-            int quantidadeQuestao = repositorioMateria.SelecionarQuestoesMateria(materia).Count;
-
-            if (quantidadeQuestao > 0)
-            {
-                MessageBox.Show("Essa materia possui questoes atreladas!",
                     "Exclusão de Matéria",
                     MessageBoxButtons.OK,
                     MessageBoxIcon.Exclamation);
@@ -107,7 +78,14 @@ namespace TestesDonaMariana.WinForm.ModuloMateria
 
             if (opcaoEscolhida == DialogResult.OK)
             {
-                repositorioMateria.Excluir(materia);
+                Result result = servicoMateria.Excluir(materia);
+
+                if (result.IsFailed)
+                {
+                    MessageBox.Show(result.Errors[0].Message, "Exclusão de Materia", MessageBoxButtons.OK, MessageBoxIcon.Error);
+
+                    return;
+                }
             }
 
             CarregarMaterias();
@@ -118,29 +96,13 @@ namespace TestesDonaMariana.WinForm.ModuloMateria
         public override void Inserir()
         {
             TelaMateria telaMateria = new TelaMateria(repositorioDisciplina, repositorioMateria);
-            while (true)
-            {
-                DialogResult result = telaMateria.ShowDialog();
 
-                if (result == DialogResult.OK)
-                {
-                    List<Materia> listaMateria = repositorioMateria.SelecionarTodos();
-                    Materia materia = telaMateria.ObterMateria();
+            telaMateria.onGravarRegistro += servicoMateria.Inserir;
 
-                    if (listaMateria.Any(x => x.nome.ToLower() == materia.nome.ToLower()))
-                    {
-                        TelaPrincipal.Instancia.AtualizarRodape("O nome da matéria já existe. Por favor, insira um nome diferente.");
-                        continue;
-                    }
+            DialogResult result = telaMateria.ShowDialog();
 
-                    repositorioMateria.Inserir(materia);
-                    CarregarMaterias();
-                    break;
-                }
-                else if (result == DialogResult.Cancel)
-                    break;
-
-            }
+            if (result == DialogResult.OK)
+                CarregarMaterias();
         }
 
 

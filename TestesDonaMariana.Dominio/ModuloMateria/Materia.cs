@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Net;
-using System.Text;
-using System.Threading.Tasks;
-using TestesDonaMariana.Dominio.Compartilhado;
+﻿using TestesDonaMariana.Dominio.Compartilhado;
 using TestesDonaMariana.Dominio.ModuloDisciplina;
 using TestesDonaMariana.Dominio.ModuloQuestoes;
 
@@ -18,8 +12,8 @@ namespace TestesDonaMariana.Dominio.ModuloMateria
 
         public List<Questao> questoes { get; set; } = new List<Questao>();
 
-  
-        public Materia(string nome, Disciplina Disciplina, Serie serie) 
+
+        public Materia(string nome, Disciplina Disciplina, Serie serie)
         {
             this.nome = nome;
             this.disciplina = Disciplina;

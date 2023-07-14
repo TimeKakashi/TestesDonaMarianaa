@@ -1,13 +1,7 @@
 ﻿using Microsoft.Data.SqlClient;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using TestesDonaMariana.Dominio;
 using TestesDonaMariana.Dominio.ModuloDisciplina;
 using TestesDonaMariana.Dominio.ModuloMateria;
-using TestesDonaMariana.Dominio.ModuloQuestao;
 using TestesDonaMariana.Dominio.ModuloQuestoes;
 using TestesDonaMariana.Infra.Dados.Sql.Compatilhado;
 using TestesDonaMariana.Infra.Dados.Sql.ModuloQuestaoSql;
@@ -90,7 +84,7 @@ namespace TestesDonaMariana.Infra.Dados.Sql.ModuloMateriaSql
 														WHERE 
 															M.[ID] = @ID";
 
-		private const string sqlSelecionarQuestoesMateria = @"SELECT 
+        private const string sqlSelecionarQuestoesMateria = @"SELECT 
 																Q.[Id]					ID_QUESTAO,
 																Q.[Titulo]				TITULO_QUESTAO,
 																Q.[AlternativaCorreta]	ALTERNATIVA_CORRETA,
@@ -123,7 +117,7 @@ namespace TestesDonaMariana.Infra.Dados.Sql.ModuloMateriaSql
 
 																	Where M.id = @ID_MATERIA";
 
-		private const string sqlSelecionarMateriasDisciplina = @"SELECT 
+        private const string sqlSelecionarMateriasDisciplina = @"SELECT 
 
 																	M.ID				ID_MATERIA,
 																	M.NOME				NOME_MATERIA,
@@ -147,12 +141,12 @@ namespace TestesDonaMariana.Infra.Dados.Sql.ModuloMateriaSql
 																WHERE
 																	D.ID = @ID_DISCIPLINA";
 
-		private const string sqlSelecionarSeriePorNome = @"select serie as NOME_SERIE, Id as ID_SERIE from TB_Serie where TB_Serie.serie = @NOME_SERIE";
+        private const string sqlSelecionarSeriePorNome = @"select serie as NOME_SERIE, Id as ID_SERIE from TB_Serie where TB_Serie.serie = @NOME_SERIE";
 
-		private const string sqlInserirSeries = @"Insert into TB_Serie (serie) Values ('Primeira Serie'), ('Segunda Serie')";
+        private const string sqlInserirSeries = @"Insert into TB_Serie (serie) Values ('Primeira Serie'), ('Segunda Serie')";
 
-		public Serie SelecionarSerieNome(string nome)
-		{
+        public Serie SelecionarSerieNome(string nome)
+        {
             SqlConnection conexaoComBanco = new SqlConnection(enderecoBanco);
             conexaoComBanco.Open();
 
@@ -163,28 +157,28 @@ namespace TestesDonaMariana.Infra.Dados.Sql.ModuloMateriaSql
 
             SqlDataReader leitorItem = comandoSelecionarSerie.ExecuteReader();
 
-			Serie serie = null;
+            Serie serie = null;
 
             if (leitorItem.Read())
             {
-				string nomeSerie = Convert.ToString(leitorItem["NOME_SERIE"]);
-				int id = Convert.ToInt32(leitorItem["ID_SERIE"]);
+                string nomeSerie = Convert.ToString(leitorItem["NOME_SERIE"]);
+                int id = Convert.ToInt32(leitorItem["ID_SERIE"]);
 
                 serie = new Serie(nomeSerie, id);
             }
 
             return serie;
         }
-        
+
         public void InserirSeries()
-		{
+        {
             SqlConnection conexaoComBanco = new SqlConnection(enderecoBanco);
             conexaoComBanco.Open();
 
             SqlCommand comandoInserirSeries = conexaoComBanco.CreateCommand();
             comandoInserirSeries.CommandText = sqlInserirSeries;
 
-			comandoInserirSeries.ExecuteNonQuery();
+            comandoInserirSeries.ExecuteNonQuery();
 
             conexaoComBanco.Close();
         }
@@ -207,7 +201,7 @@ namespace TestesDonaMariana.Infra.Dados.Sql.ModuloMateriaSql
 
             while (leitorItem.Read())
             {
-				Questao questao = new MapeadorQuestao().ConverterRegistro(leitorItem);
+                Questao questao = new MapeadorQuestao().ConverterRegistro(leitorItem);
 
                 questoes.Add(questao);
             }
@@ -244,6 +238,6 @@ namespace TestesDonaMariana.Infra.Dados.Sql.ModuloMateriaSql
         }
     }
 
-	
+
 
 }

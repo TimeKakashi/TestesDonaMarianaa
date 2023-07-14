@@ -46,6 +46,8 @@
             label6 = new Label();
             tbTitulo = new TextBox();
             checkRecuperacao = new CheckBox();
+            label7 = new Label();
+            txId = new TextBox();
             cxRadio.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)numericNumeroQuestoes).BeginInit();
             SuspendLayout();
@@ -234,11 +236,31 @@
             checkRecuperacao.UseVisualStyleBackColor = true;
             checkRecuperacao.CheckedChanged += checkRecuperacao_CheckedChanged;
             // 
+            // label7
+            // 
+            label7.AutoSize = true;
+            label7.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
+            label7.Location = new Point(366, 25);
+            label7.Name = "label7";
+            label7.Size = new Size(23, 21);
+            label7.TabIndex = 17;
+            label7.Text = "Id";
+            // 
+            // txId
+            // 
+            txId.Enabled = false;
+            txId.Location = new Point(395, 27);
+            txId.Name = "txId";
+            txId.Size = new Size(71, 23);
+            txId.TabIndex = 18;
+            // 
             // TelaTeste
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(599, 684);
+            Controls.Add(txId);
+            Controls.Add(label7);
             Controls.Add(checkRecuperacao);
             Controls.Add(tbTitulo);
             Controls.Add(label6);
@@ -289,5 +311,7 @@
         private Label label6;
         private TextBox tbTitulo;
         private CheckBox checkRecuperacao;
+        private Label label7;
+        private TextBox txId;
     }
 }

@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using TestesDonaMariana.Dominio.Compartilhado;
+﻿using TestesDonaMariana.Dominio.Compartilhado;
 using TestesDonaMariana.Dominio.ModuloDisciplina;
 using TestesDonaMariana.Dominio.ModuloMateria;
 using TestesDonaMariana.Dominio.ModuloQuestoes;
@@ -47,7 +42,7 @@ namespace TestesDonaMariana.Dominio.ModuloTeste
 
         public Teste()
         {
-            
+
         }
 
         public override void AtualizarInformacoes(Teste registroAtualizado)
@@ -81,7 +76,7 @@ namespace TestesDonaMariana.Dominio.ModuloTeste
             else if (questoes.Count == 0)
                 erros.Add("Eh necessario gerar questões!");
 
-            if(recuperacao == false)
+            if (recuperacao == false)
             {
                 if (materia == null)
                     erros.Add("Caso nao seja uma prova de recuperacao, eh necessario selecionar uma materia");

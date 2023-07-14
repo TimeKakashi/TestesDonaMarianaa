@@ -1,18 +1,16 @@
-﻿using System.Reflection.Metadata;
+﻿using FluentResults;
 using iTextSharp.text;
 using iTextSharp.text.pdf;
-using System.IO;
 using System.Text;
+using TestesDonaMariana.Aplicacao.ModuloQuestao;
 using TestesDonaMariana.Dominio.ModuloDisciplina;
-using TestesDonaMariana.Dominio.ModuloGabarito;
 using TestesDonaMariana.Dominio.ModuloMateria;
+using TestesDonaMariana.Dominio.ModuloQuestao;
 using TestesDonaMariana.Dominio.ModuloQuestoes;
 using TestesDonaMariana.Dominio.ModuloTeste;
 using TestesDonaMariana.WinForm.Compartilhado;
-using Document = iTextSharp.text.Document;
-using TestesDonaMariana.Dominio.ModuloQuestao;
-using System.ComponentModel.DataAnnotations;
 using TestesDonaMariana.WinForm.ModuloQuestao;
+using Document = iTextSharp.text.Document;
 
 namespace TestesDonaMariana.WinForm.ModuloTeste
 {
@@ -20,18 +18,19 @@ namespace TestesDonaMariana.WinForm.ModuloTeste
     {
         private ListagemTesteControl listagemTeste;
         private IRepositorioTeste repositorioTeste;
-        private IRepositorioGabarito repositorioGabarito;
         private IRepositorioDisciplina repositorioDisciplina;
         private IRepositorioMateria repositorioMateria;
         private IRepositorioQuestoes repositorioQuestoes;
+        private ServicoTeste servicoTeste;
 
-        public ControladorTeste(IRepositorioTeste repositorioTeste, IRepositorioGabarito repositorioGabarito, IRepositorioDisciplina repositorioDisciplina, IRepositorioMateria repositorioMateria, IRepositorioQuestoes repositorioQuestoes)
+        public ControladorTeste(IRepositorioTeste repositorioTeste, IRepositorioDisciplina repositorioDisciplina,
+            IRepositorioMateria repositorioMateria, IRepositorioQuestoes repositorioQuestoes, ServicoTeste servicoTeste)
         {
             this.repositorioTeste = repositorioTeste;
-            this.repositorioGabarito = repositorioGabarito;
             this.repositorioMateria = repositorioMateria;
             this.repositorioDisciplina = repositorioDisciplina;
             this.repositorioQuestoes = repositorioQuestoes;
+            this.servicoTeste = servicoTeste;
 
             Encoding.RegisterProvider(CodePagesEncodingProvider.Instance);
             CarregarTestes();
@@ -65,16 +64,15 @@ namespace TestesDonaMariana.WinForm.ModuloTeste
         {
             TelaTeste telaTeste = new TelaTeste(repositorioDisciplina, repositorioMateria, repositorioQuestoes, repositorioTeste);
 
+            telaTeste.onGravarRegistro += servicoTeste.Inserir;
+
             DialogResult resultado = telaTeste.ShowDialog();
 
             if (resultado == DialogResult.OK)
             {
-                Teste teste = telaTeste.ObterTeste();
-
-                repositorioTeste.Inserir(teste, teste.questoes);
+                CarregarTestes();
             }
 
-            CarregarTestes();
         }
 
         public override void Editar()
@@ -94,7 +92,15 @@ namespace TestesDonaMariana.WinForm.ModuloTeste
 
             if (opcaoEscolhida == DialogResult.OK)
             {
-                repositorioTeste.Excluir(testeSelecionado);
+                Result result = servicoTeste.Excluir(testeSelecionado);
+
+                if (result.IsFailed)
+                {
+                    MessageBox.Show(result.Errors[0].Message, "Exclusão de Materia", MessageBoxButtons.OK, MessageBoxIcon.Error);
+
+                    return;
+                }
+
                 CarregarTestes();
             }
         }
@@ -249,11 +255,11 @@ namespace TestesDonaMariana.WinForm.ModuloTeste
                 doc.Add(new Paragraph($"ID do Teste: {testeSelecionado.id}"));
                 doc.Add(new Paragraph($"Disciplina: {testeSelecionado.disciplina.nome}"));
 
-                if(testeSelecionado.materia.id == 0)
+                if (testeSelecionado.materia.id == 0)
                     doc.Add(new Paragraph($"Prova de Recuperação"));
                 else
                     doc.Add(new Paragraph($"Matéria: {testeSelecionado.materia.nome}"));
-                
+
                 doc.Add(new Paragraph("Questões: \n--------------------------------------------------------------------------------------"));
 
                 string letra = string.Empty;

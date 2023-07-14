@@ -1,15 +1,6 @@
 ﻿using Microsoft.Data.SqlClient;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Runtime.CompilerServices;
-using System.Text;
-using System.Threading.Tasks;
 using TestesDonaMariana.Dominio.ModuloDisciplina;
-using TestesDonaMariana.Dominio.ModuloQuestao;
-using TestesDonaMariana.Dominio.ModuloQuestoes;
 using TestesDonaMariana.Infra.Dados.Sql.Compatilhado;
-using TestesDonaMariana.Infra.Dados.Sql.ModuloQuestaoSql;
 
 namespace TestesDonaMariana.Infra.Dados.Sql.ModuloDisciplinaSql
 {
@@ -90,8 +81,8 @@ namespace TestesDonaMariana.Infra.Dados.Sql.ModuloDisciplinaSql
             return disciplinas;
         }
 
-		public List<Disciplina> VerificarTestesNaDisciplina(Disciplina disciplina)
-		{
+        public List<Disciplina> VerificarTestesNaDisciplina(Disciplina disciplina)
+        {
             SqlConnection conexaoComBanco = new SqlConnection(enderecoBanco);
             conexaoComBanco.Open();
 

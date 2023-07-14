@@ -1,10 +1,4 @@
 ﻿using Microsoft.Data.SqlClient;
-using Microsoft.Identity.Client;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using TestesDonaMariana.Dominio.ModuloDisciplina;
 using TestesDonaMariana.Dominio.ModuloQuestao;
 using TestesDonaMariana.Dominio.ModuloQuestoes;
@@ -44,7 +38,7 @@ namespace TestesDonaMariana.Infra.Dados.Sql.ModuloQuestaoSql
 				SELECT SCOPE_IDENTITY();";
 
 
-		protected override string sqlEditar =>
+        protected override string sqlEditar =>
             @"UPDATE [TB_Questao]
 				SET 
 					[Id_Materia] = @ID_MATERIA,
@@ -55,7 +49,7 @@ namespace TestesDonaMariana.Infra.Dados.Sql.ModuloQuestaoSql
 
 
 
-		private const string sqlEditarAlternativas =
+        private const string sqlEditarAlternativas =
 
             @"UPDATE [TB_ALTERNATIVA]
 				SET 
@@ -70,7 +64,7 @@ namespace TestesDonaMariana.Infra.Dados.Sql.ModuloQuestaoSql
 					[TB_Questao]
 				WHERE 
 					[Id] = @ID_QUESTAO";
-		protected override string sqlSelecionarTodos =>
+        protected override string sqlSelecionarTodos =>
             @"SELECT 
 				Q.[Id]					ID_QUESTAO,
 				Q.[Titulo]				TITULO_QUESTAO,
@@ -138,7 +132,7 @@ namespace TestesDonaMariana.Infra.Dados.Sql.ModuloQuestaoSql
 					Q.[Id] = @ID
 				";
 
-		public const string sqlCarregarAlternativas =
+        public const string sqlCarregarAlternativas =
             @"SELECT 
 					A.[ALTERNATIVA],
 					A.[ID]
@@ -150,7 +144,7 @@ namespace TestesDonaMariana.Infra.Dados.Sql.ModuloQuestaoSql
 					A.ID_QUESTAO = Q.[ID]
 					where q.id = @ID_QUESTAO";
 
-		public const string sqlExcluirAlternativas =
+        public const string sqlExcluirAlternativas =
             @"delete from [TB_Alternativa] where Id_Questao = @id";
 
         public const string sqlSelecionarQuestoesDisciplina = @"select
@@ -184,7 +178,7 @@ namespace TestesDonaMariana.Infra.Dados.Sql.ModuloQuestaoSql
 																where
 																		D.Id = @ID_DISCIPLINA";
 
-		private const string sqlSelecionarQuestoesTeste = @"SELECT 
+        private const string sqlSelecionarQuestoesTeste = @"SELECT 
 																	Q.[ID]					ID_QUESTAO,
 																	Q.[TITULO]				TITULO_QUESTAO,
 																	Q.[ALTERNATIVACORRETA]	ALTERNATIVA_CORRETA,
@@ -228,7 +222,7 @@ namespace TestesDonaMariana.Infra.Dados.Sql.ModuloQuestaoSql
 
         public override void Excluir(Questao registroSelecionado)
         {
-			ExcluirAlternativas(registroSelecionado);
+            ExcluirAlternativas(registroSelecionado);
 
             SqlConnection conexaoComBanco = new SqlConnection(enderecoBanco);
             conexaoComBanco.Open();
@@ -244,7 +238,7 @@ namespace TestesDonaMariana.Infra.Dados.Sql.ModuloQuestaoSql
         }
 
         public void ExcluirAlternativas(Questao questao)
-		{
+        {
             SqlConnection conexaoComBanco = new SqlConnection(enderecoBanco);
             conexaoComBanco.Open();
 
@@ -258,12 +252,12 @@ namespace TestesDonaMariana.Infra.Dados.Sql.ModuloQuestaoSql
             conexaoComBanco.Close();
         }
 
-        public void InserirAlternativa(List<Alternativa> alternativas, Questao questao)
+        public void InserirAlternativa(Questao questao)
         {
             //obter a conexão com o banco e abrir ela
-            
 
-            foreach (Alternativa item in alternativas)
+
+            foreach (Alternativa item in questao.alternativas)
             {
                 SqlConnection conexaoComBanco = new SqlConnection(enderecoBanco);
                 conexaoComBanco.Open();
@@ -275,14 +269,14 @@ namespace TestesDonaMariana.Infra.Dados.Sql.ModuloQuestaoSql
                 MapeadorQuestao mapeador = new MapeadorQuestao();
 
                 mapeador.ConfigurarParamentrosAlternativas(comandoInserirAlternativas, item, questao);
-				comandoInserirAlternativas.ExecuteNonQuery();
+                comandoInserirAlternativas.ExecuteNonQuery();
 
-				conexaoComBanco.Close();
+                conexaoComBanco.Close();
             }
         }
 
-		public void EditarAlternativas(Questao questao)
-		{
+        public void EditarAlternativas(Questao questao)
+        {
             foreach (Alternativa item in questao.alternativas)
             {
                 SqlConnection conexaoComBanco = new SqlConnection(enderecoBanco);
@@ -301,8 +295,8 @@ namespace TestesDonaMariana.Infra.Dados.Sql.ModuloQuestaoSql
             }
         }
 
-		public List<Alternativa> SelecionarAlternativas(Questao questao)
-		{
+        public List<Alternativa> SelecionarAlternativas(Questao questao)
+        {
             SqlConnection conexaoComBanco = new SqlConnection(enderecoBanco);
             conexaoComBanco.Open();
 
@@ -315,18 +309,18 @@ namespace TestesDonaMariana.Infra.Dados.Sql.ModuloQuestaoSql
 
             SqlDataReader leitorItem = comandoSelecionarAlternativas.ExecuteReader();
 
-			List<Alternativa> alternatvias = new List<Alternativa>();
+            List<Alternativa> alternatvias = new List<Alternativa>();
 
             while (leitorItem.Read())
             {
-				Alternativa alternativa = mapeador.ConverterParaAlternativastr(leitorItem);
+                Alternativa alternativa = mapeador.ConverterParaAlternativastr(leitorItem);
 
-				alternatvias.Add(alternativa);
+                alternatvias.Add(alternativa);
             }
 
             conexaoComBanco.Close();
 
-			return alternatvias;
+            return alternatvias;
         }
 
         public List<Questao> SelecionarQuestoesDisciplina(Disciplina disciplina)
@@ -355,8 +349,8 @@ namespace TestesDonaMariana.Infra.Dados.Sql.ModuloQuestaoSql
             return questoes;
         }
 
-		public List<Questao> SelecionarQuestoesTeste(Teste teste)
-		{
+        public List<Questao> SelecionarQuestoesTeste(Teste teste)
+        {
             SqlConnection conexaoComBanco = new SqlConnection(enderecoBanco);
             conexaoComBanco.Open();
 

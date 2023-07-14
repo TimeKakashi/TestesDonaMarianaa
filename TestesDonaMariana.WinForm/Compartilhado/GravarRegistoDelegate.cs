@@ -1,14 +1,8 @@
 ﻿using FluentResults;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using TestesDonaMariana.Dominio.ModuloDisciplina;
-using TestesDonaMariana.Dominio.ModuloQuestoes;
+using TestesDonaMariana.Dominio.Compartilhado;
 
 namespace TestesDonaMariana.WinForm.Compartilhado
 {
-    public delegate Result GravarRegistroDelegate(Questao questao);
+    public delegate Result GravarRegistroDelegate<T>(T questao) where T : EntidadeBase<T>;
 
 }

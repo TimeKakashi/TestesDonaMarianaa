@@ -1,9 +1,4 @@
 ﻿using Microsoft.Data.SqlClient;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using TestesDonaMariana.Dominio.ModuloDisciplina;
 using TestesDonaMariana.Dominio.ModuloMateria;
 using TestesDonaMariana.Dominio.ModuloTeste;
@@ -23,7 +18,7 @@ namespace TestesDonaMariana.Infra.Dados.Sql.ModuloTesteSql
             if (registro.materia == null || registro.materia.id == 0)
                 comando.Parameters.AddWithValue("ID_MATERIA", DBNull.Value);
             else
-            comando.Parameters.AddWithValue("ID_MATERIA", registro.materia.id);
+                comando.Parameters.AddWithValue("ID_MATERIA", registro.materia.id);
 
             comando.Parameters.AddWithValue("TITULO_TESTE", registro.titulo);
             comando.Parameters.AddWithValue("DATA", registro.dataCriacao.Ticks);

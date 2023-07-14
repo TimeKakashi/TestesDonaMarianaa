@@ -1,17 +1,8 @@
 ﻿using Microsoft.Data.SqlClient;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using TestesDonaMariana.Dominio.ModuloMateria;
-using TestesDonaMariana.Dominio.ModuloQuestao;
 using TestesDonaMariana.Dominio.ModuloQuestoes;
 using TestesDonaMariana.Dominio.ModuloTeste;
 using TestesDonaMariana.Infra.Dados.Sql.Compatilhado;
-using TestesDonaMariana.Infra.Dados.Sql.ModuloMateriaSql;
 using TestesDonaMariana.Infra.Dados.Sql.ModuloQuestaoSql;
-using static System.Net.Mime.MediaTypeNames;
 
 namespace TestesDonaMariana.Infra.Dados.Sql.ModuloTesteSql
 {
@@ -37,7 +28,7 @@ namespace TestesDonaMariana.Infra.Dados.Sql.ModuloTesteSql
 												)
 												SELECT SCOPE_IDENTITY();";
 
-		private const string AdicionarQuestoesTeste = @"INSERT INTO [TB_QUESTAO_TB_TESTE]
+        private const string AdicionarQuestoesTeste = @"INSERT INTO [TB_QUESTAO_TB_TESTE]
 													(
 														[ID_QUESTAO],
 														[ID_TESTE]
@@ -49,7 +40,7 @@ namespace TestesDonaMariana.Infra.Dados.Sql.ModuloTesteSql
 													)
 													";
 
-		private const string RemoverQuestao = @"DELETE FROM 
+        private const string RemoverQuestao = @"DELETE FROM 
 													[TB_QUESTAO_TB_TESTE]
 												WHERE 
 													[ID_QUESTAO] = @ID_QUESTAO
@@ -57,7 +48,7 @@ namespace TestesDonaMariana.Infra.Dados.Sql.ModuloTesteSql
 													[ID_TESTE] = @ID_TESTE";
         protected override string sqlEditar => throw new NotImplementedException();
 
-		protected override string sqlExcluir => @"DELETE FROM TBTeste WHERE TBTeste.Id = @ID";
+        protected override string sqlExcluir => @"DELETE FROM TBTeste WHERE TBTeste.Id = @ID";
 
         protected override string sqlSelecionarTodos => @"SELECT 
 	
@@ -93,7 +84,7 @@ namespace TestesDonaMariana.Infra.Dados.Sql.ModuloTesteSql
 
 														";
 
-		protected override string sqlSelecionarPorId => @"SELECT 
+        protected override string sqlSelecionarPorId => @"SELECT 
 	
 															T.[Data]				DATA_CRIACAO,
 															T.[Id_disciplina]		ID_DISCIPLINA,
@@ -128,7 +119,7 @@ namespace TestesDonaMariana.Infra.Dados.Sql.ModuloTesteSql
 															T.[ID] = @ID"
                                                         ;
 
-		private const string sqlSelecionarQuestoesPorMateria = @"SELECT 
+        private const string sqlSelecionarQuestoesPorMateria = @"SELECT 
 																	Q.[Id]					ID_QUESTAO,
 																	Q.[Titulo]				TITULO_QUESTAO,
 																	Q.[AlternativaCorreta]	ALTERNATIVA_CORRETA,
@@ -169,7 +160,7 @@ namespace TestesDonaMariana.Infra.Dados.Sql.ModuloTesteSql
 																	where 
 																		T.id = @ID_TESTE";
 
-		private const string sqlSelecionarQuestoesTeste = @"SELECT 
+        private const string sqlSelecionarQuestoesTeste = @"SELECT 
 																		Q.[Id]					ID_QUESTAO,
 																		Q.[Titulo]				TITULO_QUESTAO,
 																		Q.[AlternativaCorreta]	ALTERNATIVA_CORRETA,
@@ -210,20 +201,20 @@ namespace TestesDonaMariana.Infra.Dados.Sql.ModuloTesteSql
 																		where 
 																			T.id = @ID_TESTE";
 
-		
+
 
         public void Inserir(Teste novoRegistro, List<Questao> questoes)
         {
-			base.Inserir(novoRegistro);
+            base.Inserir(novoRegistro);
 
-			foreach(Questao questao in novoRegistro.questoes)
-			{
-				AdicionarQuestoes(novoRegistro, questao);
-			}
+            foreach (Questao questao in novoRegistro.questoes)
+            {
+                AdicionarQuestoes(novoRegistro, questao);
+            }
         }
 
         private void AdicionarQuestoes(Teste teste, Questao questao)
-		{
+        {
             SqlConnection conexaoBanco = new SqlConnection(enderecoBanco);
             conexaoBanco.Open();
 
@@ -240,10 +231,10 @@ namespace TestesDonaMariana.Infra.Dados.Sql.ModuloTesteSql
 
         public override void Excluir(Teste registroSelecionado)
         {
-			foreach (Questao item in registroSelecionado.questoes)
-			{
-				ExcluirQuestao(item, registroSelecionado);
-			}
+            foreach (Questao item in registroSelecionado.questoes)
+            {
+                ExcluirQuestao(item, registroSelecionado);
+            }
 
             base.Excluir(registroSelecionado);
         }

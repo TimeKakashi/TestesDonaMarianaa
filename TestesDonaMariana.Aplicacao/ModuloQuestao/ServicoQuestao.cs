@@ -1,40 +1,30 @@
 ﻿using FluentResults;
-using Microsoft.Data.SqlClient;
-using Microsoft.Identity.Client.Kerberos;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using TestesDonaMariana.Dominio.ModuloDisciplina;
+using TestesDonaMariana.Aplicacao.Compartilhado;
+using TestesDonaMariana.Dominio.Compartilhado;
 using TestesDonaMariana.Dominio.ModuloQuestao;
 using TestesDonaMariana.Dominio.ModuloQuestoes;
 
 namespace TestesDonaMariana.Aplicacao.ModuloQuestao
 {
-    public class ServicoQuestao
+    public class ServicoQuestao : ServicoBase<Questao>
     {
         private IRepositorioQuestoes repositorioQuestao;
+
+        public override IRepositorioBase<Questao> repositorio => repositorioQuestao;
 
         public ServicoQuestao(IRepositorioQuestoes repositorioQuestoes)
         {
             this.repositorioQuestao = repositorioQuestoes;
         }
 
-        public Result Editar(Questao questao)
+        public override Result Editar(Questao questao)
         {
-            List<string> erros = ValidarQuestao(questao);
+            Result result = base.Editar(questao);
 
-            if (erros.Count() > 0)
-                return Result.Fail(erros);
-
-            repositorioQuestao.Editar(questao.id, questao);
-            EditarAlternativas(questao);
-
-            return Result.Ok();
+            return result;
         }
 
-        private void EditarAlternativas(Questao questaoAtualizada)
+        public override void EditarAlternativas(Questao questaoAtualizada)
         {
             int contador = 0;
 
@@ -49,46 +39,33 @@ namespace TestesDonaMariana.Aplicacao.ModuloQuestao
             repositorioQuestao.EditarAlternativas(questaoAtualizada);
         }
 
-        public Result Inserir(Questao questao)
+        public override void InserirAlternativas(Questao q)
         {
-            List<string> erros = ValidarQuestao(questao);
-
-            if(erros.Count() > 0)
-                return Result.Fail(erros);
-
-            repositorioQuestao.Inserir(questao);
-            repositorioQuestao.InserirAlternativa(questao.alternativas, questao);
-
-            return Result.Ok();
+            repositorioQuestao.InserirAlternativa(q);
         }
 
-        private List<string> ValidarQuestao(Questao questao)
+        public Result Inserir(Questao questao)
         {
-            List<string> erros = new List<string>(questao.Validar());
+            Result resultado = base.Inserir(questao);
 
-            if (repositorioQuestao.SelecionarTodos().Any(q => q.titulo == questao.titulo && q.id != questao.id))
-                    erros.Add($"Este nome '{questao.titulo}' já está sendo utilizado na aplicação");
-
-            return erros;
+            return resultado;
         }
 
         public Result Excluir(Questao questao)
         {
-            List<string> erros = new List<string>();
+            Result resultado = base.Excluir(questao);
 
-            try
-            {
-                repositorioQuestao.Excluir(questao);
+            return resultado;
+        }
 
-                return Result.Ok();
+        public override List<string> ValidarEntidade(Questao item)
+        {
+            List<string> erros = new List<string>(item.Validar());
 
-            }catch(SqlException ex)
-            {
-                if (ex.Message.Contains("FK_TB_Questao_TB_Teste_TB_Questao"))
-                    erros.Add("Essa questao esta relacionada com um Teste, n eh possivel exclui-la");
+            if (repositorioQuestao.SelecionarTodos().Any(q => q.titulo == item.titulo && q.id != item.id))
+                erros.Add($"Este nome '{item.titulo}' já está sendo utilizado na aplicação");
 
-                    return Result.Fail(erros);
-            }
+            return erros;
         }
     }
 }

@@ -1,19 +1,12 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Drawing;
-using System.Linq;
-using System.Reflection.Metadata.Ecma335;
-using System.Text;
-using System.Threading.Tasks;
-using TestesDonaMariana.Dominio.Compartilhado;
+﻿using TestesDonaMariana.Dominio.Compartilhado;
 using TestesDonaMariana.Dominio.ModuloMateria;
 
 namespace TestesDonaMariana.Dominio.ModuloDisciplina
 {
     public class Disciplina : EntidadeBase<Disciplina>
     {
-        
-        public  string nome;
+
+        public string nome;
         public List<Materia> listaMateria { get; set; } = new List<Materia>();
 
         public Disciplina(string nome, int id)
@@ -24,7 +17,11 @@ namespace TestesDonaMariana.Dominio.ModuloDisciplina
         public Disciplina(string nome)
         {
             this.nome = nome;
-            
+
+        }
+
+        public Disciplina()
+        {
         }
 
         public override void AtualizarInformacoes(Disciplina registroAtualizado)
@@ -38,12 +35,12 @@ namespace TestesDonaMariana.Dominio.ModuloDisciplina
 
             if (string.IsNullOrEmpty(nome))
                 erros.Add("Campo nome esta invalido!");
-            
-            else if(nome.Length < 5)
+
+            else if (nome.Length < 5)
                 erros.Add("Campo nome esta invalido, deve possuir mais que quatro letras");
 
             return erros.ToArray();
-        }   
+        }
 
         public override string ToString()
         {
